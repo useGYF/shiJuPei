@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+  <meta HTTP-EQUIV="expires" CONTENT="0">
+  <title>廊坊市空气质量智能管控平台</title>
+  <link rel="shortcut icon" href="static/imgs/title/logo-icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="static/css/bootstrap.css">
+  <link rel="stylesheet" href="static/css/SearchInfoWindow_min.css">
+  <link rel="stylesheet" href="static/css/TrafficControl_min.css">
+  <link rel="stylesheet" type="text/css" media="screen and (min-width: 1400px)" href="static/css/likeWinter.css"/>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  //MapStyle
+  //      const mapStyle ={style:'googlelite'};
+  const mapStyle = {
+    styleJson: [
+      {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": {
+          "lightness": 20
+        }
+      },
+      {
+        "featureType": "highway",
+        "elementType": "geometry",
+        "stylers": {
+          "color": "#f49935",
+          "visibility": "off"
+        }
+      },
+      {
+        "featureType": "railway",
+        "elementType": "all",
+        "stylers": {}
+      },
+      {
+        "featureType": "highway",
+        "elementType": "labels",
+        "stylers": {
+          "visibility": "off"
+        }
+      },
+      {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": {
+          "color": "#d1e5ff"
+        }
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels",
+        "stylers": {
+          "visibility": "off"
+        }
+      }
+    ]
+  };
+</script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak=FovGfLyaU2eYMMQaiq8jEKIU"></script>
+<script src="static/js/map/SearchInfoWindow_min.js"></script>
+<script src="static/js/map/DistanceTool_min.js"></script>
+<!--<script src="static/js/map/TrafficControl.js"></script>-->
+<script src="static/js/map/DrawingManager_min.js"></script>
+<!--<script src="static/js/map/Heatmap_min.js"></script>-->
+<script src="static/js/map/TextIconOverlay_min.js"></script>
+<!--<script src="static/js/map/MarkerClusterer_min.js"></script>-->
+<script src="static/js/map/MarkerClusterJH.js"></script>
+<script src="./static/js/echarts.min.js"></script>
+<script src="./static/js/china.js"></script>
+<script src="./static/js/jquery.min.js"></script>
+<!--<script src="static/js/crypto_zq-min.js"></script>-->
+<script src="static/js/highcharts.js"></script>
+<script src="static/js/chart.js"></script>
+<script src="static/js/swing.js"></script>
+<script src="static/js/jQuery-Easy.js"></script>
+<!--<script src="http://malsup.github.com/jquery.form.js"></script>-->
+<script src="static/js/jquery.form.js"></script>
+</body>
+</html>

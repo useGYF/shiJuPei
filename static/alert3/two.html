@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>二级</title>
+</head>
+<style>
+    html,
+    body {
+        font-size: 12px;
+        font-family: "MicrosoftYaHei";
+    }
+
+    .all-wrapper {
+        width: 420px;
+        overflow: auto;
+        margin: 0 auto;
+        background: #FFFFFF;
+        border-radius: 2px;
+    }
+
+    .company-name {
+        color: #333333;
+        background: #EBEBEB;
+        font-size: 14PX;
+        height: 26px;
+        line-height: 26px;
+        padding-left: 10px;
+        margin: 0px 20px 10px 20px;
+    }
+
+    .table-wrapper {
+        padding: 0px 20px 20px 20px;
+    }
+
+    .table-up {
+        /*table-layout: auto;*/
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #DDDDDD;
+        border-collapse: collapse;
+    }
+
+    .table-up tr td {
+        /*width: 25%;*/
+        border: 1px solid #DDDDDD;
+        height: 22px;
+        line-height: 22px;
+    }
+
+    .table-up td:nth-child(odd) {
+        /*text-align: center;*/
+        background: #EBEBEB;
+        color: #666666;
+        width: 93px;
+    }
+
+    .table-up td:nth-child(even) {
+        width: 98px;
+        /*text-align: left;*/
+        padding-left: 10px;
+        color: #333333;
+    }
+
+    .msg-type {
+        margin-left: 20px;
+        border-left: 4px solid #2494f2;
+        padding-left: 10px;
+        line-height: 14px;
+        height: 14px;
+        font-size: 14px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    .msg-type:nth-child(1) {
+        margin-top: 10px;
+    }
+
+    td {
+        text-align: left;
+        padding-left: 10px;
+    }
+</style>
+
+<body>
+<div class="all-wrapper">
+    <div class="msg-type">
+        网格信息
+    </div>
+    <div class="table-wrapper">
+        <table class="table-up" id="insert1">
+        </table>
+    </div>
+    <div class="msg-type">
+        网格员信息
+    </div>
+    <div class="table-wrapper">
+        <!--将循环的内容添加进来-->
+        <table class="table-up" id="insert">
+        </table>
+    </div>
+
+
+</div>
+</body>
+
+</html>
+<script src="../js/jquery.min.js"></script>
+<script src="../../static/js/apiconfig.js"></script>
+<script>
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURIComponent(r[2]);
+        return null;
+    }
+
+    var gridcode = GetQueryString('gridcode');
+    //console.log(testurl.sjt)
+    let url = testurl.sjt + '/api/Grid/GetGridInfo?gridcode='+gridcode;
+    //let url = 'http://117.119.97.150:8063/api/Grid/GetGridInfo?gridcode='+gridcode;
+    //let url = 'http://gkpt.zq12369.com:8016/api/Grid/GetGridInfo?gridcode='+gridcode;
+    $.ajax({
+        type: "get",
+        url: url,
+        success: function (res) {
+            console.log(res)
+            var all = res.ExtraData.GridMembers
+            var all2 = res.ExtraData
+            console.log(res.ExtraData)
+
+            var re = "";
+            if (all.length % 2 == 0) {
+                for (var i = 0; i < all.length; i += 2) {
+                    re += "<tr><td>" + all[i].GridMemberName + "</td><td>" + (all[i].Contact ? all[i].Contact : '----') +
+                        "</td><td>" + all[i + 1].GridMemberName + "</td><td>" + (all[i + 1].Contact ? all[i + 1].Contact : '----') + "</td></tr>"
+                }
+            } else {
+                for (var i = 0; i < all.length; i += 2) {
+                    if (i == (all.length - 1)) {
+                        re += "<tr><td>" + all[i].GridMemberName + "</td><td>" + (all[i].Contact ? all[i].Contact : '----') +
+                            "</td><td>" + "</td><td>" + "</td></tr>"
+                    } else {
+                        re += "<tr><td>" + all[i].GridMemberName + "</td><td>" + (all[i].Contact ? all[i].Contact : '----') +
+                            "</td><td>" + all[i + 1].GridMemberName + "</td><td>" + (all[i + 1].Contact ? all[i + 1].Contact : '----') + "</td></tr>"
+                    }
+                }
+            }
+
+            $("#insert").html(re)
+            var re2 = "";
+            re2 += "<tr><td>网格编号</td><td>" + all2.GridCode + "</td><td>区域名称</td><td>" + all2.GridName + "</td></tr>" +
+                "<tr><td>三级网格数量</td><td>" + all2.ThirdGridCount + "</td><td>三级网格巡查员</td><td>" + all2.ThirdGridMemberCount + "</td></tr>";
+            $("#insert1").html(re2)
+
+        }
+    });
+</script>

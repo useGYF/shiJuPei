@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>移动源</title>
+</head>
+<style>
+    html, body {
+        font-size: 12px;
+        font-family: "MicrosoftYaHei";
+    }
+
+    .all-wrapper {
+        width: 420px;
+        max-height: 450px;
+        margin: 0 auto;
+        background: #FFFFFF;
+        /*border: 1px solid rgba(0,0,0,0.2);*/
+        /*box-shadow: 1px 3px 4px rgba(0,0,0,0.18);*/
+        border-radius: 2px;
+        /*padding: 0 15px;*/
+    }
+
+    .table-wrapper {
+        padding: 0px 20px 20px 20px;
+    }
+
+    .table-up {
+        /*table-layout: auto;*/
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #DDDDDD;
+        border-collapse: collapse;
+    }
+
+    .table-up tr td {
+        /*width: 25%;*/
+        border: 1px solid #DDDDDD;
+        height: 22px;
+        line-height: 22px;
+    }
+
+    .table-up td:nth-child(odd) {
+        /*text-align: center;*/
+        background: #EBEBEB;
+        color: #666666;
+        width: 93px;
+    }
+
+    .table-up td:nth-child(even) {
+        width: 98px;
+        /*text-align: left;*/
+        padding-left: 10px;
+        color: #333333;
+    }
+
+    .msg-type {
+        margin-left: 20px;
+        border-left: 4px solid #2494f2;
+        padding-left: 10px;
+        line-height: 14px;
+        height: 14px;
+        font-size: 14px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    .msg-type-in {
+        font-size: 12px;
+        color: #666666;
+    }
+
+    .arrow {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        float: right;
+    }
+
+    .arrow-show {
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+
+    .arrow-hide {
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+
+    td {
+        text-align: left;
+        padding-left: 10px;
+    }
+</style>
+<body>
+<div class="all-wrapper">
+    <div class="msg-type">
+        道路信息
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper">
+        <table class="table-up">
+            <tr>
+                <td>道路名称</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>道路等级</td>
+                <td></td>
+                <td>道路长度</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>道路宽度</td>
+                <td></td>
+                <td>车闸数</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="msg-type">
+        车流信息
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper">
+        <table class="table-up">
+            <tr>
+                <td>时间</td>
+                <td></td>
+                <td>总车流量</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>重型车车流量</td>
+                <td></td>
+                <td>轻型车车流量</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>本地车车流量</td>
+                <td></td>
+                <td>外地车车流量</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="msg-type">
+        污染物排放量
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper">
+        <table class="table-up">
+            <tr>
+                <td>时间</td>
+                <td></td>
+                <td>SO2</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>NO2</td>
+                <td></td>
+                <td>CO</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>PM2.5</td>
+                <td></td>
+                <td>PM10</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>EC</td>
+                <td></td>
+                <td>OC</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>VOCS</td>
+                <td></td>
+                <td>NH3</td>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+
+
+</div>
+</body>
+</html>
+<script src="../js/jquery.min.js"></script>
+<script>
+    var hide = $(".arrow-hide")
+    $.each(hide, function () {
+        $(this).click(function () {
+            $(this).css("display", "none")
+            $(this).next().css("display", "block")
+            $(this).parent().parent().next().slideUp()
+        })
+    });
+    var show = $(".arrow-show")
+    $.each(show, function () {
+        $(this).click(function () {
+            $(this).css("display", "none")
+            $(this).prev().css("display", "block")
+            $(this).parent().parent().next().slideDown()
+        })
+    });
+
+</script>

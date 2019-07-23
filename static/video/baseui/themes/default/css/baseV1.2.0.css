@@ -1,0 +1,276 @@
+
+/* # Top part
+================================================== */
+#top {background: #3f85e4; height: 59px; line-height:20px;border-bottom: 1px solid #2468c5;}
+
+/*=== Site navigation ===*/
+.topNav a,.userNav a { color: #fff; }
+
+/*=== User navigation ===*/
+ul.userNav { margin-right:16px; margin-top: 23px; position: relative; z-index: 990; float: right; display: inline; border-left: 1px solid #75a7eb; padding-left: 10px; }
+
+ul.userNav li ul, #navMenu ul{ position: absolute;border-bottom: 1px solid #115bc1; background:url(../images/sprite_1.png) no-repeat 6px -105px; font-size: 12px; font-weight: normal; width: 120px; top: 13px; padding-top: 10px; display: none; }
+.topNav li ul li,ul.userNav li ul li {  border-left: 1px solid #115bc1;border-right: 1px solid #115bc1; border-top: 1px solid #115bc1 ; border-bottom:none;background: #1b61c5; }
+
+ul.userNav li ul li a {color: #fff!important;line-height: 30px;}
+.topNav li ul li:hover a,ul.userNav li ul li:hover a,
+.topNav li ul li a:hover,ul.userNav li ul li a:hover { background-color: #2480d8;  }
+.topNav li ul li.active {background: #2480d8;}
+
+ul.userNav li.i-profile a:link i,ul.userNav li.i-profile a:visited i { background-position: 0px 0; }
+ul.userNav li.i-profile a:hover i { background-position: 0px -20px;}
+ul.userNav li.i-password a:link i,ul.userNav li.i-password a:visited i { background-position: 0px -40px; }
+ul.userNav li.i-password a:hover i { background-position: 0px -59px;}
+ul.userNav li.i-exit a:link i,ul.userNav li.i-exit a:visited i { background-position: 0px -78px; }
+ul.userNav li.i-exit a:hover i { background-position: 0px -99px;}
+
+/* # Header part
+================================================== */
+h1.title {width:600px;}
+
+/* === User Profile === */
+.uName {font-weight: normal;}
+
+/* === Search === */
+.topSearch {top:18px;right:20px;border: 1px solid #3375cf; width: 196px; height: 22px;}
+.topSearch .keyword {padding: 2px 10px;width: 138px; }
+.topSearch .keyword:focus {padding: 2px 10px;}
+.topSearch .searchBtn {top: 0px; right: -14px;}
+.topSearch .shadow  {height:22px; width:166px;}
+
+/* Layout Dropdown Stuff
+================================================== */
+.nav li.active a { background: #3874c7; color: #fff; font-weight: bold;   }
+.nav li.active li a { line-height: 32px; border: none;}
+ul.userNav li a i {background: url(../images/banner_admin_dropdown_info.png) no-repeat 0 -9999px;}
+.mainNav {background:white;height:32px;}
+.mainNav .nav li a {padding: 0 20px;line-height: 32px;display: block;color: #3874c7;}
+.mainNav .nav li:hover a, .mainNav .nav li.hover a {font-weight: bold;background: #3874c7;color: #fff;}
+.mainNav .nav li.active a {background:#3874c7;color:white;}
+
+
+/* # General styles
+================================================== */
+
+.leftNav { float: left; margin: 4px 0 0 15px;}
+.nav-logo {background: url(../images/logo.png); width: 48px; height: 48px; float: left;}
+.leftNav a { color:#FFFFFF!important; line-height: 48px; }
+.leftNav h2{line-height: 48px; float: left; margin-left: 10px; text-shadow:1px 1px 2px rgba(54,104,176,0.5); font-size: 26px; font-family: "微软雅黑"; font-weight: 600;}
+
+#wrapper {background:none;}
+#content {top:94px;}
+#navbar {top:60px;border-bottom:1px solid #d2d2d2;}
+
+
+
+a.nav_home:link, a.nav_home:visited {
+    background-position: -16px 0px;
+}
+a.nav_home:hover {
+    background-position: -16px -16px;
+}
+a.nav_user:link, a.nav_user:visited { width: auto; background-position: -48px 0px; text-indent: 0px; padding-left: 22px; color: #FFFFFF}
+a.nav_user:hover {background-position: -48px -16px; }
+.hover a.nav_user span  {background-position: right -24px}
+a.nav_user:hover span { background-position: right -24px}
+
+.nav_info:link, a.nav_info:visited {
+    background-position: -32px 0px;
+}
+.nav_info:hover {
+    background-position: -32px -16px;
+}
+.nav_help:link, a.nav_help:visited {
+    background-position: 0px 0px;
+}
+.nav_help:hover {
+    background-position: 0px -16px;
+}
+
+
+
+
+/* ------------------------ */
+
+
+.icon_log span {position: relative;top: 84px;}
+
+.searchBtn {background: transparent url(../images/sprite_1.png) no-repeat 0 -9999px!important; background-position:0px 0px!important;}
+.topSearch { position: absolute; top: 18px; left: 14px; z-index: 4; border: 1px solid #3375cf; width: 0px; height: 22px; z-index: 1000; display: none;}
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+#top .leftNav img { float: left; width: 38px; height: 38px; margin-top: 5px;}
+
+#navThirdLink { margin-right: 40px;  margin-top: 15px; font-family: '微软雅黑'}
+#navThirdLink li{ float: left; font-size: 15px; line-height: 30px; margin-left: 10px;}
+#navThirdLink li a:link,#navThirdLink li a:visited { color: #FFFFFF; display: inline-block; padding: 0px 15px; }
+#navThirdLink li.active a,#navThirdLink li a:hover{ background: #366fbe; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px;}
+
+#navThirdMoreLink { position: relative; }
+#navThirdMoreLink ul { position: absolute; top: 21px; width: 100px; left: -44px; display: none}
+#navThirdMoreLink ul li { margin-left: 0px;  float: none;}
+#navThirdMoreLink ul li a { display: block!important;}
+#navThirdMoreLink .more:link { padding: 0px; }
+#navThirdMoreLink .more:link span { background: url(../images/arrow.png) right -18px no-repeat; padding-right: 17px;}
+#navThirdMoreLink .more:hover span,  #navThirdMoreLink.hover .more span {background-position: right -35px!important; background-repeat: no-repeat}
+#navThirdMoreLink  a.more:hover { background: none; border: none }
+
+#navThirdMoreLink ul{ top: 20px; width: auto; left: -1px; display: none; position: absolute;border-bottom: 1px solid #115bc1; background:url(../images/sprite_1.png) no-repeat 6px -105px; font-size: 12px; font-weight: normal;  padding-top: 10px; display: none; white-space: nowrap}
+
+#navThirdMoreLink ul li { border-left: 1px solid #115bc1;border-right: 1px solid #115bc1; border-top: 1px solid #115bc1 ; border-bottom:none;background: #1b61c5;}
+
+/* 导航map */
+.map_a { width: 30px; padding: 2px 0 0 0!important; text-align: center; height: 32px;}
+.map_a i{ display: block; height: 12px; padding: 7px 0px;  background:url(../images/map_a.png) center 8px no-repeat; border-right: 1px solid #e8eaee;}
+.mainNav li:hover .map_a i,.mainNav li.hover .map_a i { padding-right: 1px; border: none; background-position: center -16px;}
+.mainNav_map ul ul{ max-width: 334px!important; _width: 334px;}
+.nav li.active .map_a { background: none;}
+
+/* 面包屑*/
+.form_div { background: #FFFFFF;}
+.breadLine { background:#edeff4; border-bottom: none;}
+
+/* 左侧导航条 */
+.grid-left {width:140px; float: left; height: 100%; background: #ababab; padding: 15px 10px 0 10px;}
+.grid-left dt { font-size: 14px;}
+.grid-left dd { margin-bottom: 10px;}
+.grid-left dd a{ line-height: 36px; text-align: center; color: #fff; display: block; border: 1px solid #FFFFFF}
+
+
+
+/*new add*/
+
+.leftNav { float: left; margin: 4px 0 0 15px;}
+.nav-logo {background: url(../images/logo.png); width: 48px; height: 48px; float: left;}
+.leftNav a { color:#FFFFFF!important; line-height: 48px; }
+.leftNav h2{line-height: 48px; float: left; margin-left: 10px; text-shadow:1px 1px 2px rgba(54,104,176,0.5); font-size: 26px; font-family: "微软雅黑"; font-weight: 600;}
+.leftNav ul { float: left; padding-left: 20px; }
+.leftNav li {float:left; font-size:14px; margin-left: 20px;}
+#top { position: fixed; }
+
+
+a.nav_icon { width: 16px; height: 16px; background:url(../images/nav_icons.png); background-repeat: no-repeat; float: left; text-indent: -100px; overflow: hidden;}
+.nav_user span{
+    display:block;/*内联对象需加*/
+    width:50px;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 强制在同一行内显示所有文本，直到文本结束或者遭遇 br 对象。不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow:ellipsis;/* IE 专有属性，当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+a.nav_home:link, a.nav_home:visited {
+    background-position: -16px 0px;
+}
+a.nav_home:hover {
+    background-position: -16px -16px;
+}
+
+
+a.nav_user span {  padding-right: 17px; background:url(../images/arrow.png) right -21px no-repeat;font-size:12px;font-family: "微软雅黑"; }
+.hover a.nav_user span  {background-position: right -35px}
+a.nav_user:hover span { background-position: right -35px}
+.nav_info:link, a.nav_info:visited {
+    background-position: -32px 0px;
+}
+.nav_info:hover {
+    background-position: -32px -16px;
+}
+.nav_help:link, a.nav_help:visited {
+    background-position: 0px 0px;
+}
+.nav_help:hover {
+    background-position: 0px -16px;
+}
+
+
+.menu_nav_span { width: 32px; height: 32px; float: left; }
+#navMenu { float: left; font-size:16px; margin: 2px 0 0 7px;}
+#navMenu ul { top: 31px;}
+#navMenu ul li a { font-size: 16px; line-height: 35px; font-family: "微软雅黑";}
+#navMenu a span {padding-right: 17px;
+    background: url(../images/arrow.png) right -11px no-repeat;}
+#navMenu a:hover span { background-position: right -24px}
+/* edition */
+#edition { width: 480px; height: 465px;}
+
+
+/* ------------------------ */
+.mainNav ul.nav { margin: 0px;}
+.mainNav .nav li a {  line-height: 32px; font-weight: normal; display: block; color: #555555; }
+.nav li.active a {padding-bottom: 0; background: #3874c7; color: #fff; font-weight: bold;   }
+.nav li.active li a { line-height: 32px; border: none;}
+
+.mainNav .nav li:hover a,.mainNav .nav li.hover a {
+    font-weight: bold;  background: #434a54; color: #fff;
+}
+
+/*.mainNav .ddmenu ul { _width: 200px; min-width: 200px;}*/
+.mainNav .nav li li a { margin: 0px; padding: 0; display: inline; background: none; color: #2546A5; line-height: 32px; }
+.mainNav .ddmenu ul li { margin-top: 0px;  border-bottom: 1px solid #393f48;}
+.mainNav .ddmenu ul >li:last-child{ border: none}
+.mainNav .ddmenu ul li a { font-weight: bold;  display: block; color: #fff!important; padding: 0px 0px;}
+.mainNav .ddmenu ul li a:hover { color: #4493ff!important;   }
+
+.mainNav .nav li li li a:hover {  color: #4493ff!important;}
+.mainNav .nav .ddmenu ul ul {  padding:0px 0px 0px 0px; margin-bottom: 0px; border: none;  max-width: 322px; _width: 322px; }
+.mainNav .nav li .ddmenu { position: absolute; display: none; box-shadow: 0 5px 5px -2px rgba(0,0,0,.15); border: none; z-index: 999;background:#434a54; overflow: hidden; *zoom:1;padding:14px 20px 7px 20px; top: 32px;   }
+.mainNav .nav li li li {  border-bottom: 0px!important; margin: 0 0 3px 0;}
+.mainNav .nav .ddmenu ul { border: none !important; padding: 0px;}
+.mainNav .nav li.active li a,
+.mainNav .nav li.hover li a,
+.mainNav .nav li:hover li a,
+.mainNav .nav li li a { margin: 0 0px 0 0; padding: 0px 0px 0px 0;  display: block; background: none; color: #2546A5; line-height: 32px; }
+.mainNav {height: 32px; overflow:hidden; background: #fff; font-size: 14px; font-family: '微软雅黑'}
+.mainNav .nav li li li a { font-size: 13px; line-height: 24px!important; font-weight: normal!important; background: none!important; color: #cacaca!important; border: none; line-height: 42px; padding: 0px 30px 6px 0!important;}
+
+
+/* menu add */
+
+.mainNav .nav li .ddmenu { background: #f0f0f0;}
+.mainNav .nav li:hover a,.mainNav .nav li.hover a {
+    font-weight: normal;  background: #f0f0f0; color: #0d0d0d;
+}
+.mainNav .ddmenu ul li a { font-weight: normal;  display: block; color: #0d0d0d!important; padding: 0px 0px;}
+.mainNav .ddmenu ul li { margin-top: 0px;  border-bottom: 1px solid #e0e0e0;}
+.mainNav .nav li:hover a,.mainNav .nav li.hover a {
+    font-weight: normal;  background: #3874c7; padding: 0px 19px;
+    background: #f0f0f0; border: 1px solid #979797;
+    /*border-bottom: 1px solid #e0e0e0;*/
+}
+.mainNav .nav li:hover li a,.mainNav .nav li.hover li a {
+    background: none; border: none; padding: 0px;
+}
+.mainNav .nav li:hover li li a,.mainNav .nav li.hover li li a {
+    background: none; border: none; padding: 0px 30px 6px 0; font-size: 12px;
+}
+.mainNav .nav li:hover li li a { border: none;}
+.mainNav .nav li .ddmenu { border: 1px solid #979797; padding-left: 19px; padding-right: 29px;
+    -moz-box-shadow: 3px 3px 4px #ababab;
+    -webkit-box-shadow: 3px 3px 4px #ababab;
+    box-shadow: 3px 3px 4px #ababab;
+
+}
+
+.mainNav .nav li li li a { color: #6d6d6d!important}
+#navbar li:hover .map_a,#navbar li.hover .map_a { width: 28px;}
+
+
+a.nav-help span{padding-right: 17px; background:url(../images/arrow.png) right -21px no-repeat;}
+.hover a.nav-help span  {background-position: right -35px}
+a.nav-help:hover span { background-position: right -35px}
+a.nav_user2:link, a.nav_user2:visited { width: auto; background-position: -48px -32px; text-indent: 0px; padding-left: 22px; color: #FFFFFF}
+a.nav_user2 span { padding-right: 17px; background:url(../images/arrow.png) right -21px no-repeat; font-size:12px; font-family:"微软雅黑"; }
+.hover a.nav_user2 span  {background-position: right -35px}
+a.nav_user2:hover span { background-position: right -35px}
+ul.userNav li ul{ position: absolute;border-bottom: 1px solid #115bc1; background:url(../images/sprite_1.png) no-repeat 80px -105px; font-size: 12px; font-weight: normal; width: 120px; top: 13px; padding-top: 10px; display: none;right: 0px; }
+
+/*ul.userNav li.i-helpfile a:link i,ul.userNav li.i-helpfile a:visited i { background-position: 0px 0; }
+ul.userNav li.i-helpfile a:hover i { background-position: 0px -20px;}
+ul.userNav li.i-about a:link i,ul.userNav li.i-about a:visited i { background-position: 0px -40px; }
+ul.userNav li.i-about a:hover i { background-position: 0px -59px;} */
+
+

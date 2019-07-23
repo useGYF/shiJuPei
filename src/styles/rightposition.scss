@@ -1,0 +1,23 @@
+//首页右侧面板
+.Paneldataindex {
+  .el-tabs__header {
+    width: 100%;
+    background: #fff !important;
+    z-index: 58;
+    position: absolute;
+    top: 0;
+  }
+  .el-tabs__content {
+    padding-top: 38px !important;
+  }
+}
+
+.el-tree-node__content {
+  text-align: left !important;
+  margin-left: 5% !important;
+
+}
+
+.el-tree {
+  margin-top: 5% !important;
+}

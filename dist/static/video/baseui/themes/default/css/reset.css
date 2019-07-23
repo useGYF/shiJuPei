@@ -1,0 +1,64 @@
+
+/* =====  CSS reset  ===== */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; }
+ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+/* remember to define focus styles! */
+:focus { outline: 0; }
+/* remember to highlight inserts somehow! padding: 9px 17px 9px 17px; */
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+/* tables still need 'cellspacing="0"' in the markup */
+table { border-collapse: collapse; }
+*, * :focus {
+	outline: none;
+	margin: 0;
+	padding: 0;
+}
+textarea { overflow: auto; }
+textarea, input, input[type=text], input[type=password] { font:12px/1.5 '\5b8b\4f53',tahoma,sans-serif; }
+select {font-size:12px;}
+input, textarea { border: none; }
+button, input[type=submit] { font:12px/1.5 '\5b8b\4f53',tahoma,sans-serif; }
+
+img { border: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+p { margin: 0; padding: 0; }
+:focus { outline: 0; }
+a { text-decoration: none; color: #3063B0; cursor: pointer; }
+a:hover { color: #FF6600; }
+.normal { font-style: normal; }
+.normalFont { font-style: normal; font-weight: normal; }
+hr { margin: 5px 0; color: #CCCED0; background-color: #CCCED0; height: 1px; border: 0; }
+
+input::-moz-focus-inner /*Remove button padding in FF*/
+{ 
+    border: 0;
+    padding: 0;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0
+}
+
+a.button::-moz-focus-inner /*Remove button padding in FF*/
+{ 
+    border: 0;
+    padding: 0;
+}
+
+::-webkit-input-placeholder,
+:-moz-placeholder,
+:-ms-input-placeholder { color: #666; }

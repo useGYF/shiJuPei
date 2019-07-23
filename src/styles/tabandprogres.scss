@@ -1,0 +1,176 @@
+html, body {
+  .Paneldata, .PaneldataCgw, .Paneldatavideo, .PaneldataGrid, .Paneldataindex, .PaneldataOnlineList, .Paneldatavideo, .PaneldataStaticDust {
+    //
+    .el-tabs__nav {
+      margin-left: 20px !important;
+      .el-tabs__item {
+        font-size: 16px !important;
+        padding: 0 22px !important;
+      }
+    }
+  }
+  .el-tabs__header {
+    margin: 0 !important;
+  }
+
+  .Like-winter {
+    .el-table::before {
+      height: 0 !important;
+    }
+    .el-table::after {
+      width: 0 !important;
+    }
+    .BMap_cpyCtrl {
+      //display: none!important;
+      width: 74px !important;
+      overflow: hidden !important;
+    }
+    //轮播样式
+    .el-carousel {
+      margin-left: 10px;
+      width: 350px;
+      height: 280px !important;
+      //overflow-y:-webkit-paged-y !important ;
+    }
+    .el-carousel__indicator {
+      padding: 0px 4px;
+    }
+    .el-carousel__item {
+      height: auto !important;
+      border-radius: 5px !important;
+      background: #1d2339 !important;
+    }
+    .el-carousel__container {
+      margin-top: 10px;
+      height: 110px !important;
+    }
+    .Window_Three {
+      //表格样式
+      .el-table {
+        width: 480px;
+      }
+    }
+    .Window_Four, .Window_Five {
+      //表格样式
+      .el-table {
+        width: 426px;
+      }
+    }
+    .el-table .cell {
+      padding: 0 !important;
+    }
+    //切换tab样式
+    .el-tabs__item.is-active {
+      color: #fff !important;
+    }
+    .el-tabs__nav {
+      margin-left: 5px !important;
+      .el-tabs__active-bar {
+        height: 2px !important;
+      }
+      .el-tabs__item {
+        height: 36px !important;
+        line-height: 36px !important;
+        font-size: 14px !important;
+        padding: 0 8px !important;
+      }
+      :hover {
+        color: #fff !important;
+      }
+    }
+  }
+  //进度条
+  .el-carousel__item {
+    background: #1C2C52 !important;
+    //background:-moz-linear-gradient(top, #00ccff, rgba(0, 0, 255, 0.5))!important;
+    //background:-webkit-gradient(linear, 0 0, 0 bottom, from(#00ccff), to(rgba(0, 0, 255, 0.5)))!important;
+  }
+
+  .Progress {
+    .el-progress__text {
+      width: 40px !important;
+      color: #fff !important;
+      margin-top: 3px !important;
+    }
+    .el-progress-bar__outer {
+      margin-top: 3px !important;
+      border: solid 1px #ccc !important;
+      height: 16px !important;
+      border-radius: 3px !important;
+      background: -moz-linear-gradient(left, #1ce405, #c9302c, #3a1028) !important; /*Mozilla*/
+      background: -webkit-linear-gradient(left, #1ce405, #c9302c, #3a1028) !important;
+    }
+    .el-progress-bar__inner {
+      border-radius: 2px !important;
+      background: -moz-linear-gradient(left, #1ce405, #fdc52a) !important; /*Mozilla*/
+      background: -webkit-linear-gradient(left, #1ce405, #fdc52a) !important;
+    }
+  }
+  .prog_box {
+    .el-progress__text {
+      width: 40px !important;
+      color: #fff !important;
+      margin-top: 3px !important;
+    }
+    .el-progress-bar__outer {
+      margin-top: 3px !important;
+      height: 14px !important;
+      border-radius: 0 !important;
+    }
+    .el-progress-bar__inner {
+      border-radius: 0 !important;
+      background: #1c2c52 !important;
+      // background:-moz-linear-gradient(top, #015eea, #01c4fa)!important;
+      //background:-webkit-gradient(linear, 0 0, 0 bottom, from(#015eea), to(#01c4fa))!important;
+    }
+  }
+  .Window_Three table{
+      border: 1px solid #1080cc!important;
+      tr,td,th{
+          border: 1px solid #1080cc!important;
+      }
+  }
+  .Window_Three table tr{
+      height:28px;
+      font-size: 12px;
+  }
+  .Window_Three table th{
+      width: 143px;
+  }
+  .Window_Five, .Window_Four {
+    .el-table {
+      border: none !important;
+      th, td {
+        border: none !important;
+      }
+    }
+    table {
+      border: none !important;
+      th {
+        background: #0b253e !important;
+        border: none !important;
+        div {
+          background: none !important;
+          color: #fff;
+          border: none !important;
+        }
+      }
+      tr:nth-child(odd) {
+        background: #051427 !important;
+        border: none !important;
+        color: #fff;
+        td {
+          border: none !important;
+          background: none !important;
+        }
+      }
+      tr:nth-child(even) {
+        background: #22293c !important;
+        color: #fff;
+        td {
+          background: none !important;
+        }
+      }
+    }
+  }
+}

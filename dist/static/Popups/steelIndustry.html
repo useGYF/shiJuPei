@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>钢铁行业</title>
+</head>
+<style>
+    html, body {
+        font-size: 12px;
+        font-family: "MicrosoftYaHei";
+    }
+	 .table-up {
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #eeeeee;
+        border-collapse: collapse;
+         overflow-x:hidden ;
+    }
+	.wok-name{
+		text-align: center;
+		font-size: 14px;
+		line-height: 30px;
+	}
+	.lvhenxian{
+		width: 30px;
+		height: 3px;
+		background: #1080cc;
+		margin: 0 auto;
+	}
+	.wok-table{
+		margin-top: 10px;
+		
+	}
+	.class-tab-box{
+		width: 580px;
+        height: 40px;
+		margin: 0 auto;
+	}
+	.class-tab-box ul li{
+		line-height: 30px;
+		list-style: none;
+		float: left;
+		width: 40px;
+		margin-left: 20px;
+	}
+    .box1,.box2,.box3,.box4,.box5{
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #eeeeee;
+        border-collapse: collapse;
+        display: none;
+    }
+    .box0{
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #eeeeee;
+        border-collapse: collapse;
+        display: block;
+    }
+    .boxprwap{
+        width: 100%;
+        height: auto;
+
+    }
+    .boxprwap th{
+        width: 20%;
+    }
+    .cael{
+        display: inline-block;
+        width: 134px;
+
+    }
+    .activeli{
+        border-bottom: 2px solid #1080cc;
+    }
+</style>
+<body>
+<div class="all-wrapper">
+  <!--企业行业等名词-->
+  <div class="wok-name"></div>
+  <!---->
+  <div class="lvhenxian"></div>
+	<div class="wok-table">
+		<!--<table border="1" class="table-up">-->
+			<!--<tr><th bgcolor="#f6f6f6">具体地址</th><th colspan="4">xxxxxxx</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">企业联系人</th><th colspan="2">xxxxxxx</th><th bgcolor="#f6f6f6">联系电话</th><th>xxxxxxx</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">行业类别</th><th colspan="4">-&#45;&#45;</th></tr>-->
+			<!---->
+			<!--<tr><th bgcolor="#f6f6f6"  rowspan="2">锅炉信息</th><th bgcolor="#f6f6f6" colspan="2">锅炉数量(台)</th><th bgcolor="#f6f6f6"  colspan="2">锅炉总蒸吨数(吨/小时)</th></tr>-->
+			<!--<tr><th colspan="2">xxxxxxx</th><th colspan="2">xxxxxxx</th></tr>-->
+			<!---->
+			<!--<tr><th bgcolor="#f6f6f6">工序及排放量信息</th><th colspan="4" bgcolor="#f6f6f6">-->
+					<!--<div class="class-tab-box">-->
+						<!--<ul class="ul-tab-li">-->
+							<!--<li>烧结</li>-->
+							<!--<li>球团</li>-->
+							<!--<li>炼铁</li>-->
+							<!--<li>炼钢</li>-->
+							<!--<li>轧钢</li>-->
+							<!--<li>石灰石</li>-->
+						<!--</ul>-->
+					<!--</div>-->
+			<!--</th></tr>-->
+			<!---->
+			<!--<tr><th bgcolor="#f6f6f6"  rowspan="3">生产信息</th><th bgcolor="#f6f6f6">设备类型</th><th>-&#45;&#45;</th><th bgcolor="#f6f6f6">产能(万吨)</th><th>&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">燃料类型</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">燃料消耗总量(万吨/年)</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">原料</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">原料使用量</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!---->
+			<!--<tr><th bgcolor="#f6f6f6">产品信息</th><th bgcolor="#f6f6f6">产品类型</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">产品产量</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!---->
+			<!--<tr><th bgcolor="#f6f6f6"  rowspan="6">污染物排放量</th><th bgcolor="#f6f6f6">污染物名称</th><th bgcolor="#f6f6f6">污染物排放量(吨/年)</th><th bgcolor="#f6f6f6">污染物名称</th><th bgcolor="#f6f6f6">污染物排放量(吨/年)</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">SO2</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">VOC</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">NOx</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">NH3</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">CO</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">BC</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">PM10</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">OC</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr><th bgcolor="#f6f6f6">PM2.5</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th><th>-&#45;&#45;&#45;&#45;</th><th>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!---->
+			<!--<tr><th bgcolor="#f6f6f6">污染物处理技术</th><th colspan="2" bgcolor="#f6f6f6">污染物去除效率</th><th bgcolor="#f6f6f6">污染物处理技术</th><th bgcolor="#f6f6f6">污染物去除效率</th></tr>-->
+			<!--<tr><th>   -&#45;&#45;         </th><th colspan="2">     -&#45;&#45;        </th><th>   -&#45;&#45;           </th><th>  -&#45;&#45;          </th></tr>-->
+			<!--<tr><th>    -&#45;&#45;        </th><th colspan="2">      -&#45;&#45;       </th><th>  -&#45;&#45;            </th><th>   -&#45;&#45;          </th></tr>-->
+			<!---->
+			<!--<tr><th bgcolor="#f6f6f6" rowspan="4">在线监测信息</th><th bgcolor="#f6f6f6">排放口高度(米)</th><th>&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">排放口直径(米)</th><th>&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr>&lt;!&ndash;<td bgcolor="#f6f6f6">Data</td>&ndash;&gt;<th bgcolor="#f6f6f6">是否国控重点污染源</th><th>&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">是否安装在线监测</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr>&lt;!&ndash;<th bgcolor="#f6f6f6">Header</th>&ndash;&gt;<th bgcolor="#f6f6f6">是否省控重点污染源</th><th>&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">是否市控重点污染源</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+			<!--<tr>&lt;!&ndash;<td bgcolor="#f6f6f6">Data</td>&ndash;&gt;<th  bgcolor="#f6f6f6">是否有在线监测</th><th>&#45;&#45;&#45;&#45;</th><th bgcolor="#f6f6f6">是否有视频监控</th><th>-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</th></tr>-->
+		<!--</table>-->
+	</div>
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="../../static/js/apiconfig.js"></script>
+
+<script>
+    ///获取传递id方法
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURIComponent(r[2]);
+        return null;
+    }
+    //获取id
+    var ID = GetQueryString('id');
+    //url
+    var url = testurl.yqd +'/yqd/yqdcon/selectPollutantDischargeDetailById';
+    //var url = 'http://gkpt.zq12369.com:8015/yqd/yqdcon/selectPollutantDischargeDetailById';
+    //请求页面数据
+    $.ajax({
+        url: url,
+        type: 'post',
+        data: {id:ID},
+        success: function (data) {
+            console.log('弹窗数据请你们使用');
+            ///普通数据
+            var GeneralData = data.data;
+            ///特殊数据
+            var SpecialData = data.data.special[0].processSub;
+            //默认数据
+            console.log(GeneralData);
+            console.log(SpecialData);
+            //公司名称
+            var myName = document.getElementsByClassName("wok-name")[0];
+            ///名称写入HTML
+            myName.innerHTML = GeneralData.name;
+            ///获取容器
+            var myDom = document.getElementsByClassName("wok-table")[0];
+            //模板写入
+            var myHtml =`<table border="1" class="table-up">
+			<tr><th bgcolor="#f6f6f6"><span class="cael">具体地址</span></th><th colspan="4"><span class="cael">${GeneralData.address}</span></th></tr>
+			<tr><th bgcolor="#f6f6f6">企业联系人</th><th>${GeneralData.contactor}</th><th bgcolor="#f6f6f6">联系电话</th><th><span class="cael">${GeneralData.phone}</span></th></tr>
+			<tr><th bgcolor="#f6f6f6">行业类别</th><th colspan="4">${GeneralData.innerClassName}</th></tr>
+
+			<tr><th bgcolor="#f6f6f6"  rowspan="2">锅炉信息</th><th bgcolor="#f6f6f6" colspan="2">锅炉数量(台)</th><th bgcolor="#f6f6f6"  colspan="2">锅炉总蒸吨数(吨/小时)</th></tr>
+			<tr><th colspan="2"><span class="cael">${GeneralData.boilersNumber || '--'}</span></th><th colspan="2"><span class="cael">${GeneralData.totalTon || '--'}</span></th></tr>
+
+			<tr><th bgcolor="#f6f6f6">工序及排放量信息</th><th colspan="4" bgcolor="#f6f6f6">
+					<div class="class-tab-box">
+						<ul class="ul-tab-li">
+							<li class="automian activeli">烧结</li>
+							<li class="automian2">球团</li>
+							<li class="automian3">炼铁</li>
+							<li class="automian4">炼钢</li>
+							<li class="automian5">轧钢</li>
+							<li class="automian6">石灰石</li>
+						</ul>
+					</div>
+			</th></tr>
+            <div class="boxprwap">
+                ${getChild()}
+            </div>
+
+			</table>`;
+            ///写入HTML
+            myDom.innerHTML = myHtml;
+            function getChild(){
+                var tmpal =``;
+                //
+                for(var i =0;i< SpecialData.length;i++){
+                console.log(i)
+                    tmpal +=  `<table border="1" class="box${i}"><tr><th bgcolor="#f6f6f6"  rowspan="3"><span class="cael">生产信息</span></th><th bgcolor="#f6f6f6"><span class="cael">设备类型</span></th><th><span class="cael">${SpecialData[i].deviceType}</span></th><th bgcolor="#f6f6f6"><span class="cael">产能(万吨)</span></th><th><span class="cael">${SpecialData[i].capacity}</span></th></tr>
+                <tr><th bgcolor="#f6f6f6">燃料类型</th><th><span class="cael">${SpecialData[i].fuelType}</span></th><th bgcolor="#f6f6f6">燃料消耗总量(万吨/年)</th><th><span class="cael">${SpecialData[i].fuelConsumption}</span></th></tr>
+                <tr><th bgcolor="#f6f6f6">原料</th><th><span class="cael">${SpecialData[i].yuanliao}</span></th><th bgcolor="#f6f6f6">原料使用量</th><th><span class="cael">${SpecialData[i].yuanliaoConsumption}</span></th></tr>
+
+                <tr><th bgcolor="#f6f6f6">产品信息</th><th bgcolor="#f6f6f6">产品类型</th><th><span class="cael">${SpecialData[i].productType}</span></th><th bgcolor="#f6f6f6">产品产量</th><th><span class="cael">${SpecialData[i].productProduction}</span></th></tr>
+
+                <tr><th bgcolor="#f6f6f6"  rowspan="6">污染物排放量</th><th bgcolor="#f6f6f6">污染物名称</th><th bgcolor="#f6f6f6">污染物排放量(吨/年)</th><th bgcolor="#f6f6f6">污染物名称</th><th bgcolor="#f6f6f6">污染物排放量(吨/年)</th></tr>
+                <tr><th bgcolor="#f6f6f6">SO2</th><th><span class="cael">${SpecialData[i].so2}</span></th><th bgcolor="#f6f6f6">VOC</th><th><span class="cael">${SpecialData[i].voc}</span></th></tr>
+                <tr><th bgcolor="#f6f6f6">NOx</th><th><span class="cael">${SpecialData[i].nox}</span></th><th bgcolor="#f6f6f6">NH3</th><th><span class="cael">${SpecialData[i].nh3}</span></th></tr>
+                <tr><th bgcolor="#f6f6f6">CO</th><th><span class="cael">${SpecialData[i].co}</span></th><th bgcolor="#f6f6f6">BC</th><th><span class="cael">${SpecialData[i].bc}</span></th></tr>
+                <tr><th bgcolor="#f6f6f6">PM10</th><th><span class="cael">${SpecialData[i].pm10}</span></th><th bgcolor="#f6f6f6">OC</th><th><span class="cael">${SpecialData[i].oc}</span></th></tr>
+                <tr><th bgcolor="#f6f6f6">PM2.5</th><th><span class="cael">${SpecialData[i].pm25}</span></th><th></th><th></th></tr>
+
+                <tr><th bgcolor="#f6f6f6">污染物处理技术</th><th colspan="2" bgcolor="#f6f6f6">污染物去除效率</th><th bgcolor="#f6f6f6">污染物处理技术</th><th bgcolor="#f6f6f6">污染物去除效率</th></tr>
+                <tr><th> ${SpecialData[i].tlgy || '--'} </th><th colspan="2">  ${SpecialData[i].tlxl || '--'} </th><th> ${SpecialData[i].ccgy || '--'} </th><th>${SpecialData[i].ccxl || '--'} </th></tr>
+                <tr><th>  ${SpecialData[i].txgy || '--'} </th><th colspan="2"> ${SpecialData[i].txxl || '--'} </th><th></th><th></th></tr>
+
+                <tr><th bgcolor="#f6f6f6" rowspan="4">在线监测信息</th><th bgcolor="#f6f6f6">排放口高度(米)</th><th><span class="cael">${SpecialData[i].outletHeight || '--'}</span></th><th bgcolor="#f6f6f6">排放口直径(米)</th><th><span class="cael">${SpecialData[i].outletDiameter || '--'}</span></th></tr>
+                <tr><!--<td bgcolor="#f6f6f6">Data</td>--><th bgcolor="#f6f6f6">是否国控重点污染源</th><th><span class="cael">${SpecialData[i].isPollutionSourcesGuo || '--'}</span></th><th bgcolor="#f6f6f6">是否安装在线监测</th><th><span class="cael">${SpecialData[i].isDoOnlineMonitor || '--'}</span></th></tr>
+                <tr><!--<th bgcolor="#f6f6f6">Header</th>--><th bgcolor="#f6f6f6">是否省控重点污染源</th><th><span class="cael">${SpecialData[i].isPollutionSourcesSheng || '--'}</span></th><th bgcolor="#f6f6f6">是否市控重点污染源</th><th><span class="cael">${SpecialData[i].isPollutionSourcesShi || '--'}</span></th></tr>
+                <tr><!--<td bgcolor="#f6f6f6">Data</td>--><th  bgcolor="#f6f6f6">是否有在线监测</th><th><span class="cael">${SpecialData[i].isOnlineMonitor || '--'}</span></th><th bgcolor="#f6f6f6">是否有视频监控</th><th><span class="cael">${SpecialData[i].isVideoMonitor || '--'}</span></th></tr></table>`
+                }
+                return tmpal
+            }
+            //分类切换模块
+            $(function (){
+                $('.class-tab-box ul li').on('click', function () {
+                    ///获取容器
+                    var myDclass1 = document.getElementsByClassName("box0")[0];
+                    var myDclass2 = document.getElementsByClassName("box1")[0];
+                    var myDclass3 = document.getElementsByClassName("box2")[0];
+                    var myDclass4 = document.getElementsByClassName("box3")[0];
+                    var myDclass5 = document.getElementsByClassName("box4")[0];
+                    var myDclass6 = document.getElementsByClassName("box5")[0];
+                    console.log('点击事件')
+                    var index = $(this).index();
+                    $(this).addClass('activeli').siblings().removeClass('activeli');
+                    console.log(index);
+                    switch (index){
+                        case 0:
+                            //SpecialData = SpecialDataLis[0];
+                            console.log(myDclass1)
+                            myDclass1.style.display ='block';
+                            myDclass2.style.display ='none';
+                            myDclass3.style.display ='none';
+                            myDclass4.style.display ='none';
+                            myDclass5.style.display ='none';
+                            myDclass6.style.display ='none';
+                            break;
+                        case 1:
+                           // SpecialData = SpecialDataLis[1];
+                            myDclass1.style.display ='none';
+                            myDclass2.style.display ='block';
+                            myDclass3.style.display ='none';
+                            myDclass4.style.display ='none';
+                            myDclass5.style.display ='none';
+                            myDclass6.style.display ='none';
+                            break;
+                        case 2:
+                            //SpecialData = SpecialDataLis[2];
+                            myDclass1.style.display ='none';
+                            myDclass2.style.display ='none';
+                            myDclass3.style.display ='block';
+                            myDclass4.style.display ='none';
+                            myDclass5.style.display ='none';
+                            myDclass6.style.display ='none';
+                            break;
+                        case 3:
+                            //SpecialData = SpecialDataLis[3];
+                            myDclass1.style.display ='none';
+                            myDclass2.style.display ='none';
+                            myDclass3.style.display ='none';
+                            myDclass4.style.display ='block';
+                            myDclass5.style.display ='none';
+                            myDclass6.style.display ='none';
+                            break;
+                        case 4:
+                            //SpecialData = SpecialDataLis[4];
+                            myDclass1.style.display ='none';
+                            myDclass2.style.display ='none';
+                            myDclass3.style.display ='none';
+                            myDclass4.style.display ='none';
+                            myDclass5.style.display ='block';
+                            myDclass6.style.display ='none';
+                            break;
+                        case 5:
+                            //SpecialData = SpecialDataLis[5];
+                            myDclass1.style.display ='none';
+                            myDclass2.style.display ='none';
+                            myDclass3.style.display ='none';
+                            myDclass4.style.display ='none';
+                            myDclass5.style.display ='none';
+                            myDclass6.style.display ='block';
+                            break;
+                        default:
+                            myDclass1.style.display ='block';
+                            myDclass2.style.display ='none';
+                            myDclass3.style.display ='none';
+                            myDclass4.style.display ='none';
+                            myDclass5.style.display ='none';
+                            myDclass6.style.display ='none';
+                            break;
+                    }
+                })
+            })();
+        }
+
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .mySpan {
+            display: inline-block;
+            width: 50px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer
+        }
+
+        .mySpan:hover {
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei'
+        }
+
+        .qyTable {
+            /*width:100%;
+            height:100%;*/
+            border-collapse: collapse;
+            margin: 2px auto;
+            line-height: 18px;
+            margin-bottom: 20px;
+        }
+
+        .qyTable td {
+            font-size: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+            padding-left: 10px;
+            height: 22px;
+            color: #666666;
+        }
+
+        .qyBox {
+
+            /*border:1px solid #ddd;*/
+            padding: 0 15px 15px;
+            /* width:380px;*/
+
+        }
+
+        .qyBox .compony {
+            background: #EBEBEB;
+            font-size: 14px;
+            color: #333333;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+
+        .qyBox::-webkit-scrollbar {
+            display: none;
+        }
+
+        .qyBox .line {
+            height: 1px;
+            width: 100%;
+            background: #DDDDDD;
+            margin-bottom: 12px;
+        }
+
+        tr td:nth-child(1), tr td:nth-child(3), tr td:nth-child(5), tr td:nth-child(7) {
+            width: 100px;
+
+            background: #EBEBEB;
+
+        }
+
+        tr td:nth-child(2), tr td:nth-child(4), tr td:nth-child(6), tr td:nth-child(8) {
+            width: 145px;
+
+        }
+
+        .info div {
+            display: inline-block;
+        }
+
+        .square {
+            height: 14px;
+            width: 4px;
+            background: #2494F2;
+        }
+
+        .title {
+            font-size: 14px;
+            color: #333333;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .warning {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .warning li:hover {
+            cursor: pointer
+        }
+
+        li {
+            display: inline-block;
+            list-style: none;
+            font-size: 14px;
+            color: #666666;
+            padding: 0 10px;
+            margin-bottom: -1px;
+        }
+
+        .blsit-list li {
+            padding: 0;
+        }
+
+        .warning .selected {
+            /*  color : #333333;*/
+            font-weight: bolder;
+            border-bottom: 3px solid #333333;
+            position: relative;
+            top: -1px;
+            height: 31px;
+        }
+
+        .qyTable1 tr td:nth-child(2) {
+            width: 355px;
+        }
+
+        .qyTable1 tr td:nth-child(1) {
+            width: 120px;
+        }
+
+        .qyTable1 {
+            display: none;
+        }
+
+        .tableImg {
+            height: 116px;
+        }
+
+        .show {
+            display: none;
+            padding: 5px 10px;
+            float: right
+        }
+
+        .show:hover {
+            cursor: pointer
+        }
+
+        .hide {
+            padding: 5px 10px;
+            float: right;
+        }
+
+        .hide:hover {
+            cursor: pointer
+        }
+
+        .blsit-list li {
+            display: none;
+        }
+
+        .headline {
+            font-size: 16px;
+            color: #333333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #active {
+            display: block;
+        }
+
+        #myHtml {
+
+        }
+
+    </style>
+</head>
+<body>
+<div id="myHtml" class="qyBox content">
+
+</div>
+<script src="../js/jquery.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
+<script src="../../static/js/apiconfig.js"></script>
+<script>
+
+    //     function GetQueryString(name) {
+    //         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    //         var r = window.location.search.substr(1).match(reg);
+    //         if (r != null) return decodeURIComponent(r[2]);
+    //         return null;
+    //     }
+    //     var ID = GetQueryString('id');
+    //     ///http://117.119.97.150:8063
+    //     let url = testurl.sjt + '/api/EmergencyPlan/GetSingleEmergencyInfo?Id=' + ID;
+    //     //let url = 'http://gkpt.zq12369.com:8016/api/EmergencyPlan/GetSingleEmergencyInfo?Id=' + ID;
+    //     $.ajax({
+    //         url: url,
+    //         type: 'get',
+    //         data: {},
+    //         success: function (data) {
+    //             var myData = data.Data;
+    //             var myDom = document.getElementById("myHtml");
+    //             //<h3 class="headline">采暖期错峰企业</h3>
+    //             var myHtml = `
+    //     <div class="line"></div>
+    //     <div>
+    //     <div class="compony">${myData.companyname}</div>
+
+    //         <div class="title"></div>
+    //         <table cellpadding="0" cellspacing="0" class="qyTable">
+    //             <tr>
+    //                 <td>地址</td>
+    //                 <td colspan="3">${myData.address}</td>
+    //             </tr>
+    //             <tr>
+    //                 <td>行业类别</td>
+    //                 <td>${myData.category}</td>
+    //                 <td>行政区</td>
+    //                 <td>${myData.region}</td>
+    //             </tr>
+    //             <tr>
+    //                 <td>企业法人</td>
+    //                 <td>${myData.contact}</td>
+    //                 <td>联系方式</td>
+    //                 <td>--</td>
+    //             </tr>
+    //             <tr>
+    //                 <td>措施落实人</td>
+    //                 <td>${myData.chargecontact}</td>
+    //                 <td>联系方式</td>
+    //                 <td>${myData.chargephone}</td>
+    //             </tr>
+    //             <tr>
+    //                 <td>驻厂监督员</td>
+    //                 <td>${myData.residentcontace}</td>
+    //                 <td>联系方式</td>
+    //                 <td>${myData.residentphone}</td>
+    //             </tr>
+    //             <tr>
+    //                 <td>燃料类型</td>
+    //                <td>${myData.fueltype === null ? '--' : myData.fueltype}</td>
+    //                 <td>燃料消耗量</td>
+    //                 <td>${myData.fuelconsumption === null ? '--' : myData.fuelconsumption}</td>
+    //             </tr>
+    //             <tr>
+    //                 <td>主要产品</td>
+    //                 <td>${myData.product === null ? '--' : myData.product}</td>
+    //                 <td>主要生产产品</td>
+    //                 <td>${myData.yield === null ? '--' : myData.yield}</td>
+    //             </tr>
+    //         </table>
+    //     </div>
+    //     <div class="wrap">
+    //         <div class="info">
+    //             <div class="square"></div>
+    //             <div class="title">一厂一策信息</div>
+    //         </div>
+    //         <ul class="warning">
+    //             <li>蓝色预警</li>
+    //             <li>黄色预警</li>
+    //             <li>橙色预警</li>
+    //             <li>红色预警</li>
+    //         </ul>
+    //         <ul class="blsit-list">
+    //             <li>
+    //                 <table  class="qyTable" cellpadding="0" cellspacing="0">
+    //                     <tr>
+    //                         <td>是否为错峰</td>
+    //                         <td>${myData.whetherpeak == 1 ? "是" : "否"}</td>
+    //                         <td>停、限产措施</td>
+    //                         <td></td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>烟、粉尘估算减排比例</td>
+    //                         <td>${myData.blue.length && (myData.blue[0].smoproportion === null ? '--' : myData.blue[0].smoproportion)}</td>
+    //                         <td>SO2估算减排比例</td>
+    //                         <td>${myData.blue.length && (myData.blue[0].so2proportion === null ? '--' : myData.blue[0].so2proportion)}</td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>NOx估算减排比例</td>
+    //                         <td>${myData.blue.length && (myData.blue[0].noxproportion === null ? '--' : myData.blue[0].noxproportion)}</td>
+    //                         <td>VOCs估算减排比例</td>
+    //                         <td>${myData.blue.length && (myData.blue[0].vocsproportion === null ? '--' : myData.blue[0].vocsproportion)}</td>
+    //                     </tr>
+    //                 </table>
+    //                  ${getHtml(myData.heatingMeasures)}
+    //                  ${getRedHtml("blue")}
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">环保管理信息</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>生产线/工序</td>
+    //                             <td>${getOverHtml(0, myData)}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>生产规模</td>
+    //                             <td>${getOverHtml(1, myData)}</td>
+    //                         </tr>
+    //                         <tr class="tableImg">
+    //                             <td>工艺流程图</td>
+    //                             <td></td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>污染处理技术及效率</td>
+    //                             <td></td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>是否纳入系统</td>
+    //                             <td></td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">排放量信息</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>烟粉尘排放量</td>
+    //                             <td>${myData.sootemission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>SO2排放量</td>
+    //                             <td>${myData.so2emission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>NOx排放量</td>
+    //                             <td>${myData.noxemissions}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>VOCs排放量</td>
+    //                             <td>${myData.vocsemissions}</td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //             </li>
+    //             <li>
+    //                 <table  class="qyTable" cellpadding="0" cellspacing="0">
+    //                     <tr>
+    //                         <td>是否为错峰</td>
+    //                         <td>${myData.whetherpeak == 1 ? "是" : "否"}</td>
+    //                         <td>停、限产措施</td>
+    //                         <td></td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>烟、粉尘估算减排比例</td>
+    //                         <td>${myData.yellow.length && (myData.yellow[0].smoproportion === null ? '--' : myData.yellow[0].smoproportion)}</td>
+    //                         <td>SO2估算减排比例</td>
+    //                         <td>${myData.yellow.length && (myData.yellow[0].so2proportion === null ? '--' : myData.yellow[0].so2proportion)}</td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>NOx估算减排比例</td>
+    //                         <td>${myData.yellow.length && (myData.yellow[0].noxproportion === null ? '--' : myData.yellow[0].noxproportion)}</td>
+    //                         <td>VOCs估算减排比例</td>
+    //                         <td>${myData.yellow.length && (myData.yellow[0].vocsproportion === null ? '--' : myData.yellow[0].vocsproportion)}</td>
+    //                     </tr>
+    //                 </table>
+    //                 ${getHtml(myData.heatingMeasures)}
+    //                 ${getRedHtml("yellow")}
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">环保管理信息</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>生产线/工序</td>
+    //                             <td>${getOverHtml(0, myData)}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>生产规模</td>
+    //                             <td>${getOverHtml(1, myData)}</td>
+    //                         </tr>
+    //                         <tr class="tableImg">
+    //                             <td>工艺流程图</td>
+    //                             <td></td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>污染处理技术及效率</td>
+    //                             <td></td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>是否纳入系统</td>
+    //                             <td></td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">排放量信息</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>烟粉尘排放量</td>
+    //                             <td>${myData.sootemission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>SO2排放量</td>
+    //                             <td>${myData.so2emission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>NOx排放量</td>
+    //                             <td>${myData.noxemissions}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>VOCs排放量</td>
+    //                             <td>${myData.vocsemissions}</td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //             </li>
+    //             <li>
+    //                 <table  class="qyTable" cellpadding="0" cellspacing="0">
+    //                     <tr>
+    //                         <td>是否为错峰</td>
+    //                         <td>${myData.whetherpeak == 1 ? "是" : "否"}</td>
+    //                         <td>停、限产措施</td>
+    //                         <td></td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>烟、粉尘估算减排比例</td>
+    //                         <td>${myData.orange.length && (myData.orange[0].smoproportion === null ? '--' : myData.orange[0].smoproportion)}</td>
+    //                         <td>SO2估算减排比例</td>
+    //                         <td>${myData.orange.length && (myData.orange[0].so2proportion === null ? '--' : myData.orange[0].so2proportion)}</td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>NOx估算减排比例</td>
+    //                         <td>${myData.orange.length && (myData.orange[0].noxproportion === null ? '--' : myData.orange[0].noxproportion)}</td>
+    //                         <td>VOCs估算减排比例</td>
+    //                         <td>${myData.orange.length && (myData.orange[0].vocsproportion === null ? '--' : myData.orange[0].vocsproportion)}</td>
+    //                     </tr>
+    //                 </table>
+    //                 ${getHtml(myData.heatingMeasures)}
+    //                 ${getRedHtml("orange")}
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">环保管理信息</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>生产线/工序</td>
+    //                             <td>${getOverHtml(0, myData)}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>生产规模</td>
+    //                             <td>${getOverHtml(1, myData)}</td>
+    //                         </tr>
+    //                         <tr class="tableImg">
+    //                             <td>工艺流程图</td>
+    //                             <td></td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>污染处理技术及效率</td>
+    //                             <td></td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>是否纳入系统</td>
+    //                             <td></td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">排放量信息</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>烟粉尘排放量</td>
+    //                             <td>${myData.sootemission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>SO2排放量</td>
+    //                             <td>${myData.so2emission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>NOx排放量</td>
+    //                             <td>${myData.noxemissions}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>VOCs排放量</td>
+    //                             <td>${myData.vocsemissions}</td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //             </li>
+    //             <li>
+    //                 <table  class="qyTable" cellpadding="0" cellspacing="0">
+    //                     <tr>
+    //                         <td>是否为错峰</td>
+    //                         <td>${myData.whetherpeak == 1 ? "是" : "否"}</td>
+    //                         <td>停、限产措施</td>
+    //                         <td></td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>烟、粉尘估算减排比例</td>
+    //                         <td>${myData.red.length && (myData.red[0].smoproportion === null ? '--' : myData.red[0].smoproportion)}</td>
+    //                         <td>SO2估算减排比例</td>
+    //                         <td>${myData.red.length && (myData.red[0].so2proportion === null ? '--' : myData.red[0].so2proportion)}</td>
+    //                     </tr>
+    //                     <tr>
+    //                         <td>NOx估算减排比例</td>
+    //                         <td>${myData.red.length && (myData.red[0].noxproportion === null ? '--' : myData.red[0].noxproportion)}</td>
+    //                         <td>VOCs估算减排比例</td>
+    //                         <td>${myData.red.length && (myData.red[0].vocsproportion === null ? '--' : myData.red[0].vocsproportion)}</td>
+    //                     </tr>
+    //                 </table>
+    //                 ${getHtml(myData.heatingMeasures)}
+    //                 ${getRedHtml("red")}
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">环保管理信息</div>
+    //                         <img src="hide.png" alt=""  class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>生产线/工序</td>
+    //                             <td>${getOverHtml(0, myData)}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>生产规模</td>
+    //                             <td>${getOverHtml(1, myData)}</td>
+    //                         </tr>
+    //                         <tr class="tableImg">
+    //                             <td>工艺流程图</td>
+    //                             <td>${myData.environmentmanage.length && (myData.environmentmanage[0].flowchart === null ? '--' : myData.environmentmanage[0].flowchart)}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>污染处理技术及效率</td>
+    //                             <td>${myData.environmentmanage.length && (myData.environmentmanage[0].poltretechnology === null ? '--' : myData.environmentmanage[0].poltretechnology)}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>是否纳入系统</td>
+    //                             <td>${myData.environmentmanage.length && (myData.environmentmanage[0].whetherbringinto)}</td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //                 <div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">排放量信息</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table class="qyTable qyTable1" cellpadding="0" cellspacing="0">
+    //                         <tr>
+    //                             <td>烟粉尘排放量</td>
+    //                             <td>${myData.sootemission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>SO2排放量</td>
+    //                             <td>${myData.so2emission}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>NOx排放量</td>
+    //                             <td>${myData.noxemissions}</td>
+    //                         </tr>
+    //                         <tr>
+    //                             <td>VOCs排放量</td>
+    //                             <td>${myData.vocsemissions}</td>
+    //                         </tr>
+    //                     </table>
+    //                 </div>
+    //             </li>
+    //         </ul>
+
+    //     </div>
+    // `
+    //             myDom.innerHTML = myHtml;
+
+    //             function getOverHtml(type, myData) {
+    //                 var myData = myData.environmentmanage
+    //                 var str = ""
+    //                 if (type == 0) {
+    //                     for (var i = 0; i < myData.length; i++) {
+    //                         if (i == myData.length) {
+    //                             str += myData[i].workingprocedure
+    //                         } else {
+    //                             str += myData[i].workingprocedure + "--"
+    //                         }
+    //                     }
+    //                 } else {
+    //                     for (var i = 0; i < myData.length; i++) {
+    //                         if (i == myData.length) {
+    //                             str += myData[i].scale
+    //                         } else {
+    //                             str += myData[i].scale + "--"
+    //                         }
+    //                     }
+    //                 }
+    //                 return str;
+    //             }
+
+    //             function getHtml(arr) {
+    //                 if (!arr) {
+    //                     return ""
+    //                 }
+    //                 var parentTmp = `<div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">错峰生产措施</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    //                     <table  class="qyTable" style="display:none" cellpadding="0" cellspacing="0">
+    //                         ${getChild()}
+    //                     </table>
+    //                 </div>`
+
+    //                 function getChild() {
+    //                     var tmp = ``
+    //                     for (var i = 0; i < arr.length; i++) {
+    //                         tmp += `
+    //                         <tr>
+    //                             <td>设备</td>
+    //                             <td>${arr[i].device}</td>
+    //                             <td>措施</td>
+    //                             <td>${arr[i].productionmeasures}</td>
+    //                         </tr>`
+    //                     }
+    //                     return tmp
+    //                 }
+
+    //                 return parentTmp
+    //             }
+
+    //             function getRedHtml(type) {
+    //                 if (type == "blue") {
+    //                     var arr = myData.blue
+    //                 } else if (type == "yellow") {
+    //                     var arr = myData.yellow
+    //                 } else if (type == "orange") {
+    //                     var arr = myData.orange
+    //                 } else if (type == 'red') {
+    //                     var arr = myData.red
+    //                 }
+
+    //                 var whetherpeak = myData.whetherpeak;
+    //                 console.log(myData)
+    //                 if (!arr) {
+    //                     return ""
+    //                 }
+    //                 var parentTmp = `<div>
+    //                     <div class="info">
+    //                         <div class="square"></div>
+    //                         <div class="title">应急响应措施</div>
+    //                         <img src="hide.png" alt="" class="hide">
+    //                         <img src="show.png" alt="" class="show">
+    //                     </div>
+    // <table  class="qyTable" style="display:none" cellpadding="0" cellspacing="0">${getChild()} </table>
+    //                 </div>`
+
+    //                 // <div style="display:none" > ${getChild()}</div>
+    //                 function getChild() {
+    //                     var tmp = ``
+    //                     if (whetherpeak == 1) {
+    //                         for (var i = 0; i < arr.length; i++) {
+    //                             //错峰
+    //                             tmp += `
+    //                         <tr>
+    //                             <td>设备</td>
+    //                             <td><span class="mySpan">${arr[i].type}</span></td>
+    //                             <td>采暖</td>
+    //                             <td><span class="mySpan">${arr[i].workshop}</span></td>
+    //                             <td>非采暖</td>
+    //                             <td><span class="mySpan">${arr[i].equipment}</span></td>
+    //                         </tr>`
+    //                         }
+    //                     } else {
+    //                         for (var i = 0; i < arr.length; i++) {
+    //                             //非错峰
+    //                             tmp += `
+    //                        <tr>
+    //                             <td>类别</td>
+    //                             <td><span class="mySpan">${arr[i].type}</span></td>
+    //                             <td>车间</td>
+    //                             <td><span class="mySpan">${arr[i].workshop}</span></td>
+    //                             <td>设备</td>
+    //                             <td><span class="mySpan">${arr[i].equipment}</span></td>
+    //                             <td>措施</td>
+    //                             <td><span class="mySpan">${arr[i].emergencymeasure}</span></td>
+    //                         </tr>`
+    //                         }
+    //                     }
+
+    //                     return tmp
+    //                 }
+
+    //                 return parentTmp
+    //             }
+
+    //             $(function () {
+
+
+    //                 onLoad(myData.buttonState);
+    //                 var num = myData.buttonState;
+    //                 var color;
+
+    //                 function onLoad(num) {
+    //                     if (num == 1) {
+    //                         num = 3;
+    //                         color = '#E81616'
+    //                     } else if (num == 2) {
+    //                         num = 2;
+    //                         color = '#ffb31a';
+    //                     } else if (num == 4) {
+    //                         num = 1;
+    //                         color = '#fee71d'
+    //                     } else if (num == 8) {
+    //                         num = 0;
+    //                         color = '#2494F2'
+    //                     } else if (num == 0) {
+    //                         num = 4;
+    //                         color = '#E81616'
+    //                     }
+
+    //                     var oul = document.getElementsByClassName('warning')[0];
+    //                     var oli = oul.getElementsByTagName('li');
+    //                     var alist = document.getElementsByClassName('blsit-list')[0];
+    //                     var ali = alist.getElementsByTagName('li');
+    //                     $(oli[num]).addClass('selected').css('color', color).css('borderColor', color);
+    //                     $(ali[num]).attr('id', 'active')
+    //                 }
+
+    //                 var colorArr = {
+    //                     0: '#2494F2',
+    //                     1: '#fee71d',
+    //                     2: '#ffb31a',
+    //                     3: '#E81616'
+    //                 };
+    //                 var imgArr = {
+    //                     0: 'qiye/icon_0.png',
+    //                     1: 'qiye/icon_1.png',
+    //                     2: 'qiye/icon_2.png',
+    //                     3: 'qiye/icon_3.png',
+    //                     4: 'qiye/icon_4.png'
+    //                 };
+
+    //                 $(".warning li").on("click", function () {
+    //                     var index = $(this).index();
+    //                     $(this).addClass("selected").siblings().removeClass("selected");
+    //                     $(this).css('color', colorArr[index]).siblings().css('color', '#666666');
+    //                     $(this).css('borderColor', colorArr[index])
+    //                     $(this).parents(".wrap").find(".blsit-list li").eq(index).show().siblings().hide();
+    //                 })
+    //             })
+    //             var hide = $(".hide");
+
+    //             $.each(hide, function () {
+    //                 $(this).click(function () {
+    //                     $(this).css("display", "none");
+    //                     $(this).next().css("display", "inline-block");
+    //                     $(this).parent().next().slideToggle()
+    //                 })
+    //             });
+
+    //             var show = $(".show");
+    //             $.each(show, function () {
+    //                 $(this).click(function () {
+    //                     $(this).css("display", "none")
+    //                     $(this).prev().css("display", "inline-block")
+    //                     $(this).parent().next().hide()
+    //                 })
+    //             });
+    //         }
+
+    //     })
+
+    //////////////////////////
+
+    "use strict";
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURIComponent(r[2]);
+        return null;
+    }
+
+    var ID = GetQueryString('id');
+    ///http://117.119.97.150:8063
+    var url = testurl.sjt + '/api/EmergencyPlan/GetSingleEmergencyInfo?Id=' + ID;
+    //let url = 'http://gkpt.zq12369.com:8016/api/EmergencyPlan/GetSingleEmergencyInfo?Id=' + ID;
+    $.ajax({
+        url: url,
+        type: 'get',
+        data: {},
+        success: function success(data) {
+            var myData = data.Data;
+            var myDom = document.getElementById("myHtml");
+            //<h3 class="headline">采暖期错峰企业</h3>
+            var myHtml = "\n    <div class=\"line\"></div>\n    <div>\n    <div class=\"compony\">" + myData.companyname + "</div>\n\n        <div class=\"title\"></div>\n        <table cellpadding=\"0\" cellspacing=\"0\" class=\"qyTable\">\n            <tr>\n                <td>\u5730\u5740</td>\n                <td colspan=\"3\">" + myData.address + "</td>\n            </tr>\n            <tr>\n                <td>\u884C\u4E1A\u7C7B\u522B</td>\n                <td>" + myData.category + "</td>\n                <td>\u884C\u653F\u533A</td>\n                <td>" + myData.region + "</td>\n            </tr>\n            <tr>\n                <td>\u4F01\u4E1A\u6CD5\u4EBA</td>\n                <td>" + myData.contact + "</td>\n                <td>\u8054\u7CFB\u65B9\u5F0F</td>\n                <td>--</td>\n            </tr>\n            <tr>\n                <td>\u63AA\u65BD\u843D\u5B9E\u4EBA</td>\n                <td>" + myData.chargecontact + "</td>\n                <td>\u8054\u7CFB\u65B9\u5F0F</td>\n                <td>" + myData.chargephone + "</td>\n            </tr>\n            <tr>\n                <td>\u9A7B\u5382\u76D1\u7763\u5458</td>\n                <td>" + myData.residentcontace + "</td>\n                <td>\u8054\u7CFB\u65B9\u5F0F</td>\n                <td>" + myData.residentphone + "</td>\n            </tr>\n            <tr>\n                <td>\u71C3\u6599\u7C7B\u578B</td>\n               <td>" + (myData.fueltype === null ? '--' : myData.fueltype) + "</td>\n                <td>\u71C3\u6599\u6D88\u8017\u91CF</td>\n                <td>" + (myData.fuelconsumption === null ? '--' : myData.fuelconsumption) + "</td>\n            </tr>\n            <tr>\n                <td>\u4E3B\u8981\u4EA7\u54C1</td>\n                <td>" + (myData.product === null ? '--' : myData.product) + "</td>\n                <td>\u4E3B\u8981\u751F\u4EA7\u4EA7\u54C1</td>\n                <td>" + (myData.yield === null ? '--' : myData.yield) + "</td>\n            </tr>\n        </table>\n    </div>\n    <div class=\"wrap\">\n        <div class=\"info\">\n            <div class=\"square\"></div>\n            <div class=\"title\">\u4E00\u5382\u4E00\u7B56\u4FE1\u606F</div>\n        </div>\n        <ul class=\"warning\">\n            <li>\u84DD\u8272\u9884\u8B66</li>\n            <li>\u9EC4\u8272\u9884\u8B66</li>\n            <li>\u6A59\u8272\u9884\u8B66</li>\n            <li>\u7EA2\u8272\u9884\u8B66</li>\n        </ul>\n        <ul class=\"blsit-list\">\n            <li>\n                <table  class=\"qyTable\" cellpadding=\"0\" cellspacing=\"0\">\n                    <tr>\n                        <td>\u662F\u5426\u4E3A\u9519\u5CF0</td>\n                        <td>" + (myData.whetherpeak == 1 ? "是" : "否") + "</td>\n                        <td>\u505C\u3001\u9650\u4EA7\u63AA\u65BD</td>\n                        <td></td>\n                    </tr>\n                    <tr>\n                        <td>\u70DF\u3001\u7C89\u5C18\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.blue.length && (myData.blue[0].smoproportion === null ? '--' : myData.blue[0].smoproportion)) + "</td>\n                        <td>SO2\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.blue.length && (myData.blue[0].so2proportion === null ? '--' : myData.blue[0].so2proportion)) + "</td>\n                    </tr>\n                    <tr>\n                        <td>NOx\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.blue.length && (myData.blue[0].noxproportion === null ? '--' : myData.blue[0].noxproportion)) + "</td>\n                        <td>VOCs\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.blue.length && (myData.blue[0].vocsproportion === null ? '--' : myData.blue[0].vocsproportion)) + "</td>\n                    </tr>\n                </table>\n                 " + getHtml(myData.heatingMeasures) + "\n                 " + getRedHtml("blue") + "\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u73AF\u4FDD\u7BA1\u7406\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u751F\u4EA7\u7EBF/\u5DE5\u5E8F</td>\n                            <td>" + getOverHtml(0, myData) + "</td>\n                        </tr>\n                        <tr>\n                            <td>\u751F\u4EA7\u89C4\u6A21</td>\n                            <td>" + getOverHtml(1, myData) + "</td>\n                        </tr>\n                        <tr class=\"tableImg\">\n                            <td>\u5DE5\u827A\u6D41\u7A0B\u56FE</td>\n                            <td></td>\n                        </tr>\n                        <tr>\n                            <td>\u6C61\u67D3\u5904\u7406\u6280\u672F\u53CA\u6548\u7387</td>\n                            <td></td>\n                        </tr>\n                        <tr>\n                            <td>\u662F\u5426\u7EB3\u5165\u7CFB\u7EDF</td>\n                            <td></td>\n                        </tr>\n                    </table>\n                </div>\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u6392\u653E\u91CF\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u70DF\u7C89\u5C18\u6392\u653E\u91CF</td>\n                            <td>" + myData.sootemission + "</td>\n                        </tr>\n                        <tr>\n                            <td>SO2\u6392\u653E\u91CF</td>\n                            <td>" + myData.so2emission + "</td>\n                        </tr>\n                        <tr>\n                            <td>NOx\u6392\u653E\u91CF</td>\n                            <td>" + myData.noxemissions + "</td>\n                        </tr>\n                        <tr>\n                            <td>VOCs\u6392\u653E\u91CF</td>\n                            <td>" + myData.vocsemissions + "</td>\n                        </tr>\n                    </table>\n                </div>\n            </li>\n            <li>\n                <table  class=\"qyTable\" cellpadding=\"0\" cellspacing=\"0\">\n                    <tr>\n                        <td>\u662F\u5426\u4E3A\u9519\u5CF0</td>\n                        <td>" + (myData.whetherpeak == 1 ? "是" : "否") + "</td>\n                        <td>\u505C\u3001\u9650\u4EA7\u63AA\u65BD</td>\n                        <td></td>\n                    </tr>\n                    <tr>\n                        <td>\u70DF\u3001\u7C89\u5C18\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.yellow.length && (myData.yellow[0].smoproportion === null ? '--' : myData.yellow[0].smoproportion)) + "</td>\n                        <td>SO2\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.yellow.length && (myData.yellow[0].so2proportion === null ? '--' : myData.yellow[0].so2proportion)) + "</td>\n                    </tr>\n                    <tr>\n                        <td>NOx\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.yellow.length && (myData.yellow[0].noxproportion === null ? '--' : myData.yellow[0].noxproportion)) + "</td>\n                        <td>VOCs\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.yellow.length && (myData.yellow[0].vocsproportion === null ? '--' : myData.yellow[0].vocsproportion)) + "</td>\n                    </tr>\n                </table>\n                " + getHtml(myData.heatingMeasures) + "\n                " + getRedHtml("yellow") + "\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u73AF\u4FDD\u7BA1\u7406\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u751F\u4EA7\u7EBF/\u5DE5\u5E8F</td>\n                            <td>" + getOverHtml(0, myData) + "</td>\n                        </tr>\n                        <tr>\n                            <td>\u751F\u4EA7\u89C4\u6A21</td>\n                            <td>" + getOverHtml(1, myData) + "</td>\n                        </tr>\n                        <tr class=\"tableImg\">\n                            <td>\u5DE5\u827A\u6D41\u7A0B\u56FE</td>\n                            <td></td>\n                        </tr>\n                        <tr>\n                            <td>\u6C61\u67D3\u5904\u7406\u6280\u672F\u53CA\u6548\u7387</td>\n                            <td></td>\n                        </tr>\n                        <tr>\n                            <td>\u662F\u5426\u7EB3\u5165\u7CFB\u7EDF</td>\n                            <td></td>\n                        </tr>\n                    </table>\n                </div>\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u6392\u653E\u91CF\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u70DF\u7C89\u5C18\u6392\u653E\u91CF</td>\n                            <td>" + myData.sootemission + "</td>\n                        </tr>\n                        <tr>\n                            <td>SO2\u6392\u653E\u91CF</td>\n                            <td>" + myData.so2emission + "</td>\n                        </tr>\n                        <tr>\n                            <td>NOx\u6392\u653E\u91CF</td>\n                            <td>" + myData.noxemissions + "</td>\n                        </tr>\n                        <tr>\n                            <td>VOCs\u6392\u653E\u91CF</td>\n                            <td>" + myData.vocsemissions + "</td>\n                        </tr>\n                    </table>\n                </div>\n            </li>\n            <li>\n                <table  class=\"qyTable\" cellpadding=\"0\" cellspacing=\"0\">\n                    <tr>\n                        <td>\u662F\u5426\u4E3A\u9519\u5CF0</td>\n                        <td>" + (myData.whetherpeak == 1 ? "是" : "否") + "</td>\n                        <td>\u505C\u3001\u9650\u4EA7\u63AA\u65BD</td>\n                        <td></td>\n                    </tr>\n                    <tr>\n                        <td>\u70DF\u3001\u7C89\u5C18\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.orange.length && (myData.orange[0].smoproportion === null ? '--' : myData.orange[0].smoproportion)) + "</td>\n                        <td>SO2\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.orange.length && (myData.orange[0].so2proportion === null ? '--' : myData.orange[0].so2proportion)) + "</td>\n                    </tr>\n                    <tr>\n                        <td>NOx\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.orange.length && (myData.orange[0].noxproportion === null ? '--' : myData.orange[0].noxproportion)) + "</td>\n                        <td>VOCs\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.orange.length && (myData.orange[0].vocsproportion === null ? '--' : myData.orange[0].vocsproportion)) + "</td>\n                    </tr>\n                </table>\n                " + getHtml(myData.heatingMeasures) + "\n                " + getRedHtml("orange") + "\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u73AF\u4FDD\u7BA1\u7406\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u751F\u4EA7\u7EBF/\u5DE5\u5E8F</td>\n                            <td>" + getOverHtml(0, myData) + "</td>\n                        </tr>\n                        <tr>\n                            <td>\u751F\u4EA7\u89C4\u6A21</td>\n                            <td>" + getOverHtml(1, myData) + "</td>\n                        </tr>\n                        <tr class=\"tableImg\">\n                            <td>\u5DE5\u827A\u6D41\u7A0B\u56FE</td>\n                            <td></td>\n                        </tr>\n                        <tr>\n                            <td>\u6C61\u67D3\u5904\u7406\u6280\u672F\u53CA\u6548\u7387</td>\n                            <td></td>\n                        </tr>\n                        <tr>\n                            <td>\u662F\u5426\u7EB3\u5165\u7CFB\u7EDF</td>\n                            <td></td>\n                        </tr>\n                    </table>\n                </div>\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u6392\u653E\u91CF\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u70DF\u7C89\u5C18\u6392\u653E\u91CF</td>\n                            <td>" + myData.sootemission + "</td>\n                        </tr>\n                        <tr>\n                            <td>SO2\u6392\u653E\u91CF</td>\n                            <td>" + myData.so2emission + "</td>\n                        </tr>\n                        <tr>\n                            <td>NOx\u6392\u653E\u91CF</td>\n                            <td>" + myData.noxemissions + "</td>\n                        </tr>\n                        <tr>\n                            <td>VOCs\u6392\u653E\u91CF</td>\n                            <td>" + myData.vocsemissions + "</td>\n                        </tr>\n                    </table>\n                </div>\n            </li>\n            <li>\n                <table  class=\"qyTable\" cellpadding=\"0\" cellspacing=\"0\">\n                    <tr>\n                        <td>\u662F\u5426\u4E3A\u9519\u5CF0</td>\n                        <td>" + (myData.whetherpeak == 1 ? "是" : "否") + "</td>\n                        <td>\u505C\u3001\u9650\u4EA7\u63AA\u65BD</td>\n                        <td></td>\n                    </tr>\n                    <tr>\n                        <td>\u70DF\u3001\u7C89\u5C18\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.red.length && (myData.red[0].smoproportion === null ? '--' : myData.red[0].smoproportion)) + "</td>\n                        <td>SO2\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.red.length && (myData.red[0].so2proportion === null ? '--' : myData.red[0].so2proportion)) + "</td>\n                    </tr>\n                    <tr>\n                        <td>NOx\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.red.length && (myData.red[0].noxproportion === null ? '--' : myData.red[0].noxproportion)) + "</td>\n                        <td>VOCs\u4F30\u7B97\u51CF\u6392\u6BD4\u4F8B</td>\n                        <td>" + (myData.red.length && (myData.red[0].vocsproportion === null ? '--' : myData.red[0].vocsproportion)) + "</td>\n                    </tr>\n                </table>\n                " + getHtml(myData.heatingMeasures) + "\n                " + getRedHtml("red") + "\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u73AF\u4FDD\u7BA1\u7406\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\"  class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u751F\u4EA7\u7EBF/\u5DE5\u5E8F</td>\n                            <td>" + getOverHtml(0, myData) + "</td>\n                        </tr>\n                        <tr>\n                            <td>\u751F\u4EA7\u89C4\u6A21</td>\n                            <td>" + getOverHtml(1, myData) + "</td>\n                        </tr>\n                        <tr class=\"tableImg\">\n                            <td>\u5DE5\u827A\u6D41\u7A0B\u56FE</td>\n                            <td>" + (myData.environmentmanage.length && (myData.environmentmanage[0].flowchart === null ? '--' : myData.environmentmanage[0].flowchart)) + "</td>\n                        </tr>\n                        <tr>\n                            <td>\u6C61\u67D3\u5904\u7406\u6280\u672F\u53CA\u6548\u7387</td>\n                            <td>" + (myData.environmentmanage.length && (myData.environmentmanage[0].poltretechnology === null ? '--' : myData.environmentmanage[0].poltretechnology)) + "</td>\n                        </tr>\n                        <tr>\n                            <td>\u662F\u5426\u7EB3\u5165\u7CFB\u7EDF</td>\n                            <td>" + (myData.environmentmanage.length && myData.environmentmanage[0].whetherbringinto) + "</td>\n                        </tr>\n                    </table>\n                </div>\n                <div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u6392\u653E\u91CF\u4FE1\u606F</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table class=\"qyTable qyTable1\" cellpadding=\"0\" cellspacing=\"0\">\n                        <tr>\n                            <td>\u70DF\u7C89\u5C18\u6392\u653E\u91CF</td>\n                            <td>" + myData.sootemission + "</td>\n                        </tr>\n                        <tr>\n                            <td>SO2\u6392\u653E\u91CF</td>\n                            <td>" + myData.so2emission + "</td>\n                        </tr>\n                        <tr>\n                            <td>NOx\u6392\u653E\u91CF</td>\n                            <td>" + myData.noxemissions + "</td>\n                        </tr>\n                        <tr>\n                            <td>VOCs\u6392\u653E\u91CF</td>\n                            <td>" + myData.vocsemissions + "</td>\n                        </tr>\n                    </table>\n                </div>\n            </li>\n        </ul>\n\n    </div>\n";
+            myDom.innerHTML = myHtml;
+
+            function getOverHtml(type, myData) {
+                var myData = myData.environmentmanage;
+                var str = "";
+                if (type == 0) {
+                    for (var i = 0; i < myData.length; i++) {
+                        if (i == myData.length) {
+                            str += myData[i].workingprocedure;
+                        } else {
+                            str += myData[i].workingprocedure + "--";
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < myData.length; i++) {
+                        if (i == myData.length) {
+                            str += myData[i].scale;
+                        } else {
+                            str += myData[i].scale + "--";
+                        }
+                    }
+                }
+                return str;
+            }
+
+            function getHtml(arr) {
+                if (!arr) {
+                    return "";
+                }
+                var parentTmp = "<div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u9519\u5CF0\u751F\u4EA7\u63AA\u65BD</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n                    <table  class=\"qyTable\" style=\"display:none\" cellpadding=\"0\" cellspacing=\"0\">\n                        " + getChild() + "\n                    </table>\n                </div>";
+
+                function getChild() {
+                    var tmp = "";
+                    for (var i = 0; i < arr.length; i++) {
+                        tmp += "\n                        <tr>\n                            <td>\u8BBE\u5907</td>\n                            <td>" + arr[i].device + "</td>\n                            <td>\u63AA\u65BD</td>\n                            <td>" + arr[i].productionmeasures + "</td>\n                        </tr>";
+                    }
+                    return tmp;
+                }
+
+                return parentTmp;
+            }
+
+            function getRedHtml(type) {
+                if (type == "blue") {
+                    var arr = myData.blue;
+                } else if (type == "yellow") {
+                    var arr = myData.yellow;
+                } else if (type == "orange") {
+                    var arr = myData.orange;
+                } else if (type == 'red') {
+                    var arr = myData.red;
+                }
+
+                var whetherpeak = myData.whetherpeak;
+                console.log(myData);
+                if (!arr) {
+                    return "";
+                }
+                var parentTmp = "<div>\n                    <div class=\"info\">\n                        <div class=\"square\"></div>\n                        <div class=\"title\">\u5E94\u6025\u54CD\u5E94\u63AA\u65BD</div>\n                        <img src=\"hide.png\" alt=\"\" class=\"hide\">\n                        <img src=\"show.png\" alt=\"\" class=\"show\">\n                    </div>\n<table  class=\"qyTable\" style=\"display:none\" cellpadding=\"0\" cellspacing=\"0\">" + getChild() + " </table>\n                </div>";
+
+                // <div style="display:none" > ${getChild()}</div>
+                function getChild() {
+                    var tmp = "";
+                    if (whetherpeak == 1) {
+                        for (var i = 0; i < arr.length; i++) {
+                            //错峰
+                            tmp += "\n                        <tr>\n                            <td>\u8BBE\u5907</td>\n                            <td><span class=\"mySpan\">" + arr[i].type + "</span></td>\n                            <td>\u91C7\u6696</td>\n                            <td><span class=\"mySpan\">" + arr[i].workshop + "</span></td>\n                            <td>\u975E\u91C7\u6696</td>\n                            <td><span class=\"mySpan\">" + arr[i].equipment + "</span></td>\n                        </tr>";
+                        }
+                    } else {
+                        for (var i = 0; i < arr.length; i++) {
+                            //非错峰
+                            tmp += "\n                       <tr>\n                            <td>\u7C7B\u522B</td>\n                            <td><span class=\"mySpan\">" + arr[i].type + "</span></td>\n                            <td>\u8F66\u95F4</td>\n                            <td><span class=\"mySpan\">" + arr[i].workshop + "</span></td>\n                            <td>\u8BBE\u5907</td>\n                            <td><span class=\"mySpan\">" + arr[i].equipment + "</span></td>\n                            <td>\u63AA\u65BD</td>\n                            <td><span class=\"mySpan\">" + arr[i].emergencymeasure + "</span></td>\n                        </tr>";
+                        }
+                    }
+
+                    return tmp;
+                }
+
+                return parentTmp;
+            }
+
+            $(function () {
+
+                onLoad(myData.buttonState);
+                var num = myData.buttonState;
+                var color;
+
+                function onLoad(num) {
+                    if (num == 1) {
+                        num = 3;
+                        color = '#E81616';
+                    } else if (num == 2) {
+                        num = 2;
+                        color = '#ffb31a';
+                    } else if (num == 4) {
+                        num = 1;
+                        color = '#fee71d';
+                    } else if (num == 8) {
+                        num = 0;
+                        color = '#2494F2';
+                    } else if (num == 0) {
+                        num = 4;
+                        color = '#E81616';
+                    }
+
+                    var oul = document.getElementsByClassName('warning')[0];
+                    var oli = oul.getElementsByTagName('li');
+                    var alist = document.getElementsByClassName('blsit-list')[0];
+                    var ali = alist.getElementsByTagName('li');
+                    $(oli[num]).addClass('selected').css('color', color).css('borderColor', color);
+                    $(ali[num]).attr('id', 'active');
+                }
+
+                var colorArr = {
+                    0: '#2494F2',
+                    1: '#fee71d',
+                    2: '#ffb31a',
+                    3: '#E81616'
+                };
+                var imgArr = {
+                    0: 'qiye/icon_0.png',
+                    1: 'qiye/icon_1.png',
+                    2: 'qiye/icon_2.png',
+                    3: 'qiye/icon_3.png',
+                    4: 'qiye/icon_4.png'
+                };
+
+                $(".warning li").on("click", function () {
+                    var index = $(this).index();
+                    $(this).addClass("selected").siblings().removeClass("selected");
+                    $(this).css('color', colorArr[index]).siblings().css('color', '#666666');
+                    $(this).css('borderColor', colorArr[index]);
+                    $(this).parents(".wrap").find(".blsit-list li").eq(index).show().siblings().hide();
+                });
+            });
+            var hide = $(".hide");
+
+            $.each(hide, function () {
+                $(this).click(function () {
+                    $(this).css("display", "none");
+                    $(this).next().css("display", "inline-block");
+                    $(this).parent().next().slideToggle();
+                });
+            });
+
+            var show = $(".show");
+            $.each(show, function () {
+                $(this).click(function () {
+                    $(this).css("display", "none");
+                    $(this).prev().css("display", "inline-block");
+                    $(this).parent().next().hide();
+                });
+            });
+        }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+//
+.BMapLib_SearchInfoWindow .BMapLib_bubble_title {
+  padding-left: 20px;
+  line-height: 32px;
+  height: 32px;
+  background-color: white;
+  color: #333333;
+  font-family: 'Microsoft YaHei';
+
+}
+
+.BMapLib_SearchInfoWindow {
+  border-radius: 2px;
+}
+
+.BMapLib_SearchInfoWindow .BMapLib_bubble_tools div {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.BMapLib_SearchInfoWindow .BMapLib_bubble_title {
+  background: #fff !important;
+  color: #333 !important;
+}
+
+.BMapLib_SearchInfoWindow {
+  border: none !important;
+  box-shadow: 0 0 10px #666;
+  border-radius: 6px;
+}
+
+.BMapLib_bubble_top {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  overflow: hidden;
+  //position: relative;
+}
+
+.BMapLib_SearchInfoWindow .BMapLib_sendToPhone {
+  background: none;
+}
+
+/*BaiduMap*/
+.BMapLib_SearchInfoWindow .BMapLib_bubble_close {
+  background: url('/static/imgs/map/iclose.png') no-repeat center center !important;
+}
+
+.BMapLib_bubble_bottom {
+  height: 0;
+  width: 0;
+  border-left: solid 8px transparent;
+  border-right: solid 8px transparent;
+  border-top: solid 8px #fff;
+  bottom: -8px;
+  position: absolute;
+  left: 50%;
+}
+
+.BMapLib_SearchInfoWindow img {
+  display: none;
+}
+
+/*应急清单下弹出框样式*/
+.Emergencylist {
+  .BMapLib_bubble_top {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    overflow: inherit !important;
+    position: relative;
+  }
+  .BMapLib_SearchInfoWindow {
+    border: none !important;
+    box-shadow: 0 0 10px #666;
+    border-radius: 2px !important;
+  }
+}
+//
+//.BMap_noprint{
+//  position: static!important;
+//}

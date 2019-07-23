@@ -1,0 +1,99 @@
+.panel {
+  height: calc(100% - 56px);
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  padding-bottom: 100px !important;
+  /*三角箭头的颜色*/
+  scrollbar-arrow-color: #fff;
+  /*滚动条滑块按钮的颜色*/
+  scrollbar-face-color: #fff;
+  /*滚动条整体颜色*/
+  scrollbar-highlight-color: #fff;
+  /*滚动条阴影*/
+  scrollbar-shadow-color: #fff;
+  /*滚动条轨道颜色*/
+  scrollbar-track-color: #fff;
+}
+
+/*滚动条美化*/
+.panel::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 1px;
+}
+
+.panel::-webkit-scrollbar {
+  width: 1px;
+  background-color: #F5F5F5;
+}
+
+.panel::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+  background-color: #FFF;
+  background-image: -webkit-linear-gradient(top,
+          #e4f5fc 0%,
+          #bfe8f9 50%,
+          #9fd8ef 51%,
+          #2ab0ed 100%);
+}
+
+.el-date-editor.el-input {
+  width: 190px !important;
+}
+.HourData{
+      .el-date-editor.el-input{
+          width: 200px!important;
+      }
+  }
+.Window_Three, .Window_Four, .Window_Five {
+  width: 1px;
+  padding-bottom: 100px !important;
+  /*三角箭头的颜色*/
+  scrollbar-arrow-color: #1d2339;
+  /*滚动条滑块按钮的颜色*/
+  scrollbar-face-color: #1d2339;
+  /*滚动条整体颜色*/
+  scrollbar-highlight-color: #1d2339;
+  /*滚动条阴影*/
+  scrollbar-shadow-color: #1d2339;
+  /*滚动条轨道颜色*/
+  scrollbar-track-color: #1d2339;
+  border: none;
+}
+
+.Window_one .item_text4::-webkit-scrollbar-track,.Window_Three::-webkit-scrollbar-track, .Window_Four::-webkit-scrollbar-track, .Window_Five::-webkit-scrollbar-track {
+  width: 1px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 1px;
+}
+
+.Window_one .item_text4::-webkit-scrollbar,.Window_Three::-webkit-scrollbar, .Window_Four::-webkit-scrollbar, .Window_Five::-webkit-scrollbar {
+  width: 1px;
+  background-color: #F5F5F5;
+}
+
+.Window_one .item_text4::-webkit-scrollbar-thumb,.Window_Three::-webkit-scrollbar-thumb, .Window_Four::-webkit-scrollbar-thumb, .Window_Five::-webkit-scrollbar-thumb {
+  border-radius: 1px;
+  background-color: #FFF;
+  background-image: -webkit-linear-gradient(top,
+          #e4f5fc 0%,
+          #bfe8f9 50%,
+          #9fd8ef 51%,
+          #2ab0ed 100%);
+}
+
+.el-tree {
+  border: none !important;
+}
+
+.Like-winter {
+  .el-table__empty-block {
+    background: #1d2339 !important;
+    .el-table__empty-text {
+      color: #fff;
+    }
+  }
+}
+
+

@@ -1,0 +1,7 @@
+body { background: #fff; }
+.wrapper { margin: -200px auto auto -300px; position: absolute; top: 50%; left: 50%; width: 600px; height: 400px; }
+.title { margin: 0 0 0 90px; padding: 0 30px 0 0; font:60px/1.5 '黑体',tahoma,sans-serif; font-weight: bold; display: inline-block; *display: inline; *zoom:1; color: #3687BF; background: url(../images/sigh.png) no-repeat right center; }
+.content { padding: 0 0 0 300px; background: url(../images/404.png) no-repeat 50px -10px; min-height: 300px; }
+.message { padding: 0 0 0 20px; border-left: 1px solid #efefef; line-height: 25px; }
+.message h3 { margin: 0 0 10px; font-size: 20px; }
+.message p { font-size: 14px; color: #666; }

@@ -1,0 +1,265 @@
+/*圆圈进度*/
+.el-icon-close:hover {
+  cursor: pointer;
+}
+
+.el-progress-circle {
+  width: 80px !important;
+  height: 80px !important;
+}
+//上传图片
+.reply .el-upload--picture-card{
+    width: 200px;
+    height: 200px;
+    line-height: 20px;
+    padding-top: 60px;
+}
+/*表格*/
+.el-table__body-wrapper {
+  tr {
+
+  }
+  :hover {
+    cursor: pointer;
+  }
+  overflow: inherit;
+}
+.el-table .has-gutter tr th{
+    background: #eef1f6!important;
+}
+.Like-winter .el-table .has-gutter tr th{
+  background: #242953!important;
+}
+tr {
+  .cell {
+    padding: 0 !important;
+  }
+}
+
+td {
+  .cell {
+    padding: 0 !important;
+    button{
+      height: 22px!important;
+    }
+    .el-button--small{
+      padding: 0 6px!important;
+    }
+  }
+}
+
+.table {
+  .cell {
+    font-size: 12px;
+  }
+  :hover {
+    cursor: pointer;
+  }
+}
+.input-warp{
+  .el-input{
+    width: 202px!important;
+  }
+}
+
+//
+.el-pagination {
+  margin-top: 20px;
+  color: #7d8aa2!important;
+}
+
+.DustEmissionStatistics {
+  .cell {
+    text-align: center !important;
+  }
+}
+
+//tables样式
+.el-table .cell, .el-table th > div {
+  padding: 0;
+  text-align: center;
+}
+
+.popUp input[type="file"]{
+    display: none;
+}
+.DustEmissionStatistics {
+  .el-table .cell, .el-table th > div {
+    padding-left: 20px;
+    text-align: center;
+  }
+}
+.businessmanagement{
+    .el-table__row .el-table_1_column_2 .cell{
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+}
+.el-tabs--border-card {
+  border: 0 !important;
+}
+//
+.selest_warp{
+  .el-input__inner{
+    border: none!important;
+    margin-right:58px!important;
+    text-align: right!important;
+  }
+  .el-select{
+    width: 90px!important;
+  }
+}
+.search_warp{
+  .el-input__inner{
+    padding-right:32px!important;
+    border: none!important;
+  }
+}
+//轮播图左右键样式
+.el-carousel__arrow{
+  top: 80%!important;
+}
+//
+.time-qm{
+  .el-date-editor.el-input{
+    width: 150px!important;
+  }
+}
+//后台样式
+.businessmanagement{
+  .el-dialog{
+    border-radius: 12px!important;
+  }
+  .el-submenu,.is-opened,.is-active{
+    border: 0!important;
+    .is-active{
+      background: #D3EAFC!important;
+      border-left: solid 3px #2796F1!important;
+    }
+  }
+  .el-menu-item{
+    background: #fff!important;
+    border: 0!important;
+  }
+  .el-menu{
+    text-align: left!important;
+  }
+}
+.Window_Three canvas{
+    top: -40px!important;
+}
+.title-box{
+  .el-checkbox:nth-child(1){
+    margin-left: 30px;
+  }
+  .el-checkbox{
+    width: 26%!important;
+    overflow: hidden;
+  }
+}
+.economic,.bucrt-class{
+  .el-upload__input{
+    display: none;
+  }
+}
+
+.el-table td, .el-table th{
+  padding: 10px 0!important;
+
+}
+
+.el-tabs__item{
+  color: #7d8aa2!important;
+}
+
+.el-pagination .el-pager{
+  li{
+    margin: 0 2px!important;
+  }
+}
+.businessOperation .popUp{
+    text-align: left;
+}
+.el-dialog{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+//弹出框头部
+.el-dialog__header{
+  border-bottom: solid 2px #00C5CD;
+  text-align: left;
+  padding-left: 40px;
+}
+//
+.main-map-content{
+  .el-dialog__header{
+    border-bottom: none!important;
+  }
+}
+//ue输入框大小默认
+.ql-editor{
+  min-height: 150px!important;
+}
+//媒体查询
+@media only screen and (min-width: 1400px) {
+  .ql-editor{
+    min-height: 360px!important;
+  }
+}
+//
+.repdetail{
+  .con-calss{
+    p{
+      text-align: justify; text-justify: inter-ideograph; text-indent: 2em!important;
+    }
+  }
+}
+.DustRange,.SixParamRange,.AirStation,.DustRange,.TvocRange{
+  #Export{
+    text-align: left;
+    margin-left: 45px;
+    margin-bottom: 20px;
+  } 
+}
+//案件审核轮播
+.CaseReview{
+    .examine,.reply{
+       .el-input.is-disabled .el-input__inner,.el-textarea__inner{
+           color: #000;
+       } 
+    }
+     .el-carousel{
+        display: inline-block;
+        width: 200px!important;
+        margin: 0!important;
+    }
+    .el-carousel__arrow{
+        top: 100px!important;
+    }
+    .el-carousel__indicators{
+        transform: translateX(10%)!important;
+        left: 6%;
+    }
+    .el-carousel__item{
+        width: 200px;
+        height:200px;
+    }
+     .el-carousel__item h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 200px;
+        text-align: center;
+        margin: 0;
+      }
+    
+      .el-carousel__item:nth-child(2n) {
+         background-color: #99a9bf;
+      }
+      
+      .el-carousel__item:nth-child(2n+1) {
+         background-color: #d3dce6;
+      }
+}
+           

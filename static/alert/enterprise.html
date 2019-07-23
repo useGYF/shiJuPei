@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>工业企业源</title>
+</head>
+<style>
+    html, body {
+        font-size: 12px;
+        font-family: "MicrosoftYaHei";
+    }
+
+    .all-wrapper {
+        width: 420px;
+        margin: 0 auto;
+        background: #FFFFFF;
+        border-radius: 2px;
+    }
+
+    .company-name {
+        /*width: 100%;*/
+        color: #333333;
+        background: #EBEBEB;
+        font-size: 14PX;
+        height: 26px;
+        line-height: 26px;
+        padding-left: 10px;
+        margin: 0px 20px 10px 20px;
+    }
+
+    .table-wrapper {
+        padding: 0px 20px 20px 20px;
+    }
+
+    .table-up {
+        /*table-layout: auto;*/
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #DDDDDD;
+        border-collapse: collapse;
+    }
+
+    .table-up tr td {
+        /*width: 25%;*/
+        border: 1px solid #DDDDDD;
+        height: 22px;
+        line-height: 22px;
+    }
+
+    .table-up td:nth-child(odd) {
+        /*text-align: center;*/
+        background: #EBEBEB;
+        color: #666666;
+        width: 93px;
+    }
+
+    .table-up td:nth-child(even) {
+        width: 98px;
+        /*text-align: left;*/
+        padding-left: 10px;
+        color: #333333;
+    }
+
+    .msg-type {
+        margin-left: 20px;
+        border-left: 4px solid #2494f2;
+        padding-left: 10px;
+        line-height: 14px;
+        height: 14px;
+        font-size: 14px;
+        color: #333333;
+        margin-bottom: 10px;
+    }
+
+    .msg-type-in {
+        font-size: 12px;
+        color: #666666;
+    }
+
+    .table-wrapper2 {
+        padding: 0px 20px 20px 20px;
+    }
+
+    .msg-type2 {
+        border-left: 4px solid #2494f2;
+        padding-left: 10px;
+        height: 14px;
+        line-height: 14px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+    }
+
+    .table-down {
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #DDDDDD;
+        border-collapse: collapse;
+    }
+
+    .table-down tr td {
+        width: 25%;
+        border: 1px solid #DDDDDD;
+    }
+
+    .table-down td:nth-child(odd) {
+        /*text-align: center;*/
+        background: #EBEBEB;
+        color: #666666;
+    }
+
+    .table-down td:nth-child(even) {
+        /*text-align: left;*/
+        padding-left: 10px;
+        color: #333333;
+    }
+
+    .look-btn {
+        position: relative;
+        margin-bottom: 20px;
+        /*margin-top: 10px;*/
+        padding: 0px 20px;
+    }
+
+    .monitor {
+        display: inline-block;
+        vertical-align: middle;
+        width: 170px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 2px;
+        background: #2494F2;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .video {
+        margin-right: 0;
+        width: 170px;
+        height: 30px;
+        line-height: 30px;
+        float: right;
+        border-radius: 2px;
+        background: #2494F2;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .table-down2 {
+        width: 100%;
+        margin: 0 auto;
+        border: 1px solid #DDDDDD;
+        border-collapse: collapse;
+    }
+
+    .table-down2 tr td {
+        border: 1px solid #DDDDDD;
+    }
+
+    .table-down2 td:nth-child(odd) {
+        width: 30%;
+        /*text-align: center;*/
+        background: #EBEBEB;
+        color: #666666;
+    }
+
+    .table-down2 td:nth-child(even) {
+        /*text-align: left;*/
+        padding-left: 10px;
+        color: #333333;
+    }
+
+    .arrow {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        float: right;
+    }
+
+    .arrow-show {
+        display: none;
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+
+    .arrow-hide {
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+
+    td {
+        text-align: left;
+        padding-left: 10px;
+    }
+</style>
+<body>
+<div class="all-wrapper">
+    <div class="company-name"><!--国安福京包装印刷有限公司--></div>
+    <div class="table-wrapper">
+        <table class="table-up" id="insert1">
+            <!--<tr>
+                <td>具体位置</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>联系人</td>
+                <td>张川</td>
+                <td>电话</td>
+                <td>188888888</td>
+            </tr>
+            <tr>
+                <td>所属网格</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>联系人</td>
+                <td>张川</td>
+                <td>网格员联系电话</td>
+                <td>188888888</td>
+            </tr>-->
+            <!--<tr>
+                <td>主要产品</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>所属行业</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>燃料类型</td>
+                <td></td>
+                <td>燃料消耗量</td>
+                <td>188888888</td>
+            </tr>-->
+        </table>
+    </div>
+    <div class="msg-type">
+        污染物处理技术与效率
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper">
+        <table class="table-down">
+            <tr>
+                <td>脱硫技术</td>
+                <td></td>
+                <td>去除效率</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>脱硫技术</td>
+                <td></td>
+                <td>去除效率</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>脱硫技术</td>
+                <td></td>
+                <td>去除效率</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>VOCs回收工艺</td>
+                <td></td>
+                <td>去除效率</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>脱硫技术</td>
+                <td></td>
+                <td>去除效率</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div class="msg-type">
+        污染物排放信息<span class="msg-type-in">(吨/年)</span>
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper">
+        <table class="table-down" id="insert2">
+            <!--<tr>
+                <td>SO2</td>
+                <td></td>
+                <td>VOCS3</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>NOX</td>
+                <td></td>
+                <td>NH3</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>CO</td>
+                <td></td>
+                <td>BC</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>PM10</td>
+                <td></td>
+                <td>OC</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>PM2.5</td>
+                <td></td>
+            </tr>-->
+        </table>
+    </div>
+    <div class="msg-type">
+        溶剂使用信息
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper">
+        <table class="table-down">
+            <tr>
+                <td>溶剂名称</td>
+                <td></td>
+                <td>溶剂使用量</td>
+                <td>44<span style="color: #666666; float: right; margin-right: 5px;">(吨/年)</span></td>
+            </tr>
+            <tr>
+                <td>溶剂名称</td>
+                <td></td>
+                <td>溶剂使用量</td>
+                <td>334<span style="color: #666666; float: right; margin-right: 5px;">(吨/年)</span></td>
+            </tr>
+            <tr>
+                <td>溶剂名称</td>
+                <td></td>
+                <td>溶剂使用量</td>
+                <td>2222<span style="color: #666666; float: right; margin-right: 5px;">(吨/年)</span></td>
+            </tr>
+        </table>
+    </div>
+    <div class="msg-type2">
+        锅炉信息1
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper2">
+        <table class="table-down2">
+            <tr>
+                <td>锅炉类型</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>锅炉蒸吨数</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>燃料类型</td>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="msg-type2">
+        锅炉信息2
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper2">
+        <table class="table-down2">
+            <tr>
+                <td>锅炉类型</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>锅炉蒸吨数</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>燃料类型</td>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="msg-type2">
+        锅炉信息3
+        <span class="arrow">
+					<span class="arrow-hide"><img src="hide.png" alt=""/></span>
+					<span class="arrow-show"><img src="show.png" alt=""/></span>
+				</span>
+    </div>
+    <div class="table-wrapper2">
+        <table class="table-down2">
+            <tr>
+                <td>锅炉类型</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>锅炉蒸吨数</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>燃料类型</td>
+                <td></td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="look-btn">
+        <span class="monitor">查看在线监测</span>
+        <span class="video">查看视频监控</span>
+    </div>
+</div>
+</body>
+</html>
+<script src="../js/jquery.min.js"></script>
+<script>
+    var hide = $(".arrow-hide")
+    $.each(hide, function () {
+        $(this).click(function () {
+            $(this).css("display", "none")
+            $(this).next().css("display", "block")
+            $(this).parent().parent().next().slideUp()
+        })
+    });
+    var show = $(".arrow-show")
+    $.each(show, function () {
+        $(this).click(function () {
+            $(this).css("display", "none")
+            $(this).prev().css("display", "block")
+            $(this).parent().parent().next().slideDown()
+        })
+    });
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return decodeURIComponent(r[2]);
+        return null;
+    }
+
+    var polcode = GetQueryString('polcode');
+    $.ajax({
+        type: "get",
+        url: "http://117.119.97.150:8061/servicePlatform/enterprise/infoByPolcode?polcode=" + polcode + "&sourceType=ps001",
+        async: true,
+        success: function (res) {
+            var all2 = JSON.parse(res);
+
+            console.log(all2.ExtraData);
+            var all = all2.ExtraData;
+
+            console.log(all.person);
+            $(".company-name").html(all.entname)
+            var content1 = "";
+            content1 += "<tr><td>地址</td><td colspan='3'>" + (all.province ? all.province : '') + (all.city ? all.city : '') + (all.area ? all.area : '') + "</td></tr>" +
+                "<tr><td>联系人</td><td>" + (all.legalpersoname ? all.legalpersoname : '') + "</td><td>电话</td><td>" + (all.legalpersontel ? all.legalpersontel : '') + "</td></tr>" +
+                "<tr><td>所属网格</td><td colspan='3'>" + (all.gridname ? all.gridname : '') + "</td></tr>" +
+                "<tr><td>网格员</td><td>" + (all.person ? all.person : '') + "</td><td>网格员联络电话</td><td>" + (all.tel ? all.tel : '') + "</td></tr>" +
+                "<tr><td>主要产品</td><td colspan='3'>" + (all.productName ? all.productName : '') + "</td></tr>" +
+                "<tr><td>所属行业</td><td colspan='3'></td></tr>" +
+                "<tr><td>燃料类型</td><td>" + (all.fuel ? all.fuel : '') + "</td><td>燃料消耗量</td><td>" + (all.fueluse ? all.fueluse : '') + "</td></tr>"
+            $("#insert1").html(content1)
+
+
+            var content2 = ""
+            content2 += "<tr><td>SO2</td><td>" + (all.so2 ? all.so2 : '') + "</td><td>VOCS3</td><td>" + (all.vocoutVal ? all.vocoutVal : '') + "</td></tr>" +
+                "<tr><td>NOX</td><td>" + (all.nox ? all.nox : '') + "</td><td>NH3</td><td>" + (all.nh3 ? all.nh3 : '') + "</td></tr>" +
+                "<tr><td>CO</td><td></td><td>BC</td><td></td></tr>" +
+                "<tr><td>PM10</td><td>" + (all.pm10 ? all.pm10 : '') + "</td><td>OC</td><td></td></tr>" +
+                "<tr><td>PM2.5</td><td>" + (all.pm25 ? all.pm25 : '') + "</td></tr>"
+            $("#insert2").html(content2)
+        }
+    });
+</script>
