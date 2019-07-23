@@ -4,9 +4,9 @@
             <!--环境监测-->
             <div class="logo">
                 <img src="../assets/img/logo1.png" alt="logo">
-                <a style="color: #fff;font-size:21px;font-weight: 500;line-height: 56px;font-family: 'Microsoft YaHei' ">廊坊市空气质量智能管控平台</a>
+                <a style="color: #fff;font-size:21px;font-weight: 500;line-height: 56px;font-family: 'Microsoft YaHei' ">市局生态环境大数据监管平台</a>
             </div>
-            <div style="color: #fff;float: left;height: 56px;line-height: 66px;margin-left: 4px">2018版</div>
+            <div style="color: #fff;float: left;height: 56px;line-height: 66px;margin-left: 4px">演示版</div>
             <ul class="bnav">
             	<div>
                     <img src="../assets/img/sy-z.png" alt="">

@@ -7,27 +7,27 @@
 			<el-col :span="8">
 				<el-col :span="8">
 					<el-menu default-active="Case-Review" :unique-opened=true router  class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
-						<el-submenu index="active1" >
-							<template slot="title">
-								<!--<i class="el-icon-message"></i>-->
-								<img src="../../../../static/imgs/main/业务数据.png" />
-								业务数据</template>
-							<!--<el-menu-item index="Business-point">国控点管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Province">省控点管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Params">六参数传感器管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-TVOC">TVOC管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Video">监控视频管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Weather">气象站管理</el-menu-item>-->
-							<!--<el-menu-item index="Business-Slite">工地管理</el-menu-item>-->
-							<el-menu-item index="Business-Warning">预警信息管理</el-menu-item>
-							<el-menu-item index="Business-TVOCVal">TVOC指标管理</el-menu-item>
-							<el-menu-item index="Business-WarningVal">预警值管理</el-menu-item>
-							<el-menu-item index="Business-Presentation">官方报告</el-menu-item>
-							<el-menu-item index="Business-Economic">经济数据管理</el-menu-item>
-							<el-menu-item index="Business-DayData">日数据管理</el-menu-item>
-							<el-menu-item index="Business-Operation">运维记录管理</el-menu-item>
-							<el-menu-item index="Business-Electricity">用电量管理</el-menu-item>
-						</el-submenu>
+						<!--<el-submenu index="active1" >-->
+							<!--<template slot="title">-->
+								<!--&lt;!&ndash;<i class="el-icon-message"></i>&ndash;&gt;-->
+								<!--<img src="../../../../static/imgs/main/业务数据.png" />-->
+								<!--业务数据</template>-->
+							<!--&lt;!&ndash;<el-menu-item index="Business-point">国控点管理</el-menu-item>&ndash;&gt;-->
+							<!--&lt;!&ndash;<el-menu-item index="Business-Province">省控点管理</el-menu-item>&ndash;&gt;-->
+							<!--&lt;!&ndash;<el-menu-item index="Business-Params">六参数传感器管理</el-menu-item>&ndash;&gt;-->
+							<!--&lt;!&ndash;<el-menu-item index="Business-TVOC">TVOC管理</el-menu-item>&ndash;&gt;-->
+							<!--&lt;!&ndash;<el-menu-item index="Business-Video">监控视频管理</el-menu-item>&ndash;&gt;-->
+							<!--&lt;!&ndash;<el-menu-item index="Business-Weather">气象站管理</el-menu-item>&ndash;&gt;-->
+							<!--&lt;!&ndash;<el-menu-item index="Business-Slite">工地管理</el-menu-item>&ndash;&gt;-->
+							<!--<el-menu-item index="Business-Warning">预警信息管理</el-menu-item>-->
+							<!--<el-menu-item index="Business-TVOCVal">TVOC指标管理</el-menu-item>-->
+							<!--<el-menu-item index="Business-WarningVal">预警值管理</el-menu-item>-->
+							<!--<el-menu-item index="Business-Presentation">官方报告</el-menu-item>-->
+							<!--<el-menu-item index="Business-Economic">经济数据管理</el-menu-item>-->
+							<!--<el-menu-item index="Business-DayData">日数据管理</el-menu-item>-->
+							<!--<el-menu-item index="Business-Operation">运维记录管理</el-menu-item>-->
+							<!--<el-menu-item index="Business-Electricity">用电量管理</el-menu-item>-->
+						<!--</el-submenu>-->
 						<el-submenu index="active2" >
 							<template slot="title">
 								<!--<i class="el-icon-menu"></i>-->
