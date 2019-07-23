@@ -20,7 +20,7 @@
       </div>
       <div id="search_char"></div>
     </el-dialog>
-    <history-handle></history-handle>
+    <!--<history-handle></history-handle>-->
   </div>
 </template>
 <script>
