@@ -3,136 +3,119 @@
     <div class="CaseReview">
 		<!--------------案件审核右侧数据展示------>
 		<div id="right">
-			<!----------上传案件-->
-			<div class="box">
-                <div class="warning">
-                    <a>案件列表</a>
+            <span v-if='userInfo.classfication=="0"'>
+                <div class="box">
+                    <div class="warning">
+                        <a>责任科室案件列表</a>
+                    </div>
                 </div>
-            </div>
-            <!-----------查询部分------->
-			<!-- <div class="search">
-				<div class="searchBox">
-				    <span>案件状态</span>
-				    <el-select v-model="CaseStatusVal" @change="selectChangeStatus" clearable placeholder="请选择">
-				        <el-option
-				          v-for="item in optionsCase"
-				          :key="item.value"
-				      	  :label="item.label"
-				          :value="item.value">
-				        </el-option>
-				    </el-select>
-				</div>
-				<div class="searchBox" v-show="$store.state.responsibility===false">
-				    <span>责任主体</span>
-				    <el-select v-model="DutyMainVal" @change="selectChangeDuty" clearable placeholder="请选择">
-				        <el-option
-				          v-for="item in optionsDuty"
-				          :key="item.value"
-				      	  :label="item.name"
-				          :value="item.code">
-				        </el-option>
-				    </el-select>
-				</div>
-				<div class="searchBox">
-				    <span>污染类别</span>
-				    <el-select v-model="PollutionClassVal" @change="selectChangePollution" clearable placeholder="请选择">
-				        <el-option
-				          v-for="item in optionsPollution"
-				          :key="item.value"
-				      	  :label="item.name"
-				          :value="item.code">
-				        </el-option>
-				    </el-select>
-				</div>
-				<div class="block" style="margin-top: 20px;">
-				    <span class="demonstration">案件时间</span>
-				    <el-date-picker
-				      v-model="CaseStartTime"
-				      type="date"
-				      value-format="yyyy-MM-dd"
-				      placeholder="选择日期时间"
-				      @change='startChange'>
-				    </el-date-picker>
-				    -
-				    <el-date-picker
-				      v-model="CaseEndTime"
-				      type="date"
-				      value-format="yyyy-MM-dd"
-				      placeholder="选择日期时间"
-				      @change='endChange'>
-				    </el-date-picker>
-				    <el-button type="primary" class='btns' @click='GetMonitoringDay'>查询</el-button>
-				    <div class="InsertOrOut">
-						<span>
-							<img src="../../../../static/imgs/main/Out.png"/>
-							<a @click="GetExportCase">Excel导出</a>
-						</span>
-					</div>
-				</div>
-			</div> -->
-			
-			<!--------------列表部分---------->
-			<!-- <div class="box">
-                <div class="warning">
-                    <a>列表</a>
+                <el-table
+                    :data="ListData"
+                    style="width: 100%">
+                    <el-table-column
+                    prop="pollutiontype"
+                    label="污染类别"
+                    width="200">
+                    </el-table-column>
+                    <el-table-column
+                    prop="status"
+                    label="案件状态"
+                    width="350">
+                    </el-table-column>
+                    <el-table-column
+                    prop="createtime"
+                    label="案发时间"
+                    width="">
+                    </el-table-column>
+                    <el-table-column
+                    prop="location"
+                    label="位置">
+                    </el-table-column>
+                    <el-table-column
+                    prop="departmenttype"
+                    label="责任主体">
+                    </el-table-column>
+                    <el-table-column
+                    label="操作"
+                    width="200">
+                    <template scope="scope">
+                        <div>
+                            <el-button  type="text" size="small" class='eidt' style="color: #C1C0C0">分配</el-button>
+                            <el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
+                            <!-- <span style="color: #eee;">|</span>
+                            <span class="OverBox">
+                                <el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='noeidt'>回复</el-button>
+                            </span> -->
+                        </div>
+                        <!-- <div v-else>
+                            <el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
+                        </div> -->
+                    </template>
+                    </el-table-column>
+                </el-table>
+                <div class="page">
+                    <span class="demonstration">共找到{{totalCount}}条记录</span>
+                    <el-pagination
+                    background
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-size="pagesize"
+                    layout="prev, pager, next, jumper"
+                    :total="totalCount">
+                    </el-pagination>
                 </div>
-           	</div> -->
-           	<el-table
-			    :data="ListData"
-			    style="width: 100%">
-			    <el-table-column
-			      prop="pollutiontype"
-			      label="污染类别"
-			      width="200">
-			    </el-table-column>
-			    <el-table-column
-			      prop="status"
-			      label="案件状态"
-			      width="350">
-			    </el-table-column>
-			    <el-table-column
-			      prop="createtime"
-			      label="案发时间"
-			      width="">
-			    </el-table-column>
-			    <el-table-column
-			      prop="location"
-			      label="位置">
-			    </el-table-column>
-			    <el-table-column
-			      prop="departmenttype"
-			      label="责任主体">
-			    </el-table-column>
-			    <el-table-column
-			      label="操作"
-			      width="200">
-			      <template scope="scope">
-			      	<div>
-						<el-button  type="text" size="small" class='eidt' style="color: #C1C0C0">分配</el-button>
-			      		<el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
-				        <!-- <span style="color: #eee;">|</span>
-				        <span class="OverBox">
-				        	<el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='noeidt'>回复</el-button>
-				        </span> -->
-			      	</div>
-			        <!-- <div v-else>
-			        	<el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
-			        </div> -->
-			      </template>
-			    </el-table-column>
-			</el-table>
-		   	<div class="page">
-			    <span class="demonstration">共找到{{totalCount}}条记录</span>
-			    <el-pagination
-				  background
-			      @size-change="handleSizeChange"
-			      @current-change="handleCurrentChange"
-			      :current-page="currentPage"
-			      :page-size="pagesize"
-			      layout="prev, pager, next, jumper"
-			      :total="totalCount">
-			    </el-pagination>
-			</div>
+            </span>
+            <span v-if='userInfo.classfication=="2"'>
+                <div class="box">
+                    <div class="warning">
+                        <a>处理部门案件列表</a>
+                    </div>
+                </div>
+                <el-table
+                    :data="chuliData"
+                    style="width: 100%">
+                    <el-table-column
+                    prop="caselevel"
+                    label="案件等级"
+                    width="200">
+                    </el-table-column>
+                    <el-table-column
+                    prop="casestatus"
+                    label="案件状态"
+                    width="350">
+                    </el-table-column>
+                    <el-table-column
+                    prop="createTime"
+                    label="案发时间"
+                    width="">
+                    </el-table-column>
+                    <el-table-column
+                    prop="location"
+                    label="位置">
+                    </el-table-column>
+                    <el-table-column
+                    label="操作"
+                    width="200">
+                    <template scope="scope">
+                        <div v-if="scope.casestatus==2">
+                            <el-button  @click="handleAfterClick(scope.row)" type="text" size="small" class='eidt'>关闭</el-button>
+                        </div>
+                    </template>
+                    </el-table-column>
+                </el-table>
+                <div class="page">
+                    <span class="demonstration">共找到{{totalchuli}}条记录</span>
+                    <el-pagination
+                    background
+                    @current-change="handleCurrentchuli"
+                    :current-page="pageNum"
+                    :page-size="pagesize"
+                    layout="prev, pager, next, jumper"
+                    :total="totalchuli">
+                    </el-pagination>
+                </div>
+            </span>
 	        	<!--------------分配弹框部分--------------->
 			<div class="popUp" v-if="isDistribute">
 	            <div class="mask"></div>
@@ -154,6 +137,29 @@
 						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
 							<el-button type="primary" @click='GetEditCase'>确定</el-button>
 							<el-button plain @click='isDistribute=false'>取消</el-button>
+						</el-row>
+	               </div>
+	            </div>
+	        </div>
+            <!-- 处理部门案后描述 -->
+            <div class="popUp" v-if="isClose">
+	            <div class="mask"></div>
+	            <div class="succ-pop distribute">
+	                <div class="title">
+	                    <a id="newCreate">提示</a>
+	                    <div class="el-icon-close" @click="isClose=false"></div>
+	                </div>
+	                <div class="content">
+                		<span>责任主体</span>
+                		<el-input
+                            type="textarea"
+                            :rows="2"
+                            placeholder="请输入内容"
+                            v-model="chuliarea">
+                        </el-input>
+						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
+							<el-button type="primary" @click='chuliEnter'>确定</el-button>
+							<el-button plain @click='isClose=false'>取消</el-button>
 						</el-row>
 	               </div>
 	            </div>
@@ -265,11 +271,19 @@
 	         id:'',
 	         zrxtCode:'',
 	         afterCaseImg:'',
-	         imgUrl:''
+             imgUrl:'',
+             userInfo:{},
+             chuliData:[],
+             isClose:false,
+             chuliarea:'',
+             totalchuli:10,
+             pageNum:1
             }
         },
         created(){
-        	console.log(this.$store.state.userInfo);
+            console.log(this.getlocal('userInfo'));
+            this.userInfo = this.getlocal('userInfo').data;
+            this.selectClbmCasePage();//处理部门案件
         },
         mounted() {
         	this.GetMonitoringDay();
@@ -678,7 +692,66 @@
 	        	api.GetFirstGridDropDown().then(res=>{
 	        		t.options = res.data.Data;
 	        	})
-	        }
+            },
+             getlocal(name) {
+		        let data = sessionStorage.getItem(name)
+		        if (data != null && data != '') {
+		            try {
+		                let obj = eval('(' + data + ')')
+		                return obj
+		            } catch (e) {
+		                return ''
+		            }
+		        } else {
+		            return ''
+		        }
+            },
+            //获取处理部门案件列表
+            selectClbmCasePage(){
+                let userId = this.userInfo.id;
+                let pageNum = this.pageNum;
+                let pageSize = 10;
+                this.chuliData = [];
+                api.selectClbmCasePage(userId,pageNum,pageSize).then(res=>{
+                    if(res.data.status==1){
+                        let data = res.data.data.list;
+                        this.totalchuli = res.data.data.total;
+                         console.log(res)
+                         data.forEach(item=>{
+								let tableData = {};
+								tableData.casestatus = item.casestatus==2?'处理人员待操作':'处理完成';
+								tableData.createTime = item.createTime;
+								tableData.caselevel = item.caselevel==0?'普通':'紧急';
+								tableData.location = item.location;
+		                        this.chuliData.push(tableData);
+							})
+                    }
+                   
+                })
+            },
+            handleAfterClick(row){
+                this.isClose = true;
+                this.chuliId = row.id;
+            },
+            chuliEnter(){
+                let id = this.chuliId;
+                let afterRemake = this.chuliarea;
+                api.disposeCase(id,afterRemake).then(res=>{
+                    console.log(res)
+                    if(res.data.status==1){
+                        this.$message({type:'success',message:'处理成功'});
+                        this.selectClbmCasePage();
+                        this.isClose = false;
+                    }else{
+                        this.$message({type:'error',message:'处理失败'});
+                        this.isClose = false;
+                    }
+                })
+            },
+            handleCurrentchuli(val){
+                this.pageNum = val;
+                this.selectClbmCasePage();
+            }
         }, 
     }
 </script>
@@ -949,8 +1022,10 @@
                 }
             }
 	    	.content{
-	    		margin-left: 30px;
-	    		margin-top: 20px;
+                padding: 20px;
+                .el-textarea{
+                    width: 250px;
+                }
 	    	}
         }
         /*查看弹框*/

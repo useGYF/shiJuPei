@@ -181,6 +181,8 @@ const apilangfangTDK = {
     GetVocsVideoInfo: apiconfig[icode].devn +'/api/Video/GetVocsVideoInfo?name=',//vocvideo
     GetElectricityChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityChartForDay?',//大数据天
     GetElectricityIndexChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityIndexChartForDay?',//大数据天
+    selectClbmCasePage: apiconfig[icode].devn +'/zcb/cases/selectClbmCasePage?',//处理部门案件列表
+    disposeCase: apiconfig[icode].devn +'/zcb/cases/disposeCase',//处理部门处理案件
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -325,3 +327,5 @@ export const GetVocsVideoInfoResource = API_ROOT.concat(apilangfangTDK.GetVocsVi
 export const GetElectricityIndexChartResource = API_ROOT.concat(apilangfangTDK.GetElectricityIndexChart);
 export const GetElectricityChartForDayResource = API_ROOT.concat(apilangfangTDK.GetElectricityChartForDay);
 export const GetElectricityIndexChartForDayResource = API_ROOT.concat(apilangfangTDK.GetElectricityIndexChartForDay);
+export const selectClbmCasePageResource = API_ROOT.concat(apilangfangTDK.selectClbmCasePage);
+export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);

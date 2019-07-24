@@ -148,6 +148,8 @@ import {
     GetElectricityIndexChartResource,//大数据对比
     GetElectricityChartForDayResource,//大数据
     GetElectricityIndexChartForDayResource,//大数据对比
+    selectClbmCasePageResource,//处理部门案件
+    disposeCaseResource,//处理部门处理案件
 } from './resource'
 
 export default {
@@ -1099,6 +1101,21 @@ export default {
     //传感网数据查询
     GetDustHourRanking(requestTime) {
         return axios.get(GetDustHourRankingResource + 'requestTime=' + requestTime, {}
+        )
+    },
+    selectClbmCasePage(userId,pageNum,pageSize) {
+        return axios.get(selectClbmCasePageResource + 'userId=' + userId + '&pageNum=' + pageNum + '&pageSize=' + pageSize, {}
+        )
+    },
+    disposeCase(id,afterRemake ) {
+        let params = {
+            'id':id,
+            'afterRemake':afterRemake 
+        };
+        let FormatParams = JSON.stringify(params);//转换数据格式
+        return axios.post(disposeCaseResource ,FormatParams, {
+                headers: {'Content-Type': 'application/json'}
+            }
         )
     },
 }
