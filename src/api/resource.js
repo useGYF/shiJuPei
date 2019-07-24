@@ -98,10 +98,10 @@ const apilangfangTDK = {
     EmergencyInfoInsert: apiconfig[icode].devn + '/api/EmergencyBulletin/Insert',//新增应急消息
     GetEmergencyInfo: apiconfig[icode].devn + '/api/EmergencyBulletin/GetNotice?',//获取应急消息
     GetCaseList: apiconfig[icode].devc + '/servicePlatform/admin/caseData/selectCasePage?',//获取案件审核列表
-    GetCaseAll: apiconfig[icode].devc + '/servicePlatform/mobile/list/anjian?type=1',//获取责任主体
+    GetCaseAll: apiconfig[icode].devn + '/zcb/cases/selectpeople?',//获取责任主体
     GetUploadImg: apiconfig[icode].devc + '/servicePlatform/admin/caseData/uploadAnalysisFile',//上传案件图片
     GetPollutionType: apiconfig[icode].devc + '/servicePlatform/mobile/list/anjian?type=2',//获取污染类别
-    GetEditCase: apiconfig[icode].devc + '/servicePlatform/admin/caseData/editCaseZrzt?',//分配责任主体
+    GetEditCase: apiconfig[icode].devn + '/zcb/cases/assignCase',//分配责任主体
     GetExportCase: apiconfig[icode].devc + '/servicePlatform/admin/caseData/export?',//导出案件
     GetEditResult: apiconfig[icode].devc + '/servicePlatform/admin/caseData/editCasehandlingResult',//案件处理结果
     GetCaseImg: apiconfig[icode].devc + '/servicePlatform/admin/caseData/getImgByCaseCode?',//获取案件图片
@@ -185,6 +185,8 @@ const apilangfangTDK = {
     GetElectricityIndexChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityIndexChartForDay?',//大数据天
     selectClbmCasePage: apiconfig[icode].devn +'/zcb/cases/selectClbmCasePage?',//处理部门案件列表
     disposeCase: apiconfig[icode].devn +'/zcb/cases/disposeCase',//处理部门处理案件
+    selectZrksCasePage: apiconfig[icode].devn +'/zcb/cases/selectZrksCasePage?',//责任科室案件
+    duBanCase: apiconfig[icode].devn +'/zcb/cases/duBanCase',//责任科室督办案件
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -331,7 +333,8 @@ export const GetElectricityChartForDayResource = API_ROOT.concat(apilangfangTDK.
 export const GetElectricityIndexChartForDayResource = API_ROOT.concat(apilangfangTDK.GetElectricityIndexChartForDay);
 export const selectClbmCasePageResource = API_ROOT.concat(apilangfangTDK.selectClbmCasePage);
 export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);
-
 export const postShijuaddcaseResource = API_ROOT.concat(apilangfangTDK.postShijuaddcase);
 // export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);
+export const selectZrksCasePageResource = API_ROOT.concat(apilangfangTDK.selectZrksCasePage);
+export const duBanCaseResource = API_ROOT.concat(apilangfangTDK.duBanCase);
 
