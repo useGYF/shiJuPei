@@ -1,13 +1,16 @@
 <!--后台管理-案件审核-->
 <template>
     <div class="CaseReview">
-		<!--------------案件审核右侧数据展示------>
+		<!--案件审核右侧数据展示-->
 		<div id="right">
             <span v-if='userInfo.classfication=="0"'>
                 <div class="box">
                     <div class="warning">
                         <a>责任科室案件列表</a>
                     </div>
+                </div>
+                <div style="width: 100%;height: 44px;text-align: left;margin-bottom: 15px">
+                    <el-button type="primary" @click="xinjian">案件入录</el-button>
                 </div>
                 <el-table
                     :data="ListData"
@@ -72,6 +75,9 @@
                         <a>处理部门案件列表</a>
                     </div>
                 </div>
+                <div style="width: 100%;height: 44px;text-align: left;margin-bottom: 15px">
+                    <el-button type="primary" @click="xinjian">案件入录</el-button>
+                </div>
                 <el-table
                     :data="chuliData"
                     style="width: 100%">
@@ -116,12 +122,12 @@
                     </el-pagination>
                 </div>
             </span>
-	        	<!--------------分配弹框部分--------------->
+	        <!--分配弹框部分-->
 			<div class="popUp" v-if="isDistribute">
 	            <div class="mask"></div>
 	            <div class="succ-pop distribute">
 	                <div class="title">
-	                    <a id="newCreate">提示</a>
+	                    <a>提示</a>
 	                    <div class="el-icon-close" @click="isDistribute=false"></div>
 	                </div>
 	                <div class="content">
@@ -146,7 +152,7 @@
 	            <div class="mask"></div>
 	            <div class="succ-pop distribute">
 	                <div class="title">
-	                    <a id="newCreate">提示</a>
+	                    <a>提示</a>
 	                    <div class="el-icon-close" @click="isClose=false"></div>
 	                </div>
 	                <div class="content">
@@ -164,6 +170,42 @@
 	               </div>
 	            </div>
 	        </div>
+            <!--案件入录-->
+            <el-dialog title="案件入录" :visible.sync="anjVisible" width="550px" :before-close="handleClose">
+                <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
+                    <el-form-item label="案件等级">
+                        <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级">
+                            <el-option label="普通" value="0"></el-option>
+                            <el-option label="紧急" value="1"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="案件来源">
+                        <el-select v-model="ruleForm.casesource" placeholder="请选案件来源">
+                            <el-option label="信访平台" value="1"></el-option>
+                            <el-option label="指挥中心" value="2"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="案件位置">
+                        <el-input v-model="ruleForm.location" placeholder="例如：北京市朝阳区酒仙桥路2002号"></el-input>
+                    </el-form-item>
+                    <el-form-item label="经纬度">
+                        <el-input v-model="ruleForm.lonlat" placeholder="例如：123.44,39.22"></el-input>
+                    </el-form-item>
+                    <el-form-item label="责任科室人员">
+                        <el-select  multiple placeholder="请选择责任科室人员" v-model="ruleForm.zrksryid">
+                            <el-option v-for="item in ksryoptions" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="描述">
+                        <el-input type="textarea" rows="4" v-model="ruleForm.description"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="submitForm('ruleForm')">立即入录</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-dialog>
 		</div>
     </div>
 </template>
@@ -175,6 +217,31 @@
         name: 'CaseReview',
         data() {
             return {
+                ruleForm: {
+                    caselevel: '',
+                    casesource: '',
+                    location: '',
+                    lonlat:'',
+                    zrksryid:[],
+                    zhzxryid:'',
+                    description: ''
+                },
+                anjVisible:false,
+                ksryoptions:[
+                    {
+                        value: '选项2',
+                        label: '双皮奶'
+                    }, {
+                        value: '选项3',
+                        label: '蚵仔煎'
+                    }, {
+                        value: '选项4',
+                        label: '龙须面'
+                    }, {
+                        value: '选项5',
+                        label: '北京烤鸭'
+                    }
+                ],
             		progress: 0,//上传进度
 					pass: null,//是否上传成功
 					isEnlargeImage: false,//放大图片
@@ -304,6 +371,41 @@
 			}
         },
         methods: {
+            //新建
+            xinjian(){
+                this.anjVisible = true;
+            },
+            handleClose(done) {
+                done();
+            },
+            submitForm(formName) {
+                const _this = this;
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        //alert('submit!');
+                        let parmdata = {
+                            zrksryid:_this.ruleForm.zrksryid.join(','),//责任科室人员id,多个用逗号分隔
+                            zhzxryid:'1111'//指挥中心人员id
+                        };
+                        //console.log(parmdata)
+                        let params = Object.assign(_this.ruleForm,parmdata);
+                        //console.log(params)
+                        api.addcaseResource(params).then(res=>{
+                            if(res.data.status == 1){
+                                _this.GetMonitoringDay();
+                                _this.$message.success("入录成功")
+                            }
+                        })
+                        _this.anjVisible = false;
+                    } else {
+                        _this.anjVisible = false;
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            },
         	uploadOnProgress(e,file){//开始上传
 				console.log(e.percent,file)
 				this.progress = Math.floor(e.percent)
@@ -755,7 +857,17 @@
         }, 
     }
 </script>
-
+<!---->
+<style lang="scss">
+    .CaseReview{
+        .el-form-item__content{
+            margin-right: 20px;
+            .el-select,.el-input{
+                width: 100%!important;
+            }
+        }
+    }
+</style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 *{
@@ -983,7 +1095,6 @@
 				.el-upload .el-upload--picture-card{
 					width: 200px!important;
 					height: 200px!important;
-					line-height: none;
 				}
             }
             

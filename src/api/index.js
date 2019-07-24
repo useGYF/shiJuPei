@@ -150,6 +150,7 @@ import {
     GetElectricityIndexChartForDayResource,//大数据对比
     selectClbmCasePageResource,//处理部门案件
     disposeCaseResource,//处理部门处理案件
+    postShijuaddcaseResource,//案件入录
 } from './resource'
 
 export default {
@@ -1114,6 +1115,15 @@ export default {
         };
         let FormatParams = JSON.stringify(params);//转换数据格式
         return axios.post(disposeCaseResource ,FormatParams, {
+                headers: {'Content-Type': 'application/json'}
+            }
+        )
+    },
+    //案件入录
+    addcaseResource(params) {
+
+        let FormatParams = JSON.stringify(params);//转换数据格式
+        return axios.post(postShijuaddcaseResource ,FormatParams, {
                 headers: {'Content-Type': 'application/json'}
             }
         )

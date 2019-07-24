@@ -32,6 +32,8 @@ if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
 };
 /*langfang----jiekou*/
 const apilangfangTDK = {
+    postShijuaddcase:apiconfig[icode].devn + '/zcb/cases/addcase',//案件入录
+    //postShijuaddcase:apiconfig[icode].devn + '/zcb/cases/addcase',//科室人员下拉列表
     GetLfAir: apiconfig[icode].devn + '/api/lfair/GetLfAir ',//首页面板天气模块数据
     GetElectricityIndexChart: apiconfig[icode].devn + '/api/LargeData/GetElectricityIndexChart?',//大数据对比
     GetLfAirPollution: apiconfig[icode].devn + '/api/LfAir/GetLfAirPollutionItemAccu',//首页面板累计值
@@ -329,3 +331,7 @@ export const GetElectricityChartForDayResource = API_ROOT.concat(apilangfangTDK.
 export const GetElectricityIndexChartForDayResource = API_ROOT.concat(apilangfangTDK.GetElectricityIndexChartForDay);
 export const selectClbmCasePageResource = API_ROOT.concat(apilangfangTDK.selectClbmCasePage);
 export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);
+
+export const postShijuaddcaseResource = API_ROOT.concat(apilangfangTDK.postShijuaddcase);
+// export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);
+
