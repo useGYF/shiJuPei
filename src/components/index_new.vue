@@ -14,12 +14,12 @@
                     </div>
                 </div>
                 <div class="line_bottom" v-show="Legendswtch">
-                    <div class="fd-tuli">
-                        <img v-show="imgtuli" src="../../static/imgs/indeximgs/tuli/litu-001.png">
-                    </div>
-                    <div class="fd-off">
-                        <img :src="imgkey" @click="changeimggengai()">
-                    </div>
+                    <!--<div class="fd-tuli">-->
+                        <!--<img v-show="imgtuli" src="../../static/imgs/indeximgs/tuli/litu-001.png">-->
+                    <!--</div>-->
+                    <!--<div class="fd-off">-->
+                        <!--<img :src="imgkey" @click="changeimggengai()">-->
+                    <!--</div>-->
                     <tone-color></tone-color>
                 </div>
             </div>
