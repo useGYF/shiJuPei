@@ -3,27 +3,22 @@
     <div class="CaseReview">
 		<!--------------案件审核右侧数据展示------>
 		<div id="right">
-            <span v-if='userInfo.classfication=="0"'>
+            <span v-if='userInfo.classfication=="1"'>
                 <div class="box">
                     <div class="warning">
                         <a>责任科室案件列表</a>
                     </div>
                 </div>
                 <el-table
-                    :data="ListData"
+                    :data="zrksdata"
                     style="width: 100%">
                     <el-table-column
-                    prop="pollutiontype"
-                    label="污染类别"
-                    width="200">
-                    </el-table-column>
-                    <el-table-column
-                    prop="status"
-                    label="案件状态"
+                    prop="description"
+                    label="案件描述"
                     width="350">
                     </el-table-column>
                     <el-table-column
-                    prop="createtime"
+                    prop="createTime"
                     label="案发时间"
                     width="">
                     </el-table-column>
@@ -32,37 +27,28 @@
                     label="位置">
                     </el-table-column>
                     <el-table-column
-                    prop="departmenttype"
-                    label="责任主体">
-                    </el-table-column>
-                    <el-table-column
                     label="操作"
                     width="200">
                     <template scope="scope">
-                        <div>
-                            <el-button  type="text" size="small" class='eidt' style="color: #C1C0C0">分配</el-button>
+                        <div v-if="scope.row.casestatus=='1'">
                             <el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
-                            <!-- <span style="color: #eee;">|</span>
-                            <span class="OverBox">
-                                <el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='noeidt'>回复</el-button>
-                            </span> -->
                         </div>
-                        <!-- <div v-else>
-                            <el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
-                        </div> -->
+                        <div v-if="scope.row.casestatus=='2'&&scope.row.caselevel=='3'">
+                            <el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>督办</el-button>
+                        </div>
                     </template>
                     </el-table-column>
                 </el-table>
                 <div class="page">
-                    <span class="demonstration">共找到{{totalCount}}条记录</span>
+                    <span class="demonstration">共找到{{totalzrks}}条记录</span>
                     <el-pagination
                     background
                     @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="currentPage"
+                    @current-change="handleChangezrks"
+                    :current-page="pageNo"
                     :page-size="pagesize"
                     layout="prev, pager, next, jumper"
-                    :total="totalCount">
+                    :total="totalzrks">
                     </el-pagination>
                 </div>
             </span>
@@ -129,11 +115,21 @@
                 		<el-select v-model="distributePopVal" placeholder="请选择" @change="selectFenPeiChangeDuty">
 						    <el-option
 						      v-for="item in optionsDistributePop"
-						      :key="item.value"
-						      :label="item.name"
-						      :value="item.code">
+						      :key="item.id"
+						      :label="item.realname"
+						      :value="item.id">
 						    </el-option>
 						</el-select>
+                        <div class="block" style="margin-top:5px">
+                            <span class="demonstration">设置时限</span>
+                            <el-date-picker
+                                v-model="limitTime"
+                                type="datetime"
+                                format='yyyy-MM-dd HH:mm:ss'
+                                value-format='yyyy-MM-dd HH:mm:ss'
+                                placeholder="选择日期">
+                            </el-date-picker>
+                        </div>
 						<el-row style='position: absolute;bottom: 20px;right: 30px;'>
 							<el-button type="primary" @click='GetEditCase'>确定</el-button>
 							<el-button plain @click='isDistribute=false'>取消</el-button>
@@ -150,7 +146,7 @@
 	                    <div class="el-icon-close" @click="isClose=false"></div>
 	                </div>
 	                <div class="content">
-                		<span>责任主体</span>
+                		<span>案件描述</span>
                 		<el-input
                             type="textarea"
                             :rows="2"
@@ -277,18 +273,24 @@
              isClose:false,
              chuliarea:'',
              totalchuli:10,
-             pageNum:1
+             pageNum:1,
+             pageNo:1,
+             zrksdata:[],
+             limitTime:'',
+             dispatchId:'',
+             totalzrks:10
             }
         },
         created(){
             console.log(this.getlocal('userInfo'));
             this.userInfo = this.getlocal('userInfo').data;
             this.selectClbmCasePage();//处理部门案件
+            this.selectZrksCasePage();//责任科室案件
         },
         mounted() {
-        	this.GetMonitoringDay();
-        	this.GetCaseAll();//责任主体
-        	this.GetPollutionType();//污染类别
+        	// this.GetMonitoringDay();
+        	this.GetCaseAll();//分配单位
+        	// this.GetPollutionType();//污染类别
         	this.imgUrl = api.CaseImgUp();
         	console.log(this.imgUrl)
         },
@@ -440,7 +442,7 @@
         	handleDistrbuteClick(row){
         		console.log(row)
         		this.isDistribute = true;
-        		this.id = row.id;
+        		this.dispatchId = row.id;
         	},
         	//点击回复
         	handleReplyClick(row){
@@ -558,11 +560,15 @@
       		selectChangePollution(val){
       			this.pollutiontype = val;
       		},
-      		//获取污染类型
+      		//获取分配单位
       		GetCaseAll(){
-      			let t = this;
-      			api.GetCaseAll().then(result=>{
-      				t.optionsPollution = result.data.polltion_type;
+                  let t = this;
+                  let type = '2';
+      			api.GetCaseAll(type).then(result=>{
+                      console.log(result)
+                      if(result.data.status == 1){
+                        t.optionsDistributePop = result.data.data;
+                      }
       			})
       		},
       		//获取责任主体
@@ -630,14 +636,20 @@
       				}
 				});
       		},
-      		//分配责任主体
+      		//责任科室分配案件
       		GetEditCase(){
       			let t = this;
-      			let id = this.id;
-      			let zrxtCode = this.zrxtCode;
-      			api.GetEditCase(id,zrxtCode).then(res=>{
-      				t.isDistribute = false;
-      				t.GetMonitoringDay();
+      			let id = this.dispatchId;
+      			let assignuserid  = this.distributePopVal;
+                  let date = this.limitTime;
+                  console.log(date)
+      			api.GetEditCase(id,assignuserid,date).then(res=>{
+                    if(res.data.status ==1){
+                        t.isDistribute = false;
+                          t.selectZrksCasePage();
+                          this.$message({type:'success',message:'分配成功'})
+                    }
+      				
       			})
       		},
       		//导出
@@ -751,6 +763,35 @@
             handleCurrentchuli(val){
                 this.pageNum = val;
                 this.selectClbmCasePage();
+            },
+            //获取责任科室案件列表
+            selectZrksCasePage(){
+                let userId = this.userInfo.id;
+                let pageNum = this.pageNo;
+                let pageSize = 10;
+                this.zrksdata = [];
+                api.selectZrksCasePage(userId,pageNum,pageSize).then(res=>{
+                    if(res.data.status==1){
+                        let data = res.data.data.list;
+                        this.totalzrks = res.data.data.total;
+                         console.log(res)
+                         data.forEach(item=>{
+								let tableData = {};
+								tableData.casestatus = item.casestatus;
+								tableData.description = item.description;
+								tableData.createTime = item.createTime;
+								tableData.caselevel = item.caselevel;
+								tableData.location = item.location;
+								tableData.id = item.id;
+		                        this.zrksdata.push(tableData);
+							})
+                    }
+                   
+                })
+            },
+            handleChangezrks(val){
+                this.pageNum = val;
+                this.selectZrksCasePage();
             }
         }, 
     }

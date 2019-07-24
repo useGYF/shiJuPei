@@ -150,6 +150,7 @@ import {
     GetElectricityIndexChartForDayResource,//大数据对比
     selectClbmCasePageResource,//处理部门案件
     disposeCaseResource,//处理部门处理案件
+    selectZrksCasePageResource,//责任科室案件
 } from './resource'
 
 export default {
@@ -735,19 +736,15 @@ export default {
         window.open(GetExportCaseResource+"status=" + status+"&departmenttype=" + departmenttype+"&pollutiontype=" + pollutiontype+"&starTime=" + starTime+"&endTime=" + endTime+"&pageSize=" + pageSize + '&pageNo=' + pageNo, {}
         )
     },
-     //分配责任主体
-    GetEditCase(id,zrxtCode) {
-        return axios.get(GetEditCaseResource+ "id=" + id + '&zrxtCode=' + zrxtCode, {}
-        )
-    },
+    
     //获取案件图片
     GetCaseImg(caseCode ) {
         return axios.get(GetCaseImgResource+ "caseCode=" + caseCode, {}
         )
     },
      //获取案件责任主体
-    GetCaseAll() {
-        return axios.get(GetCaseAllResource, {}
+    GetCaseAll(type) {
+        return axios.get(GetCaseAllResource+ "type=" + type, {}
         )
     },
      //上传案件图片
@@ -1114,6 +1111,22 @@ export default {
         };
         let FormatParams = JSON.stringify(params);//转换数据格式
         return axios.post(disposeCaseResource ,FormatParams, {
+                headers: {'Content-Type': 'application/json'}
+            }
+        )
+    },
+    selectZrksCasePage(userId,pageNum,pageSize) {
+        return axios.get(selectZrksCasePageResource + 'userId=' + userId + '&pageNum=' + pageNum + '&pageSize=' + pageSize, {}
+        )
+    },
+    GetEditCase(id,assignuserid,date ) {
+        let params = {
+            'id':id,
+            'assignuserid':assignuserid, 
+            'date':date, 
+        };
+        let FormatParams = JSON.stringify(params);//转换数据格式
+        return axios.post(GetEditCaseResource ,FormatParams, {
                 headers: {'Content-Type': 'application/json'}
             }
         )
