@@ -34,7 +34,7 @@
                             <el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
                         </div>
                         <div v-if="scope.row.casestatus=='2'&&scope.row.caselevel=='3'">
-                            <el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>督办</el-button>
+                            <el-button @click="handleDubanClick(scope.row)" type="text" size="small" class='eidt'>督办</el-button>
                         </div>
                     </template>
                     </el-table-column>
@@ -792,6 +792,17 @@
             handleChangezrks(val){
                 this.pageNum = val;
                 this.selectZrksCasePage();
+            },
+            handleDubanClick(row){
+                let id = row.id;
+                api.duBanCase(id).then(res=>{
+                    if(res.data.status ==1){
+                        this.$message({type:'success',message:'督办成功'});
+                        this.selectZrksCasePage();
+                    }else{
+                        this.$message({type:'error',message:'督办失败'});
+                    }
+                })
             }
         }, 
     }

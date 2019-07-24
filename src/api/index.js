@@ -151,6 +151,7 @@ import {
     selectClbmCasePageResource,//处理部门案件
     disposeCaseResource,//处理部门处理案件
     selectZrksCasePageResource,//责任科室案件
+    duBanCaseResource,//责任科室督办案件
 } from './resource'
 
 export default {
@@ -1131,4 +1132,14 @@ export default {
             }
         )
     },
+    duBanCase(id){
+        let params = {
+            'id':id,
+        };
+        let FormatParams = JSON.stringify(params);//转换数据格式
+        return axios.post(duBanCaseResource ,FormatParams, {
+                headers: {'Content-Type': 'application/json'}
+            }
+        )
+    }
 }

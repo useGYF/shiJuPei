@@ -184,6 +184,7 @@ const apilangfangTDK = {
     selectClbmCasePage: apiconfig[icode].devn +'/zcb/cases/selectClbmCasePage?',//处理部门案件列表
     disposeCase: apiconfig[icode].devn +'/zcb/cases/disposeCase',//处理部门处理案件
     selectZrksCasePage: apiconfig[icode].devn +'/zcb/cases/selectZrksCasePage?',//责任科室案件
+    duBanCase: apiconfig[icode].devn +'/zcb/cases/duBanCase',//责任科室督办案件
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
@@ -331,3 +332,4 @@ export const GetElectricityIndexChartForDayResource = API_ROOT.concat(apilangfan
 export const selectClbmCasePageResource = API_ROOT.concat(apilangfangTDK.selectClbmCasePage);
 export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);
 export const selectZrksCasePageResource = API_ROOT.concat(apilangfangTDK.selectZrksCasePage);
+export const duBanCaseResource = API_ROOT.concat(apilangfangTDK.duBanCase);
