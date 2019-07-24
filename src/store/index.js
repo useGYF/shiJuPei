@@ -32,7 +32,11 @@ export default new Vuex.Store({
                 url: 'static/imgs/indeximgs/morenimg/icon_fang.png',
                 url_one: 'static/imgs/indeximgs/morenimg/icon_fang.png'
             },
-        ]
+        ],
+        userInfo:{
+            id:'',
+            classfication:''
+        }
 	},
 	actions : {
 		

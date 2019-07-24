@@ -99,43 +99,21 @@
                 sessionStorage.clear();
                 let urlcon =  api.GetUserLoginRes();
                 //console.log(urlcon);
+                let params = {
+                    username: this.userName,
+                    password: this.passWord
+                }
                 $.ajax({
                     url:urlcon ,////
                    // url: 'http://117.119.97.150:8063/api/login/UserLogin',
-                    data: {
-                        username: this.userName,
-                        password: this.passWord
-                    },
+                    data: JSON.stringify(params), 
                     method: "post",
+                    headers: {'Content-Type': 'application/json'},
                     success: function (data) {
                         console.log(data)
-                        if (data.Status > 0) {
-                        	_this.Role = data.Data.Role;
-                        	if(_this.Role === '普通用户'){
-                                console.log('普通用户');
-                        		_this.isShow = false;
-                                _this.$store.state.OrdinaryUser = true;
-                                _this.$store.state.Superadministrator = false;
-                                _this.$store.state.responsibility = false;
-                        	}else if(_this.Role === '超级管理员'){
-                                console.log('超级管理员');
-                        		_this.isShow = true;
-                        		_this.isDuty = true;
-                                _this.$store.state.OrdinaryUser = false;
-                                _this.$store.state.Superadministrator = true;
-                                _this.$store.state.responsibility = false;
-                        	}else if(_this.Role === '责任主体'){
-                        	    console.log('责任主体');
-                        		_this.isShow = true;
-                        		_this.isDuty = false;
-                                _this.$store.state.OrdinaryUser = false;
-                                _this.$store.state.Superadministrator = false;
-                                _this.$store.state.responsibility = true;
-                        	}
-                        	_this.saveOperatorID();
-                            //为简单起见，将token保存在全局变量中。
-                            window.token = data.Data.Token;
-                            _this.$cookies.set('auth', token, '1d', '/')
+                        if (data.status == 1) {
+                            _this.$store.state.userInfo = data;
+                            _this.setlocal('userInfo', data);
                             _this.$message({
                                 message: '不忘初心，蓝天碧水！马上跳转',
                                 //message: '恭喜你，登录成功马上跳转',

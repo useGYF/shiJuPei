@@ -25,22 +25,22 @@
         },
         mounted() {
             const _this = this;
-            router.beforeEach((to, from, next) => {
-                if (!this.$cookies.get('auth')) {
-                    next()
-                    this.$router.push('/login')
-                }
-                next();
-            });
-            if (!this.$cookies.get('auth')) {
-                if (window.location.href.indexOf('login') > -1) {
-                    return
-                } else {
-                    this.$router.push('/login')
-                }
-            } else {
-                console.log(2)
-            }
+            // router.beforeEach((to, from, next) => {
+            //     if (!this.$cookies.get('auth')) {
+            //         next()
+            //         this.$router.push('/login')
+            //     }
+            //     next();
+            // });
+            // if (!this.$cookies.get('auth')) {
+            //     if (window.location.href.indexOf('login') > -1) {
+            //         return
+            //     } else {
+            //         this.$router.push('/login')
+            //     }
+            // } else {
+            //     console.log(2)
+            // }
  	      //解决IE11路由不跳转
             if ('-ms-scroll-limit' in document.documentElement.style && 
               '-ms-ime-align' in document.documentElement.style) { 

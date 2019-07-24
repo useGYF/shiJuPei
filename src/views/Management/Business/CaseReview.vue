@@ -6,11 +6,11 @@
 			<!----------上传案件-->
 			<div class="box">
                 <div class="warning">
-                    <a>上传案件列表</a>
+                    <a>案件列表</a>
                 </div>
             </div>
             <!-----------查询部分------->
-			<div class="search">
+			<!-- <div class="search">
 				<div class="searchBox">
 				    <span>案件状态</span>
 				    <el-select v-model="CaseStatusVal" @change="selectChangeStatus" clearable placeholder="请选择">
@@ -69,14 +69,14 @@
 						</span>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			
 			<!--------------列表部分---------->
-			<div class="box">
+			<!-- <div class="box">
                 <div class="warning">
                     <a>列表</a>
                 </div>
-           	</div>
+           	</div> -->
            	<el-table
 			    :data="ListData"
 			    style="width: 100%">
@@ -107,17 +107,17 @@
 			      label="操作"
 			      width="200">
 			      <template scope="scope">
-			      	<div v-if="scope.row.status=='未处理'">
-						<el-button v-show="$store.state.responsibility" type="text" size="small" class='eidt' style="color: #C1C0C0">分配</el-button>
-			      		<el-button v-show="$store.state.responsibility === false" @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
-				        <span style="color: #eee;">|</span>
+			      	<div>
+						<el-button  type="text" size="small" class='eidt' style="color: #C1C0C0">分配</el-button>
+			      		<el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
+				        <!-- <span style="color: #eee;">|</span>
 				        <span class="OverBox">
 				        	<el-button @click="handleReplyClick(scope.row)" type="text" size="small" class='noeidt'>回复</el-button>
-				        </span>
+				        </span> -->
 			      	</div>
-			        <div v-else>
+			        <!-- <div v-else>
 			        	<el-button @click="handleExamineClick(scope.row)" type="text" size="small" class='eidt'>查看</el-button>
-			        </div>
+			        </div> -->
 			      </template>
 			    </el-table-column>
 			</el-table>
@@ -133,192 +133,6 @@
 			      :total="totalCount">
 			    </el-pagination>
 			</div>
-			<!--------------回复弹框部分--------------->
-			<div class="popUp" v-if="isUpdate">
-	            <div class="mask"></div>
-	            <div class="succ-pop reply">
-	                <div class="title">
-	                    <a id="newCreate">提示</a>
-	                    <div class="el-icon-close" @click="isUpdate=false"></div>
-	                </div>
-	                <div class="content">
-                		<div class="block" style="margin-right: 40px;">
-						    <span>污染类别</span>
-						    <el-input v-model="PollutionClassPop" placeholder="" disabled></el-input>
-						</div>
-						<div class="block">
-						    <span>案发时间</span>
-						    <el-input v-model="CaseTimePop" placeholder="" disabled></el-input>
-						</div>
-						<div class="block">
-						    <span>位置</span>
-						    <el-input v-model="CasePositionPop" placeholder="" style='width:504px' disabled></el-input>
-					  	</div>
-					  	<div class="block" style="margin-right: 40px;">
-						    <span>案件状态</span>
-						    <el-input v-model="CaseStatusPop" placeholder="" disabled></el-input>
-					  	</div>
-					  	<div class="block">
-						    <span>责任主体</span>
-						    <el-input v-model="CaseDutyPop" placeholder="" disabled></el-input>
-					  	</div>
-					  	<div class="block" style="margin-bottom: 20px;">
-					  		<span class="left">内容</span>
-						  	<el-input
-								type="textarea"
-								:rows="3"
-								placeholder=""
-								v-model="textarea"
-								disabled>
-							</el-input>
-						</div>
-						<div>
-							<div class="block imgBox left" style="margin:0;">
-								<span class="left">案件照片</span>
-							    <el-carousel height="200px">
-							        <el-carousel-item v-for="(item,index) in tupian" :key="index">
-						        <!--<img src="../../../assets/img/bj_denglu.jpg"/>-->
-						        <!--<img :src="'http://gkpt.zq12369.com:8013/servicePlatform/'+item.attachment" />-->
-						        <img :src="imgUrl+item.attachment" />
-						      </el-carousel-item>
-							    </el-carousel>
-							</div>
-							<span class="left" style="margin-left: 50px;">案后照片</span>
-							<div class="left">
-								<div class="img-list">
-									<div v-if="imagelist">
-										<div class="img-content" v-for="(item,key) in imagelist" :key="key">
-											<img :src="item.url" >
-											<!-- 删除icon -->
-											<div class="del">
-												<i @click="handleFileRemove(item,key)" class="el-icon-delete"></i>
-											</div>
-											
-										</div>
-									</div>
-									<!--<div v-if="!pass && progress !== 0" class="img-content img-progress">
-										<el-progress type="circle" :percentage="progress" :status="proStatus"></el-progress>
-									</div>-->
-									<div class="img-upload" v-if="!imagelist.length">
-										<el-upload class="uploader"
-										  ref="upload"
-										  list-type="picture-card"
-										  :show-file-list="false"
-										  :action="imgUrl+'admin/caseData/uploadAnalysisFile'"
-										  :data="params.data"
-										  name='uploadFile'
-										  :before-upload="beforeAvatarUpload"
-										  :on-change="uploadOnChange"
-										  :on-success="uploadOnSuccess"
-										  :on-error="uploadOnError"
-										  :on-progress="uploadOnProgress">
-										<img src="../../../../static/imgs/main/点击添加图片.png" />
-								        <div class="el-upload__text">点击选择图片<br>支持jpg/png格式<br>不超过5M</div>
-										</el-upload>
-									</div>
-									
-								</div>
-								<!--<div v-if="!dialogVisible">
-								    <el-upload
-								        class="upload-demo"
-								        action="https://jsonplaceholder.typicode.com/posts/"
-									  	list-type="picture-card"
-									  	:on-preview="handlePictureCardPreview"
-									  	:on-remove="handleRemove"
-									  	:on-success='success'
-									  	accept=".jpg, .png"
-									  	:before-upload='beforeAvatarUpload'
-									  	:limit=1>
-								        <img src="../../../../static/imgs/main/点击添加图片.png" />
-								        <div class="el-upload__text">点击选择图片<br>支持jpg/png格式<br>不超过5M</div>
-								    </el-upload>
-							   </div>
-							   	<div v-else>
-							   		<img style="width: 200px;height: 200px;"  :src="dialogImageUrl" alt="">
-							   	</div>-->
-							</div>
-						</div>
-						<div class="block">
-						    <span>处理结果</span>
-						    <el-input v-model="CaseDealPop" placeholder="" style='width:504px'></el-input>
-					  	</div>
-						<el-row style='position: absolute;bottom: 30px;right: 30px;'>
-							<el-button type="primary" @click='GetEditResult'>发布</el-button>
-							<el-button plain @click='isUpdate=false'>取消</el-button>
-						</el-row>
-	               </div>
-	            </div>
-	        </div>
-	        <!--------------查看弹框部分--------------->
-			<div class="popUp" v-if="Examine">
-	            <div class="mask"></div>
-	            <div class="succ-pop examine">
-	                <div class="title">
-	                    <a id="newCreate">提示</a>
-	                    <div class="el-icon-close" @click="Examine=false"></div>
-	                </div>
-	                <div class="content">
-                		<div class="block" style="margin-right: 40px;">
-						    <span>污染类别</span>
-						    <el-input v-model="PollutionClassPopExamine" placeholder="" disabled></el-input>
-						</div>
-						<div class="block">
-						    <span>案发时间</span>
-						    <el-input v-model="CaseTimePopExamine" placeholder="" disabled></el-input>
-						</div>
-						<div class="block">
-						    <span>位置</span>
-						    <el-input v-model="CasePositionPopExamine" placeholder="" style='width:504px' disabled></el-input>
-					  	</div>
-					  	<div class="block" style="margin-right: 40px;">
-						    <span>案件状态</span>
-						    <el-input v-model="CaseStatusPopExamine" placeholder="" disabled></el-input>
-					  	</div>
-					  	<div class="block">
-						    <span>责任主体</span>
-						    <el-input v-model="CaseDutyPopExamine" placeholder="" disabled></el-input>
-					  	</div>
-					  	<div class="block">
-					  		<span class="left">内容</span>
-						  	<el-input
-								type="textarea"
-								:rows="3"
-								placeholder="请输入内容"
-								v-model="textareaExamine"
-								disabled>
-							</el-input>
-						</div>
-						<div class="block imgBox">
-							<span>案件照片</span>
-						    <el-carousel height="200px">
-						      <el-carousel-item v-for="(item,index) in tupian" :key="index">
-						        <!--<img src="../../../assets/img/bj_denglu.jpg"/>-->
-						        <!--<img :src="'http://gkpt.zq12369.com:8013/servicePlatform/'+item.attachment" />-->
-						        <img v-if='item.attachment' :src="imgUrl+item.attachment" />
-						      </el-carousel-item>
-						    </el-carousel>
-						</div>
-						<div class="block imgBox secSpan">
-							<span>案后照片</span>
-						    <el-carousel height="200px">
-						      <el-carousel-item>
-						        <!--<img src="../../../assets/img/bj_denglu.jpg"/>-->
-						        <!--<img :src="'http://gkpt.zq12369.com:8013/servicePlatform/'+afterCaseImg" />-->
-						        <img v-if='afterCaseImg' :src="imgUrl+afterCaseImg" />
-						      </el-carousel-item>
-						    </el-carousel>
-						</div>
-						<div class="block">
-						    <span>处理结果</span>
-						    <el-input v-model="CaseDealPopExamine" placeholder="" style='width:504px;' disabled></el-input>
-					  	</div>
-						<el-row style='position: absolute;bottom: 30px;right: 30px;'>
-							<el-button plain @click='Examine=false'>取消</el-button>
-						</el-row>
-						
-	               </div>
-	            </div>
-	        </div>
 	        	<!--------------分配弹框部分--------------->
 			<div class="popUp" v-if="isDistribute">
 	            <div class="mask"></div>
@@ -455,7 +269,7 @@
             }
         },
         created(){
-        	
+        	console.log(this.$store.state.userInfo);
         },
         mounted() {
         	this.GetMonitoringDay();
