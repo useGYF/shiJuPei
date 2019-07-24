@@ -84,8 +84,8 @@
                     label="操作"
                     width="200">
                     <template scope="scope">
-                        <div v-if="scope.casestatus==2">
-                            <el-button  @click="handleAfterClick(scope.row)" type="text" size="small" class='eidt'>关闭</el-button>
+                        <div v-if="scope.row.casestatus=='处理人员待操作'">
+                            <el-button  @click="handleAfterClick(scope.row)" type="text" size="small" class='eidt'>处理</el-button>
                         </div>
                     </template>
                     </el-table-column>
@@ -731,15 +731,39 @@
                          console.log(res)
                          data.forEach(item=>{
 								let tableData = {};
-								tableData.casestatus = item.casestatus==2?'处理人员待操作':'处理完成';
+								tableData.casestatus = this.changeStatus(item.casestatus);
 								tableData.createTime = item.createTime;
-								tableData.caselevel = item.caselevel==0?'普通':'紧急';
+								tableData.caselevel = this.changeLevel(item.caselevel);
 								tableData.location = item.location;
 		                        this.chuliData.push(tableData);
 							})
                     }
                    
                 })
+            },
+            changeStatus(code){
+                switch (code) {
+                    case '2':
+                        return '处理人员待操作'
+                        break;
+                    case '3':
+                        return '处理完成'
+                        break;
+                    default:
+                        break;
+                }
+            },
+            changeLevel(code){
+                switch (code) {
+                    case 0:
+                        return '普通'
+                        break;
+                    case 1:
+                        return '紧急'
+                        break;
+                    default:
+                        break;
+                }
             },
             handleAfterClick(row){
                 this.isClose = true;
