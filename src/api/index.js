@@ -1118,7 +1118,6 @@ export default {
             }
         )
     },
-
     //案件入录
     addcaseResource(params) {
         let FormatParams = JSON.stringify(params);//转换数据格式
