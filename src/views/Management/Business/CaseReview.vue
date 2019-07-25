@@ -171,13 +171,13 @@
                 <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
 
                     <el-form-item label="案件等级">
-                        <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级">
+                        <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级" @change="selectanjdj">
                             <el-option label="普通" value="0"></el-option>
                             <el-option label="紧急" value="1"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="案件来源">
-                        <el-select v-model="ruleForm.casesource" placeholder="请选案件来源">
+                        <el-select v-model="ruleForm.casesource" placeholder="请选案件来源" @change="selectanjly">
                             <el-option label="信访平台" value="1"></el-option>
                             <el-option label="指挥中心" value="2"></el-option>
                         </el-select>
@@ -225,41 +225,22 @@
                 anjVisible:false,
                 ksryoptions:[
                     {
-                        value: '选项2',
-                        label: '双皮奶'
-                    }, {
-                        value: '选项3',
-                        label: '蚵仔煎'
-                    }, {
-                        value: '选项4',
-                        label: '龙须面'
-                    }, {
-                        value: '选项5',
-                        label: '北京烤鸭'
+                        value: '1',
+                        label: 'ingeleisi'
                     }
                 ],
-            		progress: 0,//上传进度
-					pass: null,//是否上传成功
-					isEnlargeImage: false,//放大图片
-		//			enlargeImage: '',//放大图片地址
-					imagelist: [
-					],
-					params: {
-//						action: 
-//						'http://gkpt.zq12369.com:8013/servicePlatform/admin/caseData/uploadAnalysisFile',
-						data: {}
-					},
+            	progress: 0,//上传进度
+				pass: null,//是否上传成功
+				isEnlargeImage: false,//放大图片
+		//		enlargeImage: '',//放大图片地址
+				imagelist: [],
+				params: {
+//					action:
+//					'http://gkpt.zq12369.com:8013/servicePlatform/admin/caseData/uploadAnalysisFile',
+					data: {}
+				},
             	//上传图片
             	dialogImageUrl: '',
-        		dialogVisible: false,
-            	//案件状态
-            	optionsCase: [{
-		          value: '0',
-		          label: '未处理'
-		        }, {
-		          value: '1',
-		          label: '处理完毕'
-		        }],
 		        //责任主体
             	optionsDuty: [],
 		        //污染类别
@@ -269,12 +250,6 @@
             	//县市区选择
                	options: [],
                	gridCode:'',
-		        value1: '',//县(市、区)
-		        value2: '',//开始时间
-		        value3: '',//结束时间
-		        value4: '',
-		        value5: '',
-		        value6: '',
 		        tableData:[],
 			    currentPage: 1,
 			    pagesize:10,
@@ -359,7 +334,7 @@
         	this.GetCaseAll();//分配单位
         	// this.GetPollutionType();//污染类别
         	this.imgUrl = api.CaseImgUp();
-        	console.log(this.imgUrl)
+        	//console.log(this.imgUrl)
         },
         computed: {
             proStatus(){//上传状态
@@ -377,9 +352,7 @@
             xinjian(){
                 this.anjVisible = true;
             },
-            handleClose(done) {
-                done();
-            },
+            handleClose(done) {done();},
             submitForm(formName) {
                 const _this = this;
                 this.$refs[formName].validate((valid) => {
@@ -387,7 +360,7 @@
                         //alert('submit!');
                         let parmdata = {
                             zrksryid:_this.ruleForm.zrksryid.join(','),//责任科室人员id,多个用逗号分隔
-                            zhzxryid:'1111'//指挥中心人员id
+                            zhzxryid:_this.userInfo.data.id//指挥中心人员id
                         };
                         //console.log(parmdata)
                         let params = Object.assign(_this.ruleForm,parmdata);
@@ -405,8 +378,12 @@
                     }
                 });
             },
-            resetForm(formName) {
-                this.$refs[formName].resetFields();
+            selectanjdj(value) {
+                this.ruleForm.caselevel = value;
+
+            },
+            selectanjly(value) {
+                this.ruleForm.casesource = value;
             },
         	uploadOnProgress(e,file){//开始上传
 				console.log(e.percent,file)
@@ -489,49 +466,7 @@
 		   			
 		   		})
 		   },
-        	//上传图片
-//      	handleRemove(file, fileList) {
-//		        console.log(file, fileList);
-//		    },
-//		    handlePictureCardPreview(file) {
-//		        this.dialogImageUrl = file.url;
-//		        this.dialogVisible = true;
-//		    },
-//		    success(response, file, fileList){
-//		    	 this.dialogVisible = true;
-//		    },
-		     // 上传前对文件的大小的判断
-//		    beforeAvatarUpload (file) {
-//			    const extension = file.name.split('.')[1] === 'jpg'
-//			    const extension2 = file.name.split('.')[1] === 'png'
-//			    const isLt2M = file.size / 1024 / 1024 < 5
-//			    if (!extension && !extension2) {
-//			        console.log('上传模板只能是jpg/png 格式!')
-//			    }
-//			    if (!isLt2M) {
-//			        console.log('上传模板大小不能超过 10MB!')
-//			    }
-//			    return extension || extension2 && isLt2M
-//		    },
-		     // 文件上传前
-//			beforeImgUpload (file) {
-//			    const self = this;  //这个很重要！
-//			    var reader = new FileReader();
-//			    reader.readAsDataURL(file);
-//			    reader.onloadend = function() {
-//			        self.form.upLoadData.img_base64 = this.result;
-//			        console.log(self.form.upLoadData.img_base64);
-//			    };
-//			},
-//			// 上传成功后的回调
-//			uploadSuccess (response, file, fileList) {
-//			    console.log('上传文件', response)
-//			    this.$alert(response.retData.msg);
-//			    console.log(this.form.upLoadData.img_base64);
-//			},
-//			uploadError(){
-//				
-//			},
+
 			GetUploadImg(){
 				
 			},

@@ -204,11 +204,9 @@
         width: 100%;
         height: 56px;
         background: #2494F2;
-
         .logo {
             float: left;
             width: auto;
-
             img {
                 width: 40px;
                 height: 40px;
