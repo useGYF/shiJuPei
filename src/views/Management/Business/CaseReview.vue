@@ -3,14 +3,53 @@
     <div class="CaseReview">
 		<!--案件审核右侧数据展示-->
 		<div id="right">
+            <span v-if='userInfo.classfication=="0"'>
+                <div class="box">
+                    <div class="warning">
+                        <a>案件入录</a>
+                    </div>
+                </div>
+                <div style="width: 86%;margin:20px auto">
+                    <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
+                    <el-form-item label="案件等级">
+                        <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级" @change="selectanjdj">
+                            <el-option label="普通" value="0"></el-option>
+                            <el-option label="紧急" value="1"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="案件来源">
+                        <el-select v-model="ruleForm.casesource" placeholder="请选案件来源" @change="selectanjly">
+                            <el-option label="信访平台" value="1"></el-option>
+                            <el-option label="指挥中心" value="2"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="案件位置">
+                        <el-input v-model="ruleForm.location" placeholder="例如：北京市朝阳区酒仙桥路2002号"></el-input>
+                    </el-form-item>
+                    <el-form-item label="经纬度">
+                        <el-input v-model="ruleForm.lonlat" placeholder="例如：123.44,39.22"></el-input>
+                    </el-form-item>
+                    <el-form-item label="责任科室人员">
+                        <el-select  multiple placeholder="请选择责任科室人员" v-model="ruleForm.zrksryid">
+                            <el-option v-for="item in ksryoptions" :key="item.value" :label="item.label" :value="item.value">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="描述">
+                        <el-input type="textarea" rows="4" v-model="ruleForm.description"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="submitForm('ruleForm')">立即入录</el-button>
+                    </el-form-item>
+                </el-form>
+                </div>
+            </span>
             <span v-if='userInfo.classfication=="1"'>
                 <div class="box">
                     <div class="warning">
                         <a>责任科室案件列表</a>
                     </div>
-                </div>
-                <div style="width: 100%;height: 44px;text-align: left;margin-bottom: 15px">
-                    <el-button type="primary" @click="xinjian">案件入录</el-button>
                 </div>
                 <el-table
                     :data="zrksdata"
@@ -61,9 +100,7 @@
                         <a>处理部门案件列表</a>
                     </div>
                 </div>
-                <div style="width: 100%;height: 44px;text-align: left;margin-bottom: 15px">
-                    <el-button type="primary" @click="xinjian">案件入录</el-button>
-                </div>
+
                 <el-table
                     :data="chuliData"
                     style="width: 100%">
@@ -166,42 +203,6 @@
 	               </div>
 	            </div>
 	        </div>
-            <!--案件入录-->
-            <el-dialog title="案件入录" :visible.sync="anjVisible" width="550px" :before-close="handleClose">
-                <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-
-                    <el-form-item label="案件等级">
-                        <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级" @change="selectanjdj">
-                            <el-option label="普通" value="0"></el-option>
-                            <el-option label="紧急" value="1"></el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="案件来源">
-                        <el-select v-model="ruleForm.casesource" placeholder="请选案件来源" @change="selectanjly">
-                            <el-option label="信访平台" value="1"></el-option>
-                            <el-option label="指挥中心" value="2"></el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="案件位置">
-                        <el-input v-model="ruleForm.location" placeholder="例如：北京市朝阳区酒仙桥路2002号"></el-input>
-                    </el-form-item>
-                    <el-form-item label="经纬度">
-                        <el-input v-model="ruleForm.lonlat" placeholder="例如：123.44,39.22"></el-input>
-                    </el-form-item>
-                    <el-form-item label="责任科室人员">
-                        <el-select  multiple placeholder="请选择责任科室人员" v-model="ruleForm.zrksryid">
-                            <el-option v-for="item in ksryoptions" :key="item.value" :label="item.label" :value="item.value">
-                            </el-option>
-                        </el-select>
-                    </el-form-item>
-                    <el-form-item label="描述">
-                        <el-input type="textarea" rows="4" v-model="ruleForm.description"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" @click="submitForm('ruleForm')">立即入录</el-button>
-                    </el-form-item>
-                </el-form>
-            </el-dialog>
 		</div>
     </div>
 </template>
@@ -348,11 +349,7 @@
 			}
         },
         methods: {
-            //新建
-            xinjian(){
-                this.anjVisible = true;
-            },
-            handleClose(done) {done();},
+            //案件入录
             submitForm(formName) {
                 const _this = this;
                 this.$refs[formName].validate((valid) => {
@@ -380,7 +377,6 @@
             },
             selectanjdj(value) {
                 this.ruleForm.caselevel = value;
-
             },
             selectanjly(value) {
                 this.ruleForm.casesource = value;
