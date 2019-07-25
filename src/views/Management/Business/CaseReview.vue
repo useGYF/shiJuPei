@@ -32,7 +32,7 @@
                     </el-form-item>
                     <el-form-item label="责任科室人员">
                         <el-select  multiple placeholder="请选择责任科室人员" v-model="ruleForm.zrksryid">
-                            <el-option v-for="item in ksryoptions" :key="item.value" :label="item.label" :value="item.value">
+                            <el-option v-for="item in ksryoptions" :key="item.id" :label="item.username" :value="item.id">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -352,25 +352,33 @@
             //案件入录
             submitForm(formName) {
                 const _this = this;
-                this.$refs[formName].validate((valid) => {
+                _this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        //alert('submit!');
                         let parmdata = {
                             zrksryid:_this.ruleForm.zrksryid.join(','),//责任科室人员id,多个用逗号分隔
-                            zhzxryid:_this.userInfo.data.id//指挥中心人员id
+                            zhzxryid:_this.userInfo.id//指挥中心人员id
                         };
-                        //console.log(parmdata)
+                        console.log(parmdata);
                         let params = Object.assign(_this.ruleForm,parmdata);
-                        //console.log(params)
                         api.addcaseResource(params).then(res=>{
                             if(res.data.status == 1){
-                                _this.GetMonitoringDay();
                                 _this.$message.success("入录成功")
+                                setTimeout(()=>{
+                                    _this.ruleForm = {
+                                        caselevel: '',
+                                        casesource: '',
+                                        location: '',
+                                        lonlat:'',
+                                        zrksryid:[],
+                                        zhzxryid:'',
+                                        description: ''
+                                    };
+                                },600)
                             }
                         })
-                        _this.anjVisible = false;
+
                     } else {
-                        _this.anjVisible = false;
+                        _this.$message.error("入录失败")
                         return false;
                     }
                 });
@@ -382,7 +390,7 @@
                 this.ruleForm.casesource = value;
             },
         	uploadOnProgress(e,file){//开始上传
-				console.log(e.percent,file)
+				//console.log(e.percent,file)
 				this.progress = Math.floor(e.percent)
 			},
 			uploadOnChange(file){
@@ -600,7 +608,7 @@
       			api.GetCaseAll(type).then(result=>{
                       console.log(result)
                       if(result.data.status == 1){
-                        t.optionsDistributePop = result.data.data;
+                        t.optionsDistributePop = t.ksryoptions = result.data.data;
                       }
       			})
       		},

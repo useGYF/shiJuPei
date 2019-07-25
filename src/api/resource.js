@@ -13,7 +13,7 @@ const apiconfig = [
         },
         {
             // devn:'http://gkpt.zq12369.com:8016',//正式001
-            devn:'http://10.1.0.80:8067',//正式001
+            devn:'http://10.10.10.93:8082',//正式001
             devy:'http://gkpt.zq12369.com:8015',//正式(大气源清单)
             devc:'http://gkpt.zq12369.com:8013',//正式
         }
@@ -33,7 +33,6 @@ if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
 /*langfang----jiekou*/
 const apilangfangTDK = {
     postShijuaddcase:apiconfig[icode].devn + '/zcb/cases/addcase',//案件入录
-    //postShijuaddcase:apiconfig[icode].devn + '/zcb/cases/addcase',//科室人员下拉列表
     GetLfAir: apiconfig[icode].devn + '/api/lfair/GetLfAir ',//首页面板天气模块数据
     GetElectricityIndexChart: apiconfig[icode].devn + '/api/LargeData/GetElectricityIndexChart?',//大数据对比
     GetLfAirPollution: apiconfig[icode].devn + '/api/LfAir/GetLfAirPollutionItemAccu',//首页面板累计值
