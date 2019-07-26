@@ -12,8 +12,8 @@ const apiconfig = [
             devy:'http://117.119.97.150:8073',//测试003
         },
         {
-            // devn:'http://gkpt.zq12369.com:8016',//正式001
-            devn:'http://10.10.10.93:8082',//正式001
+            devn:'http://gkpt.zq12369.com:8016',//正式001
+            devr:'http://120.52.157.162:4017',//正式001
             devy:'http://gkpt.zq12369.com:8015',//正式(大气源清单)
             devc:'http://gkpt.zq12369.com:8013',//正式
         }
@@ -32,7 +32,7 @@ if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
 };
 /*langfang----jiekou*/
 const apilangfangTDK = {
-    postShijuaddcase:apiconfig[icode].devn + '/zcb/cases/addcase',//案件入录
+    postShijuaddcase:apiconfig[icode].devr + '/zcb/cases/addcase',//案件入录
     GetLfAir: apiconfig[icode].devn + '/api/lfair/GetLfAir ',//首页面板天气模块数据
     GetElectricityIndexChart: apiconfig[icode].devn + '/api/LargeData/GetElectricityIndexChart?',//大数据对比
     GetLfAirPollution: apiconfig[icode].devn + '/api/LfAir/GetLfAirPollutionItemAccu',//首页面板累计值
@@ -57,7 +57,7 @@ const apilangfangTDK = {
     GetWeatherWinterPre: apiconfig[icode].devn + '/api/Weather/GetWeatherWinterPre',//冬防战报模块六天气排名
     GetsourcetypeAllInfo: apiconfig[icode].devc +'/servicePlatform/enterprise/allInfo?',//静态原清单1
     GetallInfoBySourceType: apiconfig[icode].devc + '/servicePlatform/enterprise/allInfoBySourceType?',//静态原清单2
-    GetUserLogin: apiconfig[icode].devn +'/zcb/cases/login',//登录接口
+    GetUserLogin: apiconfig[icode].devr +'/zcb/cases/login',//登录接口
     GetCompanyStatistics: apiconfig[icode].devn + '/api/Company/GetCompanyStatistics',//企业污染统计
     GetEmergencyList: apiconfig[icode].devn + '/api/EmergencyPlan/GetEmergencyList',//应急清单....
     GetElectricityChart: apiconfig[icode].devn + '/api/Winter/GetElectricityChart',//用电量
@@ -97,10 +97,10 @@ const apilangfangTDK = {
     EmergencyInfoInsert: apiconfig[icode].devn + '/api/EmergencyBulletin/Insert',//新增应急消息
     GetEmergencyInfo: apiconfig[icode].devn + '/api/EmergencyBulletin/GetNotice?',//获取应急消息
     GetCaseList: apiconfig[icode].devc + '/servicePlatform/admin/caseData/selectCasePage?',//获取案件审核列表
-    GetCaseAll: apiconfig[icode].devn + '/zcb/cases/selectpeople?',//获取责任主体
+    GetCaseAll: apiconfig[icode].devr + '/zcb/cases/selectpeople?',//获取责任主体
     GetUploadImg: apiconfig[icode].devc + '/servicePlatform/admin/caseData/uploadAnalysisFile',//上传案件图片
     GetPollutionType: apiconfig[icode].devc + '/servicePlatform/mobile/list/anjian?type=2',//获取污染类别
-    GetEditCase: apiconfig[icode].devn + '/zcb/cases/assignCase',//分配责任主体
+    GetEditCase: apiconfig[icode].devr + '/zcb/cases/assignCase',//分配责任主体
     GetExportCase: apiconfig[icode].devc + '/servicePlatform/admin/caseData/export?',//导出案件
     GetEditResult: apiconfig[icode].devc + '/servicePlatform/admin/caseData/editCasehandlingResult',//案件处理结果
     GetCaseImg: apiconfig[icode].devc + '/servicePlatform/admin/caseData/getImgByCaseCode?',//获取案件图片
@@ -182,10 +182,10 @@ const apilangfangTDK = {
     GetVocsVideoInfo: apiconfig[icode].devn +'/api/Video/GetVocsVideoInfo?name=',//vocvideo
     GetElectricityChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityChartForDay?',//大数据天
     GetElectricityIndexChartForDay: apiconfig[icode].devn +'/api/LargeData/GetElectricityIndexChartForDay?',//大数据天
-    selectClbmCasePage: apiconfig[icode].devn +'/zcb/cases/selectClbmCasePage?',//处理部门案件列表
-    disposeCase: apiconfig[icode].devn +'/zcb/cases/disposeCase',//处理部门处理案件
-    selectZrksCasePage: apiconfig[icode].devn +'/zcb/cases/selectZrksCasePage?',//责任科室案件
-    duBanCase: apiconfig[icode].devn +'/zcb/cases/duBanCase',//责任科室督办案件
+    selectClbmCasePage: apiconfig[icode].devr +'/zcb/cases/selectClbmCasePage?',//处理部门案件列表
+    disposeCase: apiconfig[icode].devr +'/zcb/cases/disposeCase',//处理部门处理案件
+    selectZrksCasePage: apiconfig[icode].devr +'/zcb/cases/selectZrksCasePage?',//责任科室案件
+    duBanCase: apiconfig[icode].devr +'/zcb/cases/duBanCase',//责任科室督办案件
 }
 export const PostydInsertResource = API_ROOT.concat(apilangfangTDK.PostydInsert);
 export const PostydListResource = API_ROOT.concat(apilangfangTDK.PostydList);
