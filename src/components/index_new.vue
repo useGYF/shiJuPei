@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div class="panel">
-                <img class="shrink" src="../assets/img/左.png" v-if="zuo"/>
-                <img class="shrink" src="../assets/img/右.png" v-if="you"/>
+                <img class="shrink" @click="kaiguan" src="../assets/img/左.png" v-if="zuo"/>
+                <img class="shrink" @click="kaiguan" src="../assets/img/右.png" v-if="you"/>
                 <!--首页统计面板-->
                 <div class="main" v-show="StatisticsSwitch">
                     <!--切换部分-->
@@ -245,11 +245,11 @@
             <div class="meun_right">
                 <ul>
                     <!--默认选项-->
-                    <li @click="selectRightNavData('统计')" :class="isSelect === '统计' ? 'backgroundColor' : ''">
+                    <!-- <li @click="selectRightNavData('统计')" :class="isSelect === '统计' ? 'backgroundColor' : ''">
                         <el-tooltip class="item" effect="dark" :content="'统计'" placement="left">
                             <img :src="Jtimgurl">
                         </el-tooltip>
-                    </li>
+                    </li> -->
                     <!--动态生成-->
                     <li v-for="item in RightNavData" @click="selectRightNavData(item.title)" :class="isSelect === item.title ? 'backgroundColor' : ''">
                         <!--<p :class="isSelect === item.title ? 'active' : ''">{{item.title}}</p>-->
@@ -318,59 +318,43 @@
                 //右侧菜单栏项目
                 RightNavData: [],
                 //右侧栏统计开关
-                StatisticsSwitch:true,
-
+                StatisticsSwitch:false,
+                //
+                constFlag:true,
             }
         },
         activated() {
             api.GetXhHbPoints().then(res => {
                 let data = res.data.Data;
-
                 this.Statistics = data;
             })
             api.GetOfficeProgess().then(res => {
                 let data = res.data.Data;
-
                 this.RightStatistics = data;
             })
             this.GetEcharsData()
         },
         mounted() {
-            //右侧收放
-            const that = this;
-            let flag = true;
             //分类切换模块
             $('.first .tables a').on('click', function () {
                 $(this).addClass('bai').siblings().removeClass('bai')
             })
-            //右侧伸缩栏模块
-            $('.shrink').on('click', function () {
-                $('#list')[0].style.transition = "all 500ms"
-                if (flag) {
-                    that.zuo = true;
-                    that.you = false;
-                    $('#list')[0].style.WebkitTransform = "translate(467px)"
-                    $('#list')[0].style.transform = "translate(467px)"
-                    flag = false;
-                } else {
-                    that.zuo = false;
-                    that.you = true;
-                    $('#list')[0].style.transform = "translate(0)"
-                    flag = true;
-                }
-            })
             //根源菜单赋值
             this.RightNavData = this.$store.state.menuData;
             //
-            bus.$on('menuative', this.selectRightNavData);//
+            bus.$on('menuative', this.selectRightNavData);
+            //
+            this.selectRightNavData ('国省')
         },
         updated(){
             //跟新数据后调用功能
             if(this.RightNavData == false){
                 console.log('我现在没有东西了')
-                //this.$router.push('/');
-                this.isSelect = '统计';
-                this.StatisticsSwitch = true;
+                $('#list')[0].style.WebkitTransform = "translate(467px)"
+                $('#list')[0].style.transform = "translate(467px)"
+            }else{
+                $('#list')[0].style.transform = "translate(0)"
+                this.constFlag = true;
             }
 
         },
@@ -382,6 +366,23 @@
             '$route':'isTabChange',
         },
         methods: {
+            //
+            kaiguan(){
+                let that = this;
+                 $('#list')[0].style.transition = "all 500ms"
+                if (that.constFlag) {
+                    that.zuo = true;
+                    that.you = false;
+                    $('#list')[0].style.WebkitTransform = "translate(467px)"
+                    $('#list')[0].style.transform = "translate(467px)"
+                    that.constFlag = false;
+                } else {
+                    that.zuo = false;
+                    that.you = true;
+                    $('#list')[0].style.transform = "translate(0)"
+                    that.constFlag = true;
+                }
+            },
             //图例开关
             changeimggengai(){
                 const _this = this;
@@ -402,7 +403,7 @@
                 //当返回实时监控页面时候监控路由情况
                 if(this.$route.path==='/'){
                     this.isSelect = '统计';
-                    this.StatisticsSwitch = true;
+                    this.StatisticsSwitch = false;
                 }
             },
             //排序

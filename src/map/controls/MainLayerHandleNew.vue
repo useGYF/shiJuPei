@@ -335,7 +335,7 @@
 
     },
     mounted() {
-
+        this.changseeteng(true,'layer_gs')
     },
     methods: {
 
@@ -361,7 +361,12 @@
         //hasChecked ? (slePollution.removeAttribute('disabled'), this.checkCount++) : (slePollution.setAttribute('disabled', hasChecked), this.checkCount--);
         item.childs.length && (item.checked = hasChecked);
         bus.$emit('targetMainLayer', type, hasChecked, cameraType);
-        ///动态添加右侧菜单
+        _this.changseeteng(hasChecked,type)
+      },
+      //动态添加右侧菜单
+      changseeteng(hasChecked,type){
+        const _this = this;
+          ///动态添加右侧菜单
         if (hasChecked == true && type != 'layer_lk' && type != 'layer_zt' && type != 'layer_hw' && type != 'layer_jy') {
           //添加对应右侧菜单
           switch (type) {
@@ -486,7 +491,14 @@
                 bus.$emit('menuative', '全民举报');
               break;
               default:
-                  bus.$emit('menuative', '统计');
+                   this.$store.state.menuData.unshift({
+                      title: '国省',
+                      title_tx: '国省控点',
+                      show_xs: 'layer_gs',
+                      url: 'static/imgs/indeximgs/morenimg/icon_fang.png',
+                      url_one: 'static/imgs/indeximgs/morenimg/icon_fang.png'
+                    });
+                    bus.$emit('menuative', '国省');
                   break;
           }
           console.log(type);
@@ -503,7 +515,6 @@
             }
           }
         }
-
       },
       //删除指定对象
       removeObjWithArr(_arr, _obj) {

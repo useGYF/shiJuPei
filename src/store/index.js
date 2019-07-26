@@ -25,13 +25,13 @@ export default new Vuex.Store({
         OrdinaryUser : false,
         //全局右侧面板菜单
         menuData : [
-            {
-                title: '国省',
-                title_tx:'国省控点',
-                show_xs:'layer_gs',
-                url: 'static/imgs/indeximgs/morenimg/icon_fang.png',
-                url_one: 'static/imgs/indeximgs/morenimg/icon_fang.png'
-            },
+            // {
+            //     title: '国省',
+            //     title_tx:'国省控点',
+            //     show_xs:'layer_gs',
+            //     url: 'static/imgs/indeximgs/morenimg/icon_fang.png',
+            //     url_one: 'static/imgs/indeximgs/morenimg/icon_fang.png'
+            // },
         ],
         userInfo:{
             id:'',
