@@ -11,7 +11,9 @@
                 </div>
                 <div style="width: 86%;margin:20px auto">
                     <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-
+                    <el-form-item label="案件编号">
+                        <el-input v-model="ruleForm.code" placeholder="输入案件编号"></el-input>
+                    </el-form-item>
                     <el-form-item label="案件等级">
                         <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级" @change="selectanjdj">
                             <el-option label="普通" value="0"></el-option>
@@ -30,7 +32,7 @@
                     <el-form-item label="经纬度">
                         <el-input v-model="ruleForm.lonlat" placeholder="例如：123.44,39.22"></el-input>
                     </el-form-item>
-                    <el-form-item label="责任科室人员">
+                    <el-form-item label="责任科室">
                         <el-select  multiple placeholder="请选择责任科室人员" v-model="ruleForm.zrksryid">
                             <el-option v-for="item in ksryoptions" :key="item.id" :label="item.username" :value="item.id">
                             </el-option>
@@ -215,6 +217,7 @@
         data() {
             return {
                 ruleForm: {
+                    code:'',
                     caselevel: '',
                     casesource: '',
                     location: '',
@@ -365,6 +368,7 @@
                                 _this.$message.success("入录成功")
                                 setTimeout(()=>{
                                     _this.ruleForm = {
+                                        code:'',
                                         caselevel: '',
                                         casesource: '',
                                         location: '',
