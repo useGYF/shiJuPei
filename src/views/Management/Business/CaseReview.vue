@@ -55,6 +55,11 @@
                     :data="zrksdata"
                     style="width: 100%">
                     <el-table-column
+                    prop="code"
+                    label="案件编号"
+                    width="350">
+                    </el-table-column>
+                    <el-table-column
                     prop="description"
                     label="案件描述"
                     width="350">
@@ -73,7 +78,7 @@
                     width="200">
                     <template scope="scope">
                         <div v-if="scope.row.casestatus=='1'">
-                            <el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>分配</el-button>
+                            <el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>通过</el-button>
                         </div>
                         <div v-if="scope.row.casestatus=='2'&&scope.row.caselevel=='3'">
                             <el-button @click="handleDubanClick(scope.row)" type="text" size="small" class='eidt'>督办</el-button>
@@ -105,12 +110,22 @@
                     :data="chuliData"
                     style="width: 100%">
                     <el-table-column
+                    prop="code"
+                    label="案件编号"
+                    width="350">
+                    </el-table-column>
+                    <el-table-column
                     prop="caselevel"
                     label="案件等级"
                     width="200">
                     </el-table-column>
                     <el-table-column
-                    prop="casestatus"
+                    prop="description"
+                    label="案件描述"
+                    width="200">
+                    </el-table-column>
+                    <el-table-column
+                    prop="isOversee"
                     label="案件状态"
                     width="350">
                     </el-table-column>
@@ -332,7 +347,8 @@
         },
         mounted() {
         	// this.GetMonitoringDay();
-        	this.GetCaseAll();//分配单位
+            this.GetCaseAll();//分配单位
+            this.GetCaseAllZhzx();
         	// this.GetPollutionType();//污染类别
         	this.imgUrl = api.CaseImgUp();
         	//console.log(this.imgUrl)
@@ -611,6 +627,16 @@
                         t.optionsDistributePop = t.ksryoptions = result.data.data;
                       }
       			})
+              },
+              GetCaseAllZhzx(){
+                  let t = this;
+                  let type = '1';
+      			api.GetCaseAll(type).then(result=>{
+                      console.log(result)
+                      if(result.data.status == 1){
+                         t.ksryoptions = result.data.data;
+                      }
+      			})
       		},
       		//获取责任主体
       		GetPollutionType(){
@@ -776,6 +802,9 @@
 								tableData.createTime = item.createTime;
 								tableData.caselevel = this.changeLevel(item.caselevel);
 								tableData.location = item.location;
+								tableData.code = item.code;
+								tableData.description = item.description;
+								tableData.isOversee = item.isOversee?'督办中':'待处理';
 		                        this.chuliData.push(tableData);
 							})
                     }
@@ -847,6 +876,7 @@
 								tableData.createTime = item.createTime;
 								tableData.caselevel = item.caselevel;
 								tableData.location = item.location;
+								tableData.code = item.code;
 								tableData.id = item.id;
 		                        this.zrksdata.push(tableData);
 							})
