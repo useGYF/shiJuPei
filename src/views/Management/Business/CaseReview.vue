@@ -34,7 +34,7 @@
                     </el-form-item>
                     <el-form-item label="责任科室" prop="zrksryid">
                         <el-select  multiple placeholder="请选择责任科室" v-model="ruleForm.zrksryid">
-                            <el-option v-for="item in ksryoptions" :key="item.id" :label="item.username" :value="item.id">
+                            <el-option v-for="item in ksryoptions" :key="item.id" :label="item.realname" :value="item.id">
                             </el-option>
                         </el-select>
                     </el-form-item>
@@ -127,7 +127,7 @@
                     width="200">
                     </el-table-column>
                     <el-table-column
-                    prop="isOversee"
+                    prop="casestatus"
                     label="案件状态"
                     width="350">
                     </el-table-column>
@@ -650,7 +650,7 @@
       			api.GetCaseAll(type).then(result=>{
                       console.log(result)
                       if(result.data.status == 1){
-                        t.optionsDistributePop = t.ksryoptions = result.data.data;
+                        t.optionsDistributePop = result.data.data;
                       }
       			})
               },
@@ -829,6 +829,7 @@
 								tableData.caselevel = this.changeLevel(item.caselevel);
 								tableData.location = item.location;
 								tableData.code = item.code;
+								tableData.id = item.id;
 								tableData.description = item.description;
 								tableData.isOversee = item.isOversee?'督办中':'待处理';
 		                        this.chuliData.push(tableData);

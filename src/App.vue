@@ -25,13 +25,14 @@
         },
         mounted() {
             const _this = this;
-            // router.beforeEach((to, from, next) => {
-            //     if (!this.$cookies.get('auth')) {
-            //         next()
-            //         this.$router.push('/login')
-            //     }
-            //     next();
-            // });
+            let t = this;
+            router.beforeEach((to, from, next) => {
+                if (!this.getlocal('userInfo')) {
+                    next()
+                    this.$router.push('/login')
+                }
+                next();
+            });
             // if (!this.$cookies.get('auth')) {
             //     if (window.location.href.indexOf('login') > -1) {
             //         return
@@ -41,6 +42,7 @@
             // } else {
             //     console.log(2)
             // }
+            
  	      //解决IE11路由不跳转
             if ('-ms-scroll-limit' in document.documentElement.style && 
               '-ms-ime-align' in document.documentElement.style) { 
@@ -54,6 +56,21 @@
               }, false);
             }
         },
+        methods:{
+             getlocal(name) {
+		        let data = sessionStorage.getItem(name)
+		        if (data != null && data != '') {
+		            try {
+		                let obj = eval('(' + data + ')')
+		                return obj
+		            } catch (e) {
+		                return ''
+		            }
+		        } else {
+		            return ''
+		        }
+		    },
+        }
     }
 </script>
 

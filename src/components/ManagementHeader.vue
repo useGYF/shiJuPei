@@ -10,7 +10,7 @@
             <ul class="bnav">
             	<div>
                     <img src="../assets/img/sy-z.png" alt="">
-                    <a href="#/">首页</a>
+                    <a href="#/MonitoringPoint">首页</a>
                 </div>
                 <div>
                     <img src="../assets/img/tc-z.png" alt="">

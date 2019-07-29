@@ -25,10 +25,10 @@
             }
         },
         created(){
-        	let t = this;
-			if(!this.getlocal('userInfo')){
-                t.$router.push('/Login')
-			}
+        	// let t = this;
+			// if(!this.getlocal('userInfo')){
+            //     t.$router.push('/Login')
+			// }
         },
         mounted() {
             this.openFullScreen()

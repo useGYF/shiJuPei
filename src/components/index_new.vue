@@ -270,6 +270,7 @@
     import Toolbar from '@/components/Toolbar'
     import ToneColor from '@/components/ToneColor'
     import Weather from '@/map/controls/WeatherCom'
+import { setTimeout } from 'timers';
     //
     export default {
         name: 'paneldata',
@@ -335,6 +336,7 @@
             this.GetEcharsData()
         },
         mounted() {
+            let t = this;
             //分类切换模块
             $('.first .tables a').on('click', function () {
                 $(this).addClass('bai').siblings().removeClass('bai')
@@ -344,7 +346,11 @@
             //
             bus.$on('menuative', this.selectRightNavData);
             //
-            this.selectRightNavData ('国省')
+            setTimeout(function(){
+                t.selectRightNavData ('国省')
+            },1000)
+           
+            
         },
         updated(){
             //跟新数据后调用功能

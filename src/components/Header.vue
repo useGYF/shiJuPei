@@ -164,7 +164,7 @@
 		        }
 		    },
             exit(){
-                this.$cookies.remove('auth')
+                sessionStorage.clear();
                 setTimeout(() => {
                     //
                     this.$router.push('/login')
