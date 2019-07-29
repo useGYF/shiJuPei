@@ -402,8 +402,8 @@
             isTabChange(){
                 //当返回实时监控页面时候监控路由情况
                 if(this.$route.path==='/'){
-                    this.isSelect = '统计';
-                    this.StatisticsSwitch = false;
+                     //
+                    this.selectRightNavData ('国省')
                 }
             },
             //排序

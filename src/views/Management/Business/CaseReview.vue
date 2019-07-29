@@ -10,29 +10,29 @@
                     </div>
                 </div>
                 <div style="width: 86%;margin:20px auto">
-                    <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                    <el-form-item label="案件编号">
-                        <el-input v-model="ruleForm.code" placeholder="输入案件编号"></el-input>
+                    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="案件编号" prop="casecode">
+                        <el-input v-model="ruleForm.casecode" placeholder="输入案件编号"></el-input>
                     </el-form-item>
-                    <el-form-item label="案件等级">
+                    <el-form-item label="案件等级" prop="caselevel">
                         <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级" @change="selectanjdj">
                             <el-option label="普通" value="0"></el-option>
                             <el-option label="紧急" value="1"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="案件来源">
+                    <el-form-item label="案件来源" prop="casesource">
                         <el-select v-model="ruleForm.casesource" placeholder="请选案件来源" @change="selectanjly">
                             <el-option label="信访平台" value="1"></el-option>
                             <el-option label="指挥中心" value="2"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="案件位置">
+                    <el-form-item label="案件位置" prop="location">
                         <el-input v-model="ruleForm.location" placeholder="例如：北京市朝阳区酒仙桥路2002号"></el-input>
                     </el-form-item>
-                    <el-form-item label="经纬度">
+                    <el-form-item label="经纬度" prop="lonlat">
                         <el-input v-model="ruleForm.lonlat" placeholder="例如：123.44,39.22"></el-input>
                     </el-form-item>
-                    <el-form-item label="责任科室">
+                    <el-form-item label="责任科室" prop="zrksryid">
                         <el-select  multiple placeholder="请选择责任科室人员" v-model="ruleForm.zrksryid">
                             <el-option v-for="item in ksryoptions" :key="item.id" :label="item.username" :value="item.id">
                             </el-option>
@@ -232,7 +232,7 @@
         data() {
             return {
                 ruleForm: {
-                    code:'',
+                    casecode:'',
                     caselevel: '',
                     casesource: '',
                     location: '',
@@ -240,6 +240,26 @@
                     zrksryid:[],
                     zhzxryid:'',
                     description: ''
+                },
+                rules: {
+                    casecode: [
+                        { required: true, message: '请输入案件编号', trigger: 'blur' }
+                      ],
+                    caselevel: [
+                        { required: true, message: '请选择案件等级', trigger: 'change' }
+                      ],
+                      casesource: [
+                        { required: true, message: '请选择案件来源', trigger: 'change' }
+                      ],
+                      zrksryid: [
+                        { type: 'array', required: true, message: '请至少选择一个责任科室', trigger: 'change' }
+                      ],
+                      location: [
+                        { required: true, message: '请输入案件位置', trigger: 'blur' }
+                      ],
+                      lonlat: [
+                        { required: true, message: '请输入经纬度', trigger: 'blur' }
+                      ],
                 },
                 anjVisible:false,
                 ksryoptions:[
@@ -384,7 +404,7 @@
                                 _this.$message.success("入录成功")
                                 setTimeout(()=>{
                                     _this.ruleForm = {
-                                        code:'',
+                                        casecode:'',
                                         caselevel: '',
                                         casesource: '',
                                         location: '',
@@ -393,15 +413,20 @@
                                         zhzxryid:'',
                                         description: ''
                                     };
+                                    _this.$refs[formName].resetFields();
                                 },600)
                             }
                         })
 
                     } else {
                         _this.$message.error("入录失败")
+                        setTimeout(()=>{
+                            _this.$refs[formName].resetFields();
+                        },1000)
                         return false;
                     }
                 });
+
             },
             selectanjdj(value) {
                 this.ruleForm.caselevel = value;
