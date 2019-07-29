@@ -11,9 +11,9 @@
                 </div>
                 <div style="width: 86%;margin:20px auto">
                     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                    <el-form-item label="案件编号" prop="casecode">
+                   <!--  <el-form-item label="案件编号" prop="casecode">
                         <el-input v-model="ruleForm.casecode" placeholder="输入案件编号"></el-input>
-                    </el-form-item>
+                    </el-form-item> -->
                     <el-form-item label="案件等级" prop="caselevel">
                         <el-select v-model="ruleForm.caselevel" placeholder="请选案件等级" @change="selectanjdj">
                             <el-option label="普通" value="0"></el-option>
@@ -232,7 +232,7 @@
         data() {
             return {
                 ruleForm: {
-                    casecode:'',
+                    //casecode:'',
                     caselevel: '',
                     casesource: '',
                     location: '',
@@ -242,9 +242,9 @@
                     description: ''
                 },
                 rules: {
-                    casecode: [
-                        { required: true, message: '请输入案件编号', trigger: 'blur' }
-                      ],
+                    // casecode: [
+                    //     { required: true, message: '请输入案件编号', trigger: 'blur' }
+                    //   ],
                     caselevel: [
                         { required: true, message: '请选择案件等级', trigger: 'change' }
                       ],
@@ -404,7 +404,7 @@
                                 _this.$message.success("入录成功")
                                 setTimeout(()=>{
                                     _this.ruleForm = {
-                                        casecode:'',
+                                        //casecode:'',
                                         caselevel: '',
                                         casesource: '',
                                         location: '',
