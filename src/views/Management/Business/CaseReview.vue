@@ -420,9 +420,6 @@
 
                     } else {
                         _this.$message.error("入录失败")
-                        setTimeout(()=>{
-                            _this.$refs[formName].resetFields();
-                        },1000)
                         return false;
                     }
                 });
