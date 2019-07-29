@@ -36,17 +36,17 @@
                             <el-table-column
                                     property="ranking"
                                     label="排名"
-                                    width="80">
+                                    width="50">
                             </el-table-column>
                             <el-table-column
                                     property="Grid"
                                     label="网格名称"
-                                    width="80">
+                                    width="90">
                             </el-table-column>
                             <el-table-column
                                     property="name"
                                     label="名称"
-                                    width="160">
+                                    >
                             </el-table-column>
                             <el-table-column
                                     property="aqi"
