@@ -91,7 +91,7 @@
                                 <li>{{CumulativeData.o3}}</li>
                             </ol>
                         </div>
-                        <div class="wrjingdu">
+                        <!-- <div class="wrjingdu">
                             <p>首要污染物：{{Datalist.mainpoll || '--'}}</p>
                             <div class="tqbiaoti" style="margin: 10px">169城市排名</div>
                             <div class="jdhezi">
@@ -119,11 +119,11 @@
                                 </div>
                             </div>
 
-                        </div>
+                        </div> -->
                     </div>
                     <!--table表格-->
                     <div class="table">
-                        <el-tabs v-model="activeName" @tab-click="handleClick">
+                        <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
                             <el-tab-pane label="国省控点" name="guokongdian">
                                 <el-table
                                         :data="tableData"
@@ -236,7 +236,41 @@
                                 </el-table>
                             </el-tab-pane>
 
-                        </el-tabs>
+                        </el-tabs> -->
+                        <el-table
+                                        :data="tableData"
+                                        border
+                                        @current-change="RowCurrentChange"
+                                        style="width: 100%">
+                                    <el-table-column
+                                            prop="ranking"
+                                            label="排名"
+                                            width="52">
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="pointname"
+                                            label="国省控点"
+                                            width="150"
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="AirQualityGrade"
+                                            label="空气质量等级"
+                                            width="75"
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="aqi"
+                                            :label="labelType"
+                                            width="60"
+                                    >
+                                    </el-table-column>
+                                    <el-table-column
+                                            prop="PrimaryPollutant"
+                                            label="首要污染物"
+                                    >
+                                    </el-table-column>
+                                </el-table>
                     </div>
                 </div>
 </template>
@@ -861,12 +895,12 @@
         }
         .first {
             width: 100%;
-            height: 90px;
+            height: 50px;
             margin-top: 10px;
             .tables {
                 float: left;
                 margin-left: 14px;
-                margin-top: 44px;
+                //margin-top: 44px;
                 width: 100%;
                 border-bottom: solid 1px #ccc;
                 .bai {
