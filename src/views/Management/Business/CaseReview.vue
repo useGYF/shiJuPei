@@ -33,7 +33,7 @@
                         <el-input v-model="ruleForm.lonlat" placeholder="例如：123.44,39.22"></el-input>
                     </el-form-item>
                     <el-form-item label="责任科室" prop="zrksryid">
-                        <el-select  multiple placeholder="请选择责任科室人员" v-model="ruleForm.zrksryid">
+                        <el-select  multiple placeholder="请选择责任科室" v-model="ruleForm.zrksryid">
                             <el-option v-for="item in ksryoptions" :key="item.id" :label="item.username" :value="item.id">
                             </el-option>
                         </el-select>
