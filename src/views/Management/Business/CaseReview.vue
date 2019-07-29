@@ -912,7 +912,7 @@
                 })
             },
             handleChangezrks(val){
-                this.pageNum = val;
+                this.pageNo = val;
                 this.selectZrksCasePage();
             },
             handleDubanClick(row){
