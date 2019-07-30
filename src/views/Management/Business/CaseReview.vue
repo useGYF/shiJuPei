@@ -6,7 +6,7 @@
             <span v-if='userInfo.classfication=="0"'>
                 <div class="box">
                     <div class="warning">
-                        <a>案件入录</a>
+                        <a>案件录入</a>
                     </div>
                 </div>
                 <div style="width: 86%;margin:20px auto">
@@ -23,7 +23,9 @@
                     <el-form-item label="案件来源" prop="casesource">
                         <el-select v-model="ruleForm.casesource" placeholder="请选案件来源" @change="selectanjly">
                             <el-option label="信访平台" value="1"></el-option>
-                            <el-option label="指挥中心" value="2"></el-option>
+                            <el-option label="信访电话" value="2"></el-option>
+                            <el-option label="平台发现" value="3"></el-option>
+                            <el-option label="巡查" value="4"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="案件位置" prop="location">
@@ -42,7 +44,7 @@
                         <el-input type="textarea" rows="4" v-model="ruleForm.description"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="submitForm('ruleForm')">立即入录</el-button>
+                        <el-button type="primary" @click="submitForm('ruleForm')">立即录入</el-button>
                     </el-form-item>
                 </el-form>
                 </div>
