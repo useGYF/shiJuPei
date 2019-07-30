@@ -6,7 +6,7 @@
             <span v-if='userInfo.classfication=="0"'>
                 <div class="box">
                     <div class="warning">
-                        <a>案件入录</a>
+                        <a>案件录入</a>
                     </div>
                 </div>
                 <div style="width: 86%;margin:20px auto">
@@ -42,7 +42,7 @@
                         <el-input type="textarea" rows="4" v-model="ruleForm.description"></el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary" @click="submitForm('ruleForm')">立即入录</el-button>
+                        <el-button type="primary" @click="submitForm('ruleForm')">立即录入</el-button>
                     </el-form-item>
                 </el-form>
                 </div>
@@ -58,18 +58,24 @@
                     style="width: 100%">
                     <el-table-column
                     prop="code"
-                    label="案件编号"
-                    width="350">
+                    label="案件编号">
+                    </el-table-column>
+                    <el-table-column
+                    prop="casesource"
+                    label="案件来源">
+                    </el-table-column>
+                    <el-table-column
+                    prop="casestatus"
+                    label="案件状态">
                     </el-table-column>
                     <el-table-column
                     prop="description"
-                    label="案件描述"
-                    width="350">
+                    label="案件描述">
                     </el-table-column>
                     <el-table-column
                     prop="createTime"
                     label="案发时间"
-                    width="">
+                    width='200'>
                     </el-table-column>
                     <el-table-column
                     prop="location"
@@ -77,12 +83,12 @@
                     </el-table-column>
                     <el-table-column
                     label="操作"
-                    width="200">
+                    width="100">
                     <template scope="scope">
-                        <div v-if="scope.row.casestatus=='1'">
+                        <div v-if="scope.row.casestatus=='待处理'">
                             <el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>通过</el-button>
                         </div>
-                        <div v-if="scope.row.casestatus=='2'&&scope.row.caselevel=='3'">
+                        <div v-if="scope.row.casestatus=='处理中'&&scope.row.caselevel=='3'">
                             <el-button @click="handleDubanClick(scope.row)" type="text" size="small" class='eidt'>督办</el-button>
                         </div>
                     </template>
@@ -113,28 +119,28 @@
                     style="width: 100%">
                     <el-table-column
                     prop="code"
-                    label="案件编号"
-                    width="350">
+                    label="案件编号">
                     </el-table-column>
                     <el-table-column
                     prop="caselevel"
-                    label="案件等级"
-                    width="200">
+                    label="案件等级">
+                    </el-table-column>
+                    <el-table-column
+                    prop="casesource"
+                    label="案件来源">
                     </el-table-column>
                     <el-table-column
                     prop="description"
-                    label="案件描述"
-                    width="200">
+                    label="案件描述">
                     </el-table-column>
                     <el-table-column
                     prop="casestatus"
-                    label="案件状态"
-                    width="350">
+                    label="案件状态">
                     </el-table-column>
                     <el-table-column
                     prop="createTime"
                     label="案发时间"
-                    width="">
+                    width='200'>
                     </el-table-column>
                     <el-table-column
                     prop="location"
@@ -142,7 +148,7 @@
                     </el-table-column>
                     <el-table-column
                     label="操作"
-                    width="200">
+                    width='100'>
                     <template scope="scope">
                         <div v-if="scope.row.casestatus!=='处理完成'">
                             <el-button  @click="handleAfterClick(scope.row)" type="text" size="small" class='eidt'>处理</el-button>
@@ -840,6 +846,7 @@
 								tableData.code = item.code;
 								tableData.id = item.id;
 								tableData.description = item.description;
+								tableData.casesource = this.changeCaseSource(item.casesource);
 								tableData.isOversee = item.isOversee?'督办中':'待处理';
 		                        this.chuliData.push(tableData);
 							})
@@ -866,6 +873,24 @@
                         break;
                     case 1:
                         return '紧急'
+                        break;
+                    default:
+                        break;
+                }
+            },
+            changeCaseSource(code){
+                switch (code) {
+                    case '1':
+                        return '信访平台'
+                        break;
+                    case '2':
+                        return '信访电话'
+                        break;
+                    case '3':
+                        return '平台发现'
+                        break;
+                        case '4':
+                        return '巡查'
                         break;
                     default:
                         break;
@@ -906,13 +931,21 @@
                         this.totalzrks = res.data.data.total;
                          console.log(res)
                          data.forEach(item=>{
-								let tableData = {};
-								tableData.casestatus = item.casestatus;
+                                let tableData = {};
+                                if(item.casestatus=='1'){
+                                    tableData.casestatus = '待处理';
+                                }else if(item.casestatus=='2'){
+                                    tableData.casestatus = '处理中';
+                                }else{
+                                    tableData.casestatus = '处理完成';
+                                }
+								// tableData.casestatus = item.casestatus;
 								tableData.description = item.description;
 								tableData.createTime = item.createTime;
 								tableData.caselevel = item.caselevel;
 								tableData.location = item.location;
 								tableData.code = item.code;
+								tableData.casesource = this.changeCaseSource(item.casesource);
 								tableData.id = item.id;
 		                        this.zrksdata.push(tableData);
 							})
