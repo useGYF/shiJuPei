@@ -90,7 +90,7 @@
                         <div v-if="scope.row.casestatus=='待处理'">
                             <el-button  @click="handleDistrbuteClick(scope.row)" type="text" size="small" class='eidt'>通过</el-button>
                         </div>
-                        <div v-if="scope.row.casestatus=='处理中'&&scope.row.caselevel=='3'">
+                        <div v-if="scope.row.casestatus=='处理中'">
                             <el-button @click="handleDubanClick(scope.row)" type="text" size="small" class='eidt'>督办</el-button>
                         </div>
                     </template>
@@ -939,6 +939,11 @@
                                 }else if(item.casestatus=='2'){
                                     tableData.casestatus = '处理中';
                                     if(item.caselevel == '3'){
+                                        // tableData.casestatus = '待督办';
+                                        tableData.casestatus = '处理中';
+                                    }
+                                    if(item.caselevel == '0'){
+                                        // tableData.casestatus = '待督办';
                                         tableData.casestatus = '督办中';
                                     }
                                 }else{
