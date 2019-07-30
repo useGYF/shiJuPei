@@ -14,7 +14,7 @@ const apiconfig = [
         {
             devn:'http://gkpt.zq12369.com:8016',//正式001
             devr:'http://120.52.157.162:4017',//正式001
-            devy:'http://gkpt.zq12369.com:8015',//正式(大气源清单)
+            devy:'http://120.52.157.162:8070',//正式(大气源清单)
             devc:'http://gkpt.zq12369.com:8013',//正式
         }
     ];
@@ -38,7 +38,7 @@ const apilangfangTDK = {
     GetLfAirPollution: apiconfig[icode].devn + '/api/LfAir/GetLfAirPollutionItemAccu',//首页面板累计值
     GetMonitoringPointAccu: apiconfig[icode].devn + '/api/Monitoring/GetMonitoringPointAccu?pointLevel=',//国控点，这是累计接口
     GetMonitoringPointHour: apiconfig[icode].devn + '/api/Monitoring/GetMonitoringPointHour?time=',//这是小时查询部分，默认pointlevel不传，返回所有国控点和省控点
-    GetMonitoringPointReal: apiconfig[icode].devn + '/api/Monitoring/GetMonitoringPointReal?pointLevel=',//实时监测点信息
+    GetMonitoringPointReal: apiconfig[icode].devy + '/api/Monitoring/GetMonitoringPointReal?pointLevel=',//实时监测点信息
     GetycXhHbPointsRaise: apiconfig[icode].devn + '/api/XhHb/GetXhHbPointsRaise',//在线扬尘先河统计
     GetFcStationList: apiconfig[icode].devn + '/api/FcStation/GetFcStationList',//传感网数据实时
     GetXhHbPointsMicroAccu: apiconfig[icode].devn + '/api/XhHb/GetXhHbPointsMicroAccu',//传感网数据累计先河
