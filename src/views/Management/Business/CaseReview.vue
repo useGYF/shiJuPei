@@ -23,7 +23,9 @@
                     <el-form-item label="案件来源" prop="casesource">
                         <el-select v-model="ruleForm.casesource" placeholder="请选案件来源" @change="selectanjly">
                             <el-option label="信访平台" value="1"></el-option>
-                            <el-option label="指挥中心" value="2"></el-option>
+                            <el-option label="信访电话" value="2"></el-option>
+                            <el-option label="平台发现" value="3"></el-option>
+                            <el-option label="巡查" value="4"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="案件位置" prop="location">
