@@ -72,7 +72,7 @@ const apilangfangTDK = {
     GetJingJinJiHourList: apiconfig[icode].devn + '/api/jingJinJi/GetJingJinJiHourListPc',//京津冀城市排名
     GetElectricityChart2: apiconfig[icode].devn + '/api/LargeData/GetElectricityChart?',//大数据资源统计
     GetPointNameListData: apiconfig[icode].devn + '/api/LargeData/GetPointNameList',//大数据资源统计
-    GetTownList: apiconfig[icode].devn + '/api/Town/GetTownList',//乡镇企业列表展示
+    GetTownList: apiconfig[icode].devy + '/api/Town/GetTownList',//乡镇企业列表展示
     GetSingleTown: apiconfig[icode].devn + '/api/Town/GetSingleTown?StationId=',//乡镇企业详细数据展示
     GetTownAnalysisList: apiconfig[icode].devn + '/api/Town/GetTownAnalysisList?region=',//乡镇统计实时数据
     GetTownAnalysisListForDaily: apiconfig[icode].devn + '/api/Town/GetTownAnalysisListForDaily?',//乡镇统计日报数据

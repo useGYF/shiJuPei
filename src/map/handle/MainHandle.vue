@@ -204,7 +204,7 @@
               break;
             case 'LAYER_CX':
               dtItme = {
-                Stationid: data.town_Stationid,
+                //Stationid: data.town_Stationid,
                 name: data.names
               };
               fieldName = 'pm25';
@@ -1116,7 +1116,8 @@
               displayName = 'name';
               charUrl = RequestHandle.getRequestUrl('TOWNCHART');
               fieldName = ckItem.fieldName;
-              pms = {StationId: attributes.deviceid || attributes.id, type: fieldName};
+              pms = {name: encodeURI(attributes.name), Type: fieldName};
+              //pms = {name: attributes.name || attributes.name, type: fieldName};
               break;
             case 'LAYER_QM':
               charUrl = RequestHandle.getRequestUrl('ALLREPORTCHAR');
@@ -1211,7 +1212,9 @@
                 case 'LAYER_CX':
                   let cxContent = t.setCXInfoWindow(data);
                   t.searchInfoWindow.setContent(cxContent);
-                  t.setCXChart(attributes.deviceid || attributes.id, data.list, fieldName);
+                  // console.log((attributes.name || attributes.id), data.list, fieldName)
+                  t.setCXChart(attributes.name, data.list, fieldName);
+                  //t.setCXChart(attributes.name, data.list, fieldName);
                   break;
                 case 'LAYER_QM':
                   let qmContent = t.setQMInfoWindow(data);
@@ -1589,7 +1592,7 @@
           '<div class="key" style=\'color:' + (getSO2LevelIndex(data.so2) > 3 ? '#fff' : '#000') + ';background-color:' + getColorByIndex(getSO2LevelIndex(data.so2)) + '\'>SO2</div>' +
           '<div class="value">' + (this.hasNullOrUndefined(data.so2) ? parseInt(data.so2) : '--') + '</div>' +
           '</div>\n' +
-          '</div><div class="chart"><div id=\'citychart_' + data.deviceid + '\' style=\'width:100%;color:#666666;font-weight:bold;height:110px\'></div></div>' +
+          '</div><div class="chart"><div id=\'citychart_' + data.name + '\' style=\'width:100%;color:#666666;font-weight:bold;height:110px\'></div></div>' +
           '<div class="Introduce"><div class="Net">所属网格：' + gridName + '</div><div class="Person">网格员代表：' + memberName + '</div><div>联系方式：' + tel + '</div></div>'
       },
 
@@ -1695,7 +1698,17 @@
               },
               enableMouseTracking: true,
               turboThreshold: 0
-            }
+            },
+            column : {
+               borderWidth: 0,
+               pointWidth:10, //柱子宽度
+               dataLabels: {
+                  style:{
+                     fontSize:11
+                  },
+                 enabled: false
+                }
+             }
           },
           legend: {
             enabled: false
@@ -1748,7 +1761,8 @@
               marker: {
                 enabled: false
               }
-            }
+            },
+            
           },
           series: data
         });
@@ -2544,7 +2558,7 @@
             rtValue = {pk: 'stationId', index: 2};
             break;
           case 'LAYER_CX':
-            rtValue = {pk: 'deviceid', index: 3};
+            rtValue = {pk: 'name', index: 3};
             break;
           case 'LAYER_GD':
             rtValue = {pk: 'deviceid', index: 4};
