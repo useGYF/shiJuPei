@@ -938,6 +938,9 @@
                                     tableData.casestatus = '待处理';
                                 }else if(item.casestatus=='2'){
                                     tableData.casestatus = '处理中';
+                                    if(item.caselevel == '3'){
+                                        tableData.casestatus = '督办中';
+                                    }
                                 }else{
                                     tableData.casestatus = '处理完成';
                                 }
