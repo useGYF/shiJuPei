@@ -144,7 +144,7 @@
                     label="操作"
                     width="200">
                     <template scope="scope">
-                        <div v-if="scope.row.casestatus=='处理人员待操作'">
+                        <div v-if="scope.row.casestatus!=='处理完成'">
                             <el-button  @click="handleAfterClick(scope.row)" type="text" size="small" class='eidt'>处理</el-button>
                         </div>
                     </template>
@@ -823,8 +823,17 @@
                         this.totalchuli = res.data.data.total;
                          console.log(res)
                          data.forEach(item=>{
-								let tableData = {};
-								tableData.casestatus = this.changeStatus(item.casestatus);
+                                let tableData = {};
+                                if(item.casestatus!=='3'){
+                                    if(item.isOversee){
+                                        tableData.casestatus = '督办中';
+                                    }else{
+                                        tableData.casestatus = '待处理';
+                                    }
+                                }else{
+                                    tableData.casestatus = '处理完成';
+                                }
+								// tableData.casestatus = this.changeStatus(item.casestatus);
 								tableData.createTime = item.createTime;
 								tableData.caselevel = this.changeLevel(item.caselevel);
 								tableData.location = item.location;
