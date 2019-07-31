@@ -35,7 +35,7 @@
                         <el-input v-model="ruleForm.lonlat" placeholder="例如：123.44,39.22"></el-input>
                     </el-form-item>
                     <el-form-item label="责任科室" prop="zrksryid">
-                        <el-select  multiple placeholder="请选择责任科室" v-model="ruleForm.zrksryid">
+                        <el-select  placeholder="请选择责任科室" v-model="ruleForm.zrksryid">
                             <el-option v-for="item in ksryoptions" :key="item.id" :label="item.realname" :value="item.id">
                             </el-option>
                         </el-select>
@@ -47,6 +47,32 @@
                         <el-button type="primary" @click="submitForm('ruleForm')">立即录入</el-button>
                     </el-form-item>
                 </el-form>
+                </div>
+                <div class="box">
+                    <div class="warning">
+                        <a>案件列表</a>
+                    </div>
+                </div>
+                <div style="width: 86%;margin:20px auto">
+                    <!--  -->
+                    <el-table :data="zhzxdata" style="width: 100%">
+                        <el-table-column prop="level" label="案件等级"></el-table-column>
+                        <el-table-column prop="location" label="案件地址"></el-table-column>
+                        <el-table-column prop="source" label="案件来源"></el-table-column>
+                        <el-table-column prop="status" label="案件状态"></el-table-column>
+                        <el-table-column prop="zrks" label="案件责任科室"></el-table-column>
+                        <el-table-column prop="descript" label="案件描述"></el-table-column>
+                    </el-table>
+                    <div class="page">
+                        <span class="demonstration">共找到{{totalzhzx}}条记录</span>
+                        <el-pagination
+                        background
+                        @current-change="handleChangezhzx"
+                        :current-page="pageNo"
+                        :page-size="pagesize"
+                        :total="totalzhzx">
+                        </el-pagination>
+                    </div>
                 </div>
             </span>
             <span v-if='userInfo.classfication=="1"'>
@@ -245,7 +271,7 @@
                     casesource: '',
                     location: '',
                     lonlat:'',
-                    zrksryid:[],
+                    zrksryid:'',
                     zhzxryid:'',
                     description: ''
                 },
@@ -260,7 +286,7 @@
                         { required: true, message: '请选择案件来源', trigger: 'change' }
                       ],
                       zrksryid: [
-                        { type: 'array', required: true, message: '请至少选择一个责任科室', trigger: 'change' }
+                       { required: true, message: '请选择责任科室', trigger: 'change' }
                       ],
                       location: [
                         { required: true, message: '请输入案件位置', trigger: 'blur' }
@@ -269,6 +295,8 @@
                         { required: true, message: '请输入经纬度', trigger: 'blur' }
                       ],
                 },
+                zhzxdata:[],
+                totalzhzx:1,
                 anjVisible:false,
                 ksryoptions:[
                     {
@@ -377,7 +405,7 @@
             this.selectZrksCasePage();//责任科室案件
         },
         mounted() {
-        	// this.GetMonitoringDay();
+        	this.getzhzxlist();
             this.GetCaseAll();//分配单位
             this.GetCaseAllZhzx();
         	// this.GetPollutionType();//污染类别
@@ -402,7 +430,7 @@
                 _this.$refs[formName].validate((valid) => {
                     if (valid) {
                         let parmdata = {
-                            zrksryid:_this.ruleForm.zrksryid.join(','),//责任科室人员id,多个用逗号分隔
+                            zrksryid:_this.ruleForm.zrksryid,//责任科室人员id,多个用逗号分隔
                             zhzxryid:_this.userInfo.id//指挥中心人员id
                         };
                         console.log(parmdata);
@@ -422,6 +450,7 @@
                                         description: ''
                                     };
                                     _this.$refs[formName].resetFields();
+                                    _this.getzhzxlist();
                                 },600)
                             }
                         })
@@ -432,6 +461,14 @@
                     }
                 });
 
+            },
+            //
+            handleChangezhzx(val){
+                 this.pageNo = val;
+                 this.getzhzxlist();
+            },
+            selectzrks(value){
+                this.ruleForm.zrksryid = value;
             },
             selectanjdj(value) {
                 this.ruleForm.caselevel = value;
@@ -504,6 +541,17 @@
 		        }
 		        return isJPG && isLt5M;
 		   },
+           //指挥中心案件列表
+           getzhzxlist(){
+                let userId = this.userInfo.id;
+                let pageNum = this.pageNo;
+                let pageSize ='10';
+                api.GetpostzhzxlistResource(userId,pageNum,pageSize).then(res=>{
+                    console.log(res)
+                    this.totalzhzx = res.data.data.total;
+                    this.zhzxdata = res.data.data.list;
+                })
+           },
 		   //处理结果
 		   GetEditResult(){
 		   		let t = this;

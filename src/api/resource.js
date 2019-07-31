@@ -33,6 +33,7 @@ if(process.env.API_ROOT === 'TEST' || process.env.API_ROOT === 'DEV'){
 /*langfang----jiekou*/
 const apilangfangTDK = {
     postShijuaddcase:apiconfig[icode].devr + '/zcb/cases/addcase',//案件入录
+    postzhzxlist:apiconfig[icode].devr + '/zcb/cases/zhzxlist?',//案件入录
     GetLfAir: apiconfig[icode].devn + '/api/lfair/GetLfAir ',//首页面板天气模块数据
     GetElectricityIndexChart: apiconfig[icode].devn + '/api/LargeData/GetElectricityIndexChart?',//大数据对比
     GetLfAirPollution: apiconfig[icode].devn + '/api/LfAir/GetLfAirPollutionItemAccu',//首页面板累计值
@@ -333,7 +334,7 @@ export const GetElectricityIndexChartForDayResource = API_ROOT.concat(apilangfan
 export const selectClbmCasePageResource = API_ROOT.concat(apilangfangTDK.selectClbmCasePage);
 export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);
 export const postShijuaddcaseResource = API_ROOT.concat(apilangfangTDK.postShijuaddcase);
-// export const disposeCaseResource = API_ROOT.concat(apilangfangTDK.disposeCase);
+export const postzhzxlistResource = API_ROOT.concat(apilangfangTDK.postzhzxlist);
 export const selectZrksCasePageResource = API_ROOT.concat(apilangfangTDK.selectZrksCasePage);
 export const duBanCaseResource = API_ROOT.concat(apilangfangTDK.duBanCase);
 

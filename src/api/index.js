@@ -153,7 +153,7 @@ import {
     postShijuaddcaseResource,//案件入录
     selectZrksCasePageResource,//责任科室案件
     duBanCaseResource,//责任科室督办案件
-
+    postzhzxlistResource,//指挥中心列表
 } from './resource'
 
 export default {
@@ -161,6 +161,11 @@ export default {
     //登录地址
     GetUserLoginRes() {
         return GetUserLoginResource
+    },
+    //天大数据资源
+    GetpostzhzxlistResource(userId,pageNum,pageSize) {
+        return axios.get(postzhzxlistResource+ 'userId=' + userId + '&pageNum=' + pageNum + '&pageSize=' + pageSize, {}
+        )
     },
     //slw视频企业信息
     GetVideoScatterInfoRes() {
