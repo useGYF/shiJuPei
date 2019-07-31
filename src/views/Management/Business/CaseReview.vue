@@ -214,7 +214,7 @@
 	                    <div class="el-icon-close" @click="isClose=false"></div>
 	                </div>
 	                <div class="content">
-                		<span>案件描述</span>
+                		<span>案后描述</span>
                 		<el-input
                             type="textarea"
                             :rows="2"
