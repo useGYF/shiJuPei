@@ -941,11 +941,13 @@
                                     if(item.caselevel == '3'){
                                         // tableData.casestatus = '待督办';
                                         tableData.casestatus = '处理中';
-                                    }
-                                    if(item.caselevel == '0'){
-                                        // tableData.casestatus = '待督办';
+                                    }else{
                                         tableData.casestatus = '督办中';
                                     }
+                                    // if(item.caselevel == '0'){
+                                    //     // tableData.casestatus = '待督办';
+                                        
+                                    // }
                                 }else{
                                     tableData.casestatus = '处理完成';
                                 }
