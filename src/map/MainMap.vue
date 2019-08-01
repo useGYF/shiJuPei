@@ -159,7 +159,7 @@
           }, {
             name: 'layer_cgx_voc',
             checkedName: 'tvoc',
-            fieldName: 'TVOC监测点',
+            fieldName: 'VOC监测点',
             visible: false,
             childs: []
           }]

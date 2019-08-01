@@ -175,7 +175,7 @@
               fieldName: 'so2Status'
             }]
           }, {
-            name: 'TVOC监测',
+            name: 'VOC监测',
             code: 'layer_cgq_voc',
             layerIndex: 2,
             checked: false,

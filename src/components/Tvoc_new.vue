@@ -36,7 +36,7 @@
                             </el-table-column>
                             <el-table-column
                                     property="tVOC_V"
-                                    label="TVOC"
+                                    label="VOC"
                                    >
                             </el-table-column>
                         </el-table>
