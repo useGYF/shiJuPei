@@ -1339,11 +1339,11 @@
           '    <div class="line"></div>\n' +
           '    <div class="item vocItem one">\n' +
           '        <div class="triangle"></div>\n' +
-          '        <div class="type">TVOC监测</div>\n' +
+          '        <div class="type">VOC监测</div>\n' +
           '        <div class="date">' + (data.collectTime || data.recordTime.replace('T', ' ')) + '</div>\n' +
           '    </div>\n' +
           '    <div class="item vocItem">\n' +
-          '        <div class="key" style=\'color:' + (data.tVOC_V > 300 ? '#fff' : '#000') + ';background-color:' + getVOCLeveColor(data.tVOC_V) + '\'>TVOC</div>\n' +
+          '        <div class="key" style=\'color:' + (data.tVOC_V > 300 ? '#fff' : '#000') + ';background-color:' + getVOCLeveColor(data.tVOC_V) + '\'>VOC</div>\n' +
           '        <div class="value">' + (this.hasNullOrUndefined(data.tVOC_V) ? data.tVOC_V : '--') + '</div>\n' +
           '    </div>\n' +
           '</div><div class="chart"><div id=\'citychart_' + data.stationId + '\' style=\'width:100%;height:110px\'></div></div>' +
@@ -1427,7 +1427,7 @@
           //console.log(obj.x)
           rtValue.push(obj);
         }
-        let title = '最近24小时TVOC变化趋势';
+        let title = '最近24小时VOC变化趋势';
         this.loadChar(code, 'VOC', rtValue, title);
       },
 
