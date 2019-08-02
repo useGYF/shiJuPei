@@ -1,7 +1,8 @@
 <template>
     <div class="login">
         <!---->
-        <img src="../assets/img/logo.png" alt="" style="position: absolute;top: 40px;left: 40px;">
+        <!-- <img src="../assets/img/logo.png" alt="" style="position: absolute;top: 40px;left: 40px;"> -->
+        <div style="color:#fff;font-size:36px;text-align:left;padding:40px">智慧生态环境大数据监管平台</div>
         <!--登录页面-->
         <div class="form">
             <div class="input">
@@ -20,14 +21,14 @@
                 </div>
             </div>
         </div>
-        <div class="bottom_title">
+        <!-- <div class="bottom_title">
             <div class="title_banquan">
                 <p>版权所有：廊坊市环保局,廊坊市大气办 <span>技术支持：千人计划PM2.5特别防治小组，廊坊市智慧环境生态产业研究院</span></p>
             </div>
             <div class="img-qianren">
                 <img style="width: 64px" src="../assets/img/logo_jishu.png" alt="">
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
